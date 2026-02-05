@@ -8,7 +8,9 @@ load_dotenv()
 
 genai.configure(api_key=os.getenv("API_KEY"))
 
-app = Flask(__name__)
+app = Flask(__name__, 
+            template_folder='../templates', 
+            static_folder='../static')
 
 # Load knowledge base
 with open("knowledge_base.md", "r", encoding="utf-8") as f:
