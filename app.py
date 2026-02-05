@@ -24,40 +24,45 @@ def ai_generate_answer(question, context):
     if not api_key:
         return "System Error: OpenRouter API Key missing."
 
+    # This is the "Brain" of the AI. We need to make it strong!
+    system_instruction = f"""
+    You are ChatDIS, the official and friendly AI assistant for Dunes International School (DIS), Abu Dhabi.
+    
+    GUIDELINES:
+    1. Use the PROVIDED CONTEXT below to answer the user's question accurately.
+    2. If the answer is in the context, be specific (mention timings, dates, and contact info).
+    3. If the answer is NOT in the context, politely state that you don't have that specific information and suggest they contact the school office at +971 2 552 7527.
+    4. Keep the tone professional, welcoming, and helpful.
+    5. Use bullet points for lists and bold text for important details.
+    
+    SCHOOL CONTEXT:
+    {context}
+    """
+
     try:
         response = requests.post(
             url="https://openrouter.ai/api/v1/chat/completions",
             headers={
                 "Authorization": f"Bearer {api_key}",
-                "HTTP-Referer": "http://localhost:5000", # Can be your site URL
+                "HTTP-Referer": "https://chatdis-ai.vercel.app/", 
                 "Content-Type": "application/json",
             },
             data=json.dumps({
-                "model": "google/gemini-2.0-flash-001", # High limit, very fast
+                "model": "google/gemini-2.0-flash-001", 
                 "messages": [
-                    {
-                        "role": "system", 
-                        "content": f"You are ChatDIS, the assistant for Dunes International School. Use this info: {context}. Be professional and polite."
-                    },
-                    {
-                        "role": "user", 
-                        "content": question
-                    }
-                ]
+                    {"role": "system", "content": system_instruction},
+                    {"role": "user", "content": question}
+                ],
+                "temperature": 0.3 # Lower temperature makes the AI more factual and less "creative"
             })
         )
         
         result = response.json()
-        
-        # OpenRouter returns a specific JSON structure
-        if 'choices' in result:
-            return result['choices'][0]['message']['content']
-        else:
-            return f"API Error: {result.get('error', {}).get('message', 'Unknown Error')}"
+        return result['choices'][0]['message']['content']
 
     except Exception as e:
         return f"Connection Error: {str(e)}"
-
+        
 @app.route("/")
 def home():
     return render_template("index.html")
