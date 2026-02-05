@@ -73,3 +73,6 @@ def ask():
 
     answer = ai_generate_answer(user_question, relevant_info)
     return jsonify({"answer": answer})
+
+# Vercel will look for this 'app' variable
+app = app
