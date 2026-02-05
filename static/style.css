@@ -128,20 +128,21 @@ button:hover {
     padding: 10px;
 }
 
+/* The pulse animation */
+@keyframes thinkingPulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
 .thinking {
     font-style: italic;
-    opacity: 0.7;
-    animation: pulse 1.5s infinite;
+    background-color: #f0f0f0 !important; /* Slightly different color while thinking */
+    animation: thinkingPulse 1.5s infinite ease-in-out;
 }
 
-@keyframes pulse {
-    0% { opacity: 0.4; }
-    50% { opacity: 1; }
-    100% { opacity: 0.4; }
-}
-
-/* Make sure the bot message handles the markdown-style text better */
+/* Optional: Make the bot message handle line breaks properly */
 .bot-message {
-    white-space: pre-wrap; /* This keeps the spacing and line breaks */
     line-height: 1.5;
+    word-wrap: break-word;
 }
