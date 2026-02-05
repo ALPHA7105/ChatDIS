@@ -2,30 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ChatDIS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatDIS | Dunes International School</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
+    <div class="chat-container">
+        <header>
+            <h2>ChatDIS</h2>
+            <p>Digital School Assistant</p>
+        </header>
 
-<div class="chatbox">
-    <h2>ChatDIS</h2>
-    <p class="subtitle">School Information Assistant</p>
+        <div id="chat">
+            <div class="message bot-message">Hello! How can I help you today?</div>
+        </div>
 
-    <div id="chat"></div>
+        <div class="input-area">
+            <input type="text" id="question" placeholder="Ask about timings, leave, or policies...">
+            <button onclick="askQuestion()">Ask</button>
+        </div>
+        
+        <p class="disclaimer">Official information provided by Dunes International School</p>
+    </div>
 
-    <input
-        type="text"
-        id="question"
-        placeholder="Ask a school-related question..."
-    />
-
-    <button onclick="askQuestion()">Ask</button>
-
-    <p class="disclaimer">
-        ChatDIS provides general school information only.
-    </p>
-</div>
-
-<script src="/static/script.js"></script>
+    <script src="/static/script.js"></script>
 </body>
 </html>
