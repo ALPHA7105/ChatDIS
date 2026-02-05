@@ -62,18 +62,13 @@ def ai_generate_answer(question, context):
             return f"AI Error: {str(e)}"
 """
 def ai_generate_answer(question, context):
-    # Try the models in order of preference
-    model_names = ['gemini-1.5-flash', 'gemini-2.0-flash', 'gemini-pro']
-    
-    for name in model_names:
-        try:
-            model = genai.GenerativeModel(name)
-            response = model.generate_content(f"Context: {context}\nQuestion: {question}")
-            return response.text
-        except:
-            continue # If this model name fails, try the next one
-            
-    return "AI Error: None of the supported models responded."
+    model = genai.GenerativeModel('gemini-2.5-flash')
+    try:
+        # Just a simple test
+        response = model.generate_content(f"You are a school assistant. {question}")
+        return response.text
+    except Exception as e:
+        return f"Still Error: {str(e)}"
         
 @app.route("/")
 def home():
