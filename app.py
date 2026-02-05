@@ -24,10 +24,13 @@ except Exception as e:
     KNOWLEDGE_BASE = "Dunes International School information: Timings 7:45 AM - 2:50 PM."
 
 def search_knowledge_base(query):
+    return KNOWLEDGE_BASE
+    """
     keywords = query.lower().split()
     relevant_lines = [line for line in KNOWLEDGE_BASE.split("\n") 
                       if any(word in line.lower() for word in keywords)]
     return "\n".join(relevant_lines[:15])
+    """
 
 def ai_generate_answer(question, context):
     if not api_key:
