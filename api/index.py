@@ -12,6 +12,9 @@ app = Flask(__name__,
             template_folder='../templates', 
             static_folder='../static')
 
+base_path = os.path.dirname(__file__)
+kb_path = os.path.join(base_path, "..", "knowledge_base.md")
+
 # Load knowledge base
 with open("knowledge_base.md", "r", encoding="utf-8") as f:
     KNOWLEDGE_BASE = f.read()
