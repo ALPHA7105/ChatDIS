@@ -171,3 +171,33 @@ button:hover {
     line-height: 1.5;
     word-wrap: break-word;
 }
+
+/* Styling for Markdown Tables */
+.bot-message table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    background: white;
+    font-size: 0.9rem;
+}
+
+.bot-message th, .bot-message td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.bot-message th {
+    background-color: #800000;
+    color: white;
+}
+
+/* Styling for Markdown Lists */
+.bot-message ul, .bot-message ol {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.bot-message li {
+    margin-bottom: 5px;
+}
