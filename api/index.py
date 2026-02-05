@@ -28,9 +28,30 @@ def search_knowledge_base(query):
 
 def ai_generate_answer(question, context):
     if not api_key:
-        return "System Error: API Key missing in Vercel settings."
+        return "System Error: API Key missing."
     try:
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        # UPDATED MODEL NAME HERE
+        model = genai.GenerativeModel('gemini-1.5-flash-latest')
+        
+        prompt = f"""
+        You are ChatDIS, the assistant for Dunes International School.
+        
+        CONTEXT FROM SCHOOL FILES:
+        {context}
+        
+        USER QUESTION:
+        {question}
+        
+        INSTRUCTIONS:
+        1. Use the context above to answer. 
+        2. If the answer isn't there, use your general knowledge about schools but mention it's a general guess.
+        3. Keep it friendly and 'Dunes' focused!
+        """
+        
+        response = model.generate_content(prompt)
+        return response.text
+    try:
+        model = genai.GenerativeModel('gemini-1.5-flash-latest')
         prompt = f"Using this info: {context}. Answer this: {question}. Be a helpful Dunes School assistant."
         response = model.generate_content(prompt)
         return response.text
