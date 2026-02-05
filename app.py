@@ -62,7 +62,7 @@ def ai_generate_answer(question, context):
             return f"AI Error: {str(e)}"
 """
 def ai_generate_answer(question, context):
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    model = genai.GenerativeModel('gemini-3-pro-preview')
     try:
         # Just a simple test
         response = model.generate_content(f"You are a school assistant. {question}")
