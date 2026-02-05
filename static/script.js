@@ -15,10 +15,20 @@ async function askQuestion() {
         </div>
     `;
 
-    // Scroll to bottom
+    // 3. Create a unique ID for the "Thinking" bubble
+    const thinkingId = "think-" + Date.now();
+    
+    // 4. Add the "Thinking" placeholder bubble
+    chat.innerHTML += `
+        <div id="${thinkingId}" class="message bot-message thinking">
+            ChatDIS is thinking...
+        </div>
+    `;
+
+    // Scroll to bottom so user sees the "Thinking" state
     chat.scrollTop = chat.scrollHeight;
 
-    // 3. Fetch from Backend
+    // 5. Fetch from Backend
     try {
         const response = await fetch("/ask", {
             method: "POST",
@@ -28,21 +38,23 @@ async function askQuestion() {
 
         const data = await response.json();
 
-        // 4. Add Bot Message Bubble
-        chat.innerHTML += `
-            <div class="message bot-message">
-                ${data.answer}
-            </div>
-        `;
+        // 6. Find the thinking bubble and replace its content with the real answer
+        const thinkingBubble = document.getElementById(thinkingId);
+        
+        // Remove the 'thinking' class to stop the pulse animation
+        thinkingBubble.classList.remove("thinking");
+        
+        // Use innerHTML and replace newlines with <br> for better formatting
+        thinkingBubble.innerHTML = data.answer.replace(/\n/g, '<br>');
+
     } catch (error) {
-        chat.innerHTML += `
-            <div class="message bot-message">
-                Sorry, I'm having trouble connecting right now.
-            </div>
-        `;
+        // If it fails, update the thinking bubble with the error message
+        const thinkingBubble = document.getElementById(thinkingId);
+        thinkingBubble.classList.remove("thinking");
+        thinkingBubble.innerHTML = "Sorry, I'm having trouble connecting right now.";
     }
 
-    // Scroll to bottom again
+    // Final scroll to bottom
     chat.scrollTop = chat.scrollHeight;
 }
 
