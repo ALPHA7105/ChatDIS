@@ -32,7 +32,7 @@ body {
     display: flex;
     flex-direction: column;
     box-shadow: 0 10px 25px rgba(105, 11, 19, 0.15); /* Tinted shadow */
-    border-radius: 15px;
+    border-radius: 0px;
     overflow: hidden;
 }
 
@@ -42,6 +42,7 @@ header {
     color: var(--white);
     padding: 20px;
     text-align: center;
+    border-bottom: 4px solid var(--dunes-light-red);
 }
 
 header h2 {
@@ -55,6 +56,11 @@ header p {
     font-size: 0.85rem;
     opacity: 0.9;
 }
+
+#chat, .quick-actions, .input-area-wrapper {
+    width: 100%;
+    max-width: 900px; /* This makes it look like the centered style you want */
+    margin: 0 auto;   /* Centers it horizontally */
 
 /* Chat Area */
 #chat {
