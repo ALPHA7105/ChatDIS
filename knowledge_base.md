@@ -410,13 +410,13 @@ To Dunes we'll bring pride, to Dunes we'll bring pride (3)
 ### MONDAY TO THURSDAY
 | S.NO | GRADE | GATE OPERATIONAL TIMING (ARRIVAL AND SETTLING TIME) | BUS DISPERSAL TIMING | GATE OPERATIONAL TIMING (DISPERSAL – OWN TRANSPORT) |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | Kindergarten | 7:15 a.m. to 7:40 a.m. | 12:15 p.m. | 12:15 p.m. to 12:25 p.m. |
-| 2 | Grade 1 to 12 | 7:15 a.m. to 7:40 a.m. | 2:25 p.m. | 2:25 p.m. to 2.35 p.m. |
+| 1 | Kindergarten | 7:30 a.m. to 7:40 a.m. | 12:25 p.m. | 12:25 p.m. to 12:35 p.m. |
+| 2 | Grade 1 to 12 | 7:30 a.m. to 7:40 a.m. | 2:50 p.m. | 2:50 p.m. to 3:00 p.m. |
 
 ### FRIDAY
 | S.NO | GRADE | GATE OPERATIONAL TIMING (ARRIVAL AND SETTLING TIME) | BUS DISPERSAL TIMING | GATE OPERATIONAL TIMING (DISPERSAL – OWN TRANSPORT) |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | Kindergarten to Grade 12 | 7:15 a.m. to 7:40 a.m. | 11:55 a.m. | 11:55 a.m. to 12:05 p.m. |
+| 1 | Kindergarten to Grade 12 | 7:30 a.m. to 7:40 a.m. | 11:15 a.m. | 11:15 a.m. to 11:25 p.m. |
 
 # OFFICE TIMINGS
 | DAYS | FROM | To |
