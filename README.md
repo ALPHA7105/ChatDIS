@@ -6,7 +6,7 @@ By leveraging the official School Almanac and Web data, ChatDIS provides instant
 
 ---
 
-## 🌟 Key Features
+## Key Features
 
 - **Instant Fee Lookup:** Provides the latest ADEK-approved tuition and transport fees for all grade levels (KG1 - Grade 12).
 - **Uniform & Policy Guide:** Answers specific questions about dress codes, lanyard color coding, and store availability.
@@ -14,13 +14,13 @@ By leveraging the official School Almanac and Web data, ChatDIS provides instant
 - **Operational Clarity:** Quick access to gate timings, dispersal schedules, and department-specific contact extensions.
 - **Source-Grounded:** Built using data strictly from the **Dunes Almanac (2024-2026)** and the official school website to prevent misinformation.
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 - **Frontend:** HTML5, CSS3 (Custom School Branding), and JavaScript.
-- **Intelligence:** Powered by [OpenRouter API](https://openrouter.ai/) — utilizing the `[MODEL NAME]` model for high-speed, context-aware responses.
+- **Intelligence:** Powered by OpenRouter API — utilized for high-speed, context-aware responses.
 - **Formatting:** Markdown integration for clean, readable table data and lists.
 
-## 🚀 Future Roadmap
+## Future Roadmap
 
 - [ ] Integration with the **ETH Digital Campus** parent portal.
 - [ ] Multilingual support (Arabic & Hindi) for the diverse school community.
