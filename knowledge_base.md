@@ -74,22 +74,9 @@ Admissions usually open in December/January.
 
 # Dunes International School – Information Base
 
-### CHAIRMAN’S MESSAGE
-##### Embracing the Year of Community – Building a Future Together
-### "Individually, we are one drop. Together, we are an ocean." – Ryunosuke Satoro
-### As we step into The Year of Community, I take immense pride in the collective spirit that defines Dunes International School. A school is not just a place of learning—it is a vibrant ecosystem where students, teachers, and families come together to nurture growth, excellence, and innovation. This initiative serves as a powerful reminder that true success is built on unity, mutual support, and a shared vision for a brighter future.
-### At Dunes International School, we are committed to fostering an environment where every learner thrives, not just academically, but as a compassionate, responsible, and forward-thinking global citizen. Through collaboration and perseverance, we empower our students to embrace challenges, inspire change, and contribute meaningfully to society.
-### This year, let us strengthen our bonds, celebrate diversity, and work hand in hand to create a future that reflects our values of excellence, integrity, and inclusivity. Together, we can achieve remarkable milestones and leave a legacy of learning and leadership.
-### Ismaeil Al Khoori Chairmain
+### Ismaeil Al Khoori - Chairmain
 
-### MESSAGE FROM THE DIRECTOR/PRINCIPAL
-### “Embracing the Year of Community – Strength in Unity, Excellence in Growth”​
-### Coming together is a beginning, staying together is progress, and working together is success." – Henry Ford
-#### As we herald The Year of Community, I am filled with immense pride and gratitude to witness the remarkable spirit of unity that defines our school. This initiative is a testament to the power of collaboration, support, and the shared vision that we cherish within our Dunes family.
-#### At Dunes International School, we believe that education extends beyond the classroom—it is about fostering meaningful connections, embracing diversity, and nurturing responsible global citizens. Rooted in our motto, Innovate and Excel, we continuously strive to create a learning environment that empowers students to become compassionate leaders, critical thinkers, and effective communicators.
-#### This year, we celebrate the essence of togetherness, recognizing that true success is not measured by individual achievements alone but by the strength of the community we build. Through collective efforts, we aim to instil empathy, resilience, and collaboration, ensuring that every student feels valued and inspired to contribute meaningfully to society.
-#### As we embark on this journey, let us reaffirm our commitment to fostering a culture of inclusivity, respect, and shared responsibility. Together, we will continue to shape a legacy of excellence, innovation, and unity—because at Dunes International School, community is our greatest strength.
-### Paramjit Ahluwalia Director/Principal
+### Paramjit Ahluwalia - Director/Principal
 
 ### CONTACT DIRECTORY
 | S.No | Department | Designation | Contact Number |
@@ -158,78 +145,6 @@ Admissions usually open in December/January.
 | Blue | Hillock | Lead the way |
 | Green | Knoll | Be the inspiration |
 | Yellow | Hummock | Be the Change |
-
-# UAE NATIONAL ANTHEM
-### ARABIC SCRIPT
-عيشي بالدي عاش اتحاد إماراتنا
-عشت لشعب
-دينه اإلسالم هديه القرآن
-حصنتك باسم هللا يا وطن
-بالدي بالدي بالدي بالدي
-حماك اإلله شرور الزمان
-أقسمنا أن نبني نعمل
-نعمل نخلص نعمل نخلص
-مهما عشنا نخلص نخلص
-دام األمان و عاش العلم يا إماراتنا
-رمز العروبة
-كلنا نفديك بالدما نرويك
-نفديك باألرواح يا وطن
-
-### ENGLISH SCRIPT
-'ishi biladi 'asha-ttihadu imaratina
-'ishti lisha'bin
-dinuhu-l-islamu hadyuhu-l-qur'anu
-hassantuka bismillahi ya watan
-biladi biladi biladi biladi
-hamaki-llahu shurura-zaman
-aqsamna an nabniya na'mal
-na'mal nukhlis na'mal nukhlis
-mahma 'ishna nukhlis nukhlis
-dama-l-amanu wa 'asha-l-'alamu ya imaratina
-ramzu-l-'urubati
-kulluna nafdiki biddima narwiki
-nafdiki bil-arwahi ya watan
-
-### EXPLANATION
-- Our country is alive and strong because of the unity among all the Emirates.
-- The UAE was built on Islamic values and guided by the Holy Qur’an.
-- We pray for the safety and strength of our country.
-- This repetition shows deep love and pride for the UAE.
-- God has kept our nation safe during hard times.
-- We promise to build our country through hard work.
-- We must be sincere and truthful in our efforts.
-- We must stay sincere and loyal for life.
-- Our flag still flies high, and we live in safety.
-- We are ready to protect the UAE at any cost.
-- This is our deepest promise — we love our nation and are ready to serve it.
-
-# INDIAN NATIONAL ANTHEM
-### HINDI SCRIPT
-जनगणमन अधिनायक जय हे भारतभाग्यवििाता।
-पंजाब स िं गुजरात मराठा द्राविड़ उत्कल बंग।
-विधं्य हहमाचल यमुना गंगा उच्छल जलधि तरंग।
-तव शुभ नामे जागे तव शुभ आसशष मागे। गाहे तव जयगाथा।
-जनगणमंगलदायक जय हे भारतभाग्यवििाता।
-जय हे जय हे जय हे जय जय जय जय हे॥
-
-### ENGLISH SCRIPT
-Jana-Gaṇa-Mana
-Adhināyaka jaya hē, Bhārata-Bhāgya-Vidhātā
-Pañjāba Sindh Gujarāta
-Marāṭhā, Drāviḍa Utkala Baṅga
-Vindhya Himāchala Yamunā Gaṅgā, Ucchala Jaladhi
-Taraṅga
-Tava śubha nāmē jāgē, Tava śubha āśiṣa māgē,
-Gāhē tava jayagāthā.
-Jana-Gaṇa-Maṅgala-Dāyaka jaya hē, Bhārata-Bhāgya-Vidhātā,
-Jaya hē, jaya hē, jaya hē, jaya jaya jaya jaya hē.
-
-### EXPLANATION
-- Thou art the ruler of the minds of all peoples, Dispenser of India's destiny.
-- Thy name rouses the hearts of the Punjab, Sindh, Gujarat, and Maratha, Of the Dravida, and Odisha and Bengal.
-- It echoes in the hills of Vindhyas and, Himalayas, mingles in the music of the Yamuna and the Ganga and is chanted by the waves of the Indian Ocean.
-- We pray for your blessings and sing by your praise, The saving of all people waits in thy hand.
-- You are the dispenser of India's destiny, Victory, victory, victory to thee.
 
 # SCHOOL SONG
 Glorifying the beauty within, students of Dunes are we (2)
