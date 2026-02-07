@@ -57,10 +57,6 @@ header p {
     opacity: 0.9;
 }
 
-#chat, .quick-actions, .input-area-wrapper {
-    width: 100%;
-    max-width: 900px; /* This makes it look like the centered style you want */
-    margin: 0 auto;   /* Centers it horizontally */
 
 /* Chat Area */
 #chat {
