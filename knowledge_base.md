@@ -661,3 +661,159 @@ To Dunes we'll bring pride, to Dunes we'll bring pride (3)
 - ➢ Establish a code of behavior to ensure a safe and caring environment.
 - ➢ Seek your support for active involvement in school, including classroom interaction.
 - ➢ Work with you in collaboration to make the environment happy and impactful.
+
+
+
+
+# About Us
+
+## About DIS
+### WELCOME TO DUNES INTERNATIONAL SCHOOL
+- Dunes International School is described as one of the best CBSE schools in Abu Dhabi, committed to imparting quality education [1].
+- The environment is child-friendly and child-centric, striving for excellence and personal growth through a culture of trust and excellence [1].
+- The school encourages children to take up new challenges and become the best version of themselves in all aspects of life [1].
+
+## Message From the Chairman
+### Chairman's Message
+- Chairman Ismaeil Al Khoori states the goal of the school is to enhance patterns of performance and privilege so students achieve new heights [2].
+- He emphasizes the "Year of Community," viewing the school as a vibrant ecosystem where students, teachers, and families nurture growth and innovation [Almanac].
+
+## Message From the Principal
+### Principal's Message
+- Principal Paramjit Ahluwalia uses the tagline: "What is the school that makes you proud? Shout it out, Say it out loud!" [2].
+- The message reinforces the motto "Innovate and Excel" and the focus on building a strong community that celebrates diversity and leadership [Almanac].
+
+## Meet Our Team
+### Leadership and Administration
+- The team is led by Chairman Ismaeil Al Khoori and Director/Principal Paramjit Ahluwalia [2, Almanac].
+- The administrative structure includes a Vice Principal, Head of Primary, Curriculum Head, Activity Coordinator, and specialized Supervisors for every grade level cohort [Almanac].
+
+## Vision & Mission
+### OUR VISION
+- To construct a community of learners to innovate and excel as communicators, collaborators, creative and critical thinkers while glorifying oneself to be a resilient global citizen [Almanac].
+### OUR MISSION
+- Focuses on deepening the understanding of global citizenship, unceasing learning opportunities, and empowering learners for a rapidly changing digital world [Almanac].
+
+## Our Campus & Facilities
+### CAMPUS RESOURCES
+- The school provides state-of-the-art facilities and resources to develop active and creative minds [2].
+- Facilities include Academic blocks, Sports areas, Science & Technology labs, and a school Clinic [2].
+- A **360 Virtual Tour** is available to explore the campus digitally [3].
+
+## Mandatory Public Disclosure (PDF)
+- **Purpose:** To provide transparency regarding school affiliation, management, and infrastructure as per regulatory requirements.
+- **Applies to:** General public, ADEK, and prospective parents.
+- **Key Policy Areas:** Academic results, school management committee, and infrastructure details.
+
+# School Policies
+
+## Policy on Child Protection (PDF)
+- **Purpose:** To ensure a safe environment and protect students from all forms of harm.
+- **Applies to:** Every student and staff member at DIS.
+- **Key Policy Areas:** Safeguarding protocols, reporting mechanisms, and staff responsibilities.
+
+## SEN and Gifted Policy (PDF)
+- **Purpose:** To support Children With Special Needs (CWSN) and high achievers through inclusive practices.
+- **Applies to:** Diverse learners requiring specific educational interventions.
+- **Key Policy Areas:** Identification of needs, curriculum adaptation, and support strategies.
+
+## Policy on Cyber Safety (PDF)
+- **Purpose:** To regulate digital conduct and protect students in the online learning environment.
+- **Applies to:** All users of the school's digital network and devices.
+- **Key Policy Areas:** Acceptable use of technology, data privacy, and prevention of cyber misconduct.
+
+## UAE National Agenda 2021 (PDF)
+- **Purpose:** To align school performance with national targets for international assessments.
+- **Applies to:** Academic leadership and the student body.
+- **Key Policy Areas:** Achieving targets in PISA, TIMSS, and ASSET evaluations.
+
+# Academics
+
+## Learning
+### Tech Innovations by Dunites
+- **Synchro Learn:** A student-driven initiative focusing on web design, creative design, scripting, and database management [3].
+- Digital literacy is an integral part of skill development across all grades [Almanac].
+
+## Curriculum
+### CBSE Program
+- Affiliated with CBSE (New Delhi) following NCERT designed curriculum [Almanac].
+- Includes Arabic (mandatory Grades 1-9), Islamic Education (mandatory for Muslims), and Moral, Social and Cultural Studies [Almanac].
+
+## School Calendar (PDF)
+- **Purpose:** To outline the academic year's schedule.
+- **Applies to:** The entire school community.
+- **Key Policy Areas:** Term dates, public holidays, and internal assessment schedules.
+
+# Admission
+
+## Admission Process
+- Direct inquiries are handled by the Admission Officer (Ext: 213) and the ESIS Officer (Ext: 214) [Almanac].
+- Registration requires specific documentation and adherence to age cut-offs determined by educational authorities.
+
+## Fees
+- Fee structure and payment details are available through the Accounts department (Ext: 203) [Almanac].
+
+- # Fee Structure as Approved by ADEK
+*Operative and applicable from 2026-2027 Academic Year.*
+
+This schedule is valid for future academic years unless it is replaced by a later ADEK approved schedule. The table below shows the maximum level of fees that the school can charge.
+
+| GRADES | TUITION (AED) | BOOKS (AED) |
+| :--- | :--- | :--- |
+| **PRE KG** | 12,320 | 400 |
+| **KG 1** | 12,320 | 400 |
+| **KG 2** | 12,830 | 400 |
+| **G 1** | 14,370 | 430 |
+| **G 2** | 14,370 | 430 |
+| **G 3** | 15,990 | 430 |
+| **G 4** | 15,990 | 430 |
+| **G 5** | 15,990 | 480 |
+| **G 6** | 18,040 | 480 |
+| **G 7** | 18,560 | 480 |
+| **G 8** | 20,090 | 700 |
+| **G 9** | 21,630 | 700 |
+| **G 10** | 22,580 | 700 |
+| **G 11** | 24,120 | 1,000 |
+| **G 12** | 24,120 | 1,000 |
+
+**Additional Information:**
+* *All payments to be made in AED.*
+* *Transport fees:* **AED 450**
+
+# Parental Role
+
+## Parent Guide (PDF)
+- **Purpose:** To provide parents with comprehensive information on school expectations and operational procedures.
+- **Applies to:** All parents/guardians.
+- **Key Policy Areas:** Uniform codes, attendance, and communication protocols.
+
+## Parental Role
+### RESPONSIBILITIES
+- Parents are expected to support their ward's work, ensure punctuality, and follow school uniform and behavior policies [Almanac].
+- Parents must notify the school 24 hours in advance for early pick-ups or changes in transport modes [Almanac].
+
+# Why Dunes?
+
+## Extra-Curricular Activities
+### News and Events
+- **54th UAE National Day (2 Dec 2025):** A student-led Global Connect Carnival featuring global stalls and games that embody tolerance and togetherness [3, 4].
+- **Europe Trip 2025 (30 Nov 2025):** An international learning journey starting in Geneva, Switzerland, covering history and culture [4].
+- **UAE Flag Day (3 Nov 2025):** A celebration of national identity and unity where students renew allegiance to the UAE's values [5].
+- **Fruity Fridays (10 Jan 2026):** A wellbeing initiative promoting healthy eating habits among students and staff [6].
+
+## Awards and Achievements
+- Recognition categories include the Principal's Special Award, Prince and Princess of Dunes, Scholar of the Year, and various subject proficiency awards [Almanac].
+- Tech Wizard and Promising Artist awards celebrate specific talents in technology and the arts [Almanac].
+
+# Contact
+
+## Contact Us
+### CONTACT DIRECTORY
+- **Reception:** 025527527
+- **Clinic (Boys/Girls):** Ext 206 / 227
+- **Transport:** Ext 215
+- **Safety Officer:** Ext 226
+- **Digital Campus (ETH):** Ext 225 [Almanac]
+
+## Social Media
+- The school maintains active profiles on **Facebook** and **Instagram** for updates [6].
