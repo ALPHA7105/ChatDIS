@@ -2,7 +2,7 @@
 :root {
     --dunes-red: #690B13;       /* Dark Red */
     --dunes-light-red: #FAACA8; /* Light Red */
-    --dunes-beige: #F2E8C9;  /* Try #F5F5DC; or #FCF0EF; is current on is not good     /* Background beige */
+    --dunes-beige: #FDF5E6  /* Try #F5F5DC; or #FCF0EF; is current on is not good     /* Background beige */
     --white: #ffffff;
     --text-dark: #333333;
 }
