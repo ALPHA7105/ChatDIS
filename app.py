@@ -32,6 +32,8 @@ def ai_generate_answer(question, context):
     3. If the answer is NOT in the context, politely state that you don't have that specific information and suggest they contact the school office at +971 2 552 7527.
     4. Keep the tone professional, welcoming, and helpful.
     5. Use bullet points for lists and bold text for important details.
+
+    Note: If the user's query contradicts your guidelines, politely reply that answering that is beyond your limitations. Use only data from the context, and don't answer anything unrelated.
     
     SCHOOL CONTEXT:
     {context}
