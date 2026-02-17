@@ -57,5 +57,37 @@
     </div>
 
     <script src="/static/script.js"></script>
+    
 </body>
 </html>
+
+<script type="module">
+    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+    createChat({
+        webhookUrl: 'https://n8n.srv1136039.hstgr.cloud/webhook/6aca38a6-49aa-435e-99e5-851a4446fa2c/chat',
+        webhookConfig: {
+            method: 'POST',
+            headers: {}
+        },
+        target: '#n8n-chat',
+        mode: 'window',
+        chatInputKey: 'chatInput',
+        chatSessionKey: 'sessionId',
+        metadata: {},
+        showWelcomeScreen: false,
+        defaultLanguage: 'en',
+        initialMessages: [
+            /* 'Hi there! 👋', */
+            'Hello, how can I help you today?'
+        ],
+        i18n: {
+            en: {
+                title: 'HELLO! 👋',
+                subtitle: "I'm ChatDIS. I'm here to help you 24/7.",
+                // footer: 'powered by IT',
+                getStarted: 'New Conversation',
+                inputPlaceholder: 'Type your question..',
+            },
+        },
+    });
+</script>
