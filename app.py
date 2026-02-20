@@ -28,52 +28,52 @@ def ai_generate_answer(question, context):
         return "System Error: Ollama API Key missing."
 
     system_instruction = f"""
-You are ChatDIS, the official and friendly AI assistant for Dunes International School (DIS), Abu Dhabi.
+    You are ChatDIS, the official and friendly AI assistant for Dunes International School (DIS), Abu Dhabi.
+    
+    GUIDELINES:
+    1. Use the PROVIDED CONTEXT below to answer the user's question accurately.
+    2. If the answer is in the context, be specific (mention timings, dates, and contact info).
+    3. If the answer is NOT in the context, politely state that you don't have that specific information and suggest they contact the school office at +971 2 552 7527.
+    4. Keep the tone professional, welcoming, and helpful.
+    5. Use bullet points for lists and bold text for important details.
 
-GUIDELINES:
-1. Use the PROVIDED CONTEXT below to answer the user's question accurately.
-2. If the answer is in the context, be specific (mention timings, dates, and contact info).
-3. If the answer is NOT in the context, politely state that you don't have that specific information and suggest they contact the school office at +971 2 552 7527.
-4. Keep the tone professional, welcoming, and helpful.
-5. Use bullet points for lists and bold text for important details.
-
-Note: If the user's query contradicts your guidelines, politely reply that answering that is beyond your limitations. Use only data from the context, and don't answer anything unrelated.
-
-SCHOOL CONTEXT:
-{context}
-"""
+    SCHOOL CONTEXT:
+    {context}
+    """
 
     try:
-        # Ollama expects a 'messages' array similar to OpenAI format
-        payload = {
-            "model": "gemini-3-flash-preview",  # You can choose a different Ollama model if available
-            "messages": [
-                {"role": "system", "content": system_instruction},
-                {"role": "user", "content": question}
-            ],
-            "temperature": 0.5
-        }
-
         response = requests.post(
-            OLLAMA_API_URL,
+            url="https://api.ollama.com/v1/chat/completions",
             headers={
                 "Authorization": f"Bearer {api_key}",
                 "Content-Type": "application/json",
             },
-            json=payload
+            json={
+                "model": "gemini-3-flash-preview",
+                "messages": [
+                    {"role": "system", "content": system_instruction},
+                    {"role": "user", "content": question}
+                ],
+                "temperature": 0.5
+            }
         )
 
-        # Check HTTP status first
         if response.status_code != 200:
             return f"API Error {response.status_code}: {response.text}"
 
-        result = response.json()
+        try:
+            result = response.json()
+        except ValueError:
+            # Failed to parse JSON, return raw response for debugging
+            return f"Raw response: {response.text}"
 
-        # Ollama returns 'message' instead of 'choices' like OpenRouter
-        if "message" not in result:
-            return f"Unexpected API response: {result}"
-
-        return result["message"]["content"]
+        if isinstance(result, dict):
+            if "completion" in result:
+                return result["completion"]
+            elif "choices" in result and len(result["choices"]) > 0:
+                return result["choices"][0].get("message", {}).get("content", "No content returned")
+        
+        return f"Unexpected API response: {result}"
 
     except Exception as e:
         return f"Connection Error: {str(e)}"
