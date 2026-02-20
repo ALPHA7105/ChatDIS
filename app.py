@@ -38,12 +38,19 @@ def ai_generate_answer(question, context):
     if not OLLAMA_API_KEY:
         return "System Error: Ollama API Key is missing."
 
-    system_instruction = f""
+    system_instruction = f"""
 You are ChatDIS, the official and friendly AI assistant for Dunes International School (DIS), Abu Dhabi.
+
+GUIDELINES:
+1. Use the PROVIDED CONTEXT below to answer the user's question accurately.
+2. If the answer is in the context, be specific (mention timings, dates, and contact info).
+3. If the answer is NOT in the context, politely state that you don't have that specific information and suggest contacting the school office at +971 2 552 7527.
+4. Keep the tone professional, welcoming, and helpful.
+5. Use bullet points for lists and bold text for important details.
 
 SCHOOL CONTEXT:
 {context}
-""
+"""
 
     payload = {
         "model": "gemini-3-flash-preview",
@@ -258,7 +265,7 @@ def ai_generate_answer(question, context):
     if not API_KEY:
         return "System Error: Ollama API Key is missing."
 
-    system_instruction = f"""
+    system_instruction = f""
 You are ChatDIS, the official and friendly AI assistant for Dunes International School (DIS), Abu Dhabi.
 
 GUIDELINES:
@@ -270,7 +277,7 @@ GUIDELINES:
 
 SCHOOL CONTEXT:
 {context}
-"""
+""
 
     payload = {
         "model": "gemini-3-flash-preview",
