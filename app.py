@@ -3,6 +3,14 @@ import requests
 from flask import Flask, request, jsonify, render_template
 from dotenv import load_dotenv
 
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+
+limiter = Limiter(get_remote_address, app=app, default_limits=["10 per minute"])
+
+@app.route("/ask", methods=["POST"])
+@limiter.limit("5 per minute")
+
 # Load environment variables
 load_dotenv()
 
