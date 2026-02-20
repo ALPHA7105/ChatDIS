@@ -46,7 +46,7 @@ SCHOOL CONTEXT:
     try:
         # Ollama expects a 'messages' array similar to OpenAI format
         payload = {
-            "model": "llama3.2:latest",  # You can choose a different Ollama model if available
+            "model": "llama3.2:1b",  # You can choose a different Ollama model if available
             "messages": [
                 {"role": "system", "content": system_instruction},
                 {"role": "user", "content": question}
