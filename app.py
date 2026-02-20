@@ -17,7 +17,7 @@ headers = {
 }
 
 # Ollama Cloud API endpoint
-OLLAMA_API_URL = "https://ollama.com/api/chat"  # Chat completion endpoint
+OLLAMA_API_URL = "https://api.ollama.com/v1/chat/completions"  # Chat completion endpoint
 
 # Load Knowledge Base
 kb_path = "knowledge_base.md"
