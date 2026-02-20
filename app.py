@@ -4,12 +4,16 @@ import json
 from flask import Flask, request, jsonify, render_template
 from dotenv import load_dotenv
 
+# Load environment variables from .env
 load_dotenv()
 
 app = Flask(__name__)
 
-# OpenRouter Setup
-api_key = os.getenv("OPENROUTER_API_KEY")
+# Ollama Setup
+api_key = os.getenv("OLLAMA_API_KEY")  # Make sure this is set in Vercel
+
+# Ollama Cloud API endpoint
+OLLAMA_API_URL = "https://ollama.com/api/chat"  # Chat completion endpoint
 
 # Load Knowledge Base
 kb_path = "knowledge_base.md"
@@ -21,39 +25,42 @@ except Exception as e:
 
 def ai_generate_answer(question, context):
     if not api_key:
-        return "System Error: OpenRouter API Key missing."
+        return "System Error: Ollama API Key missing."
 
     system_instruction = f"""
-    You are ChatDIS, the official and friendly AI assistant for Dunes International School (DIS), Abu Dhabi.
-    
-    GUIDELINES:
-    1. Use the PROVIDED CONTEXT below to answer the user's question accurately.
-    2. If the answer is in the context, be specific (mention timings, dates, and contact info).
-    3. If the answer is NOT in the context, politely state that you don't have that specific information and suggest they contact the school office at +971 2 552 7527.
-    4. Keep the tone professional, welcoming, and helpful.
-    5. Use bullet points for lists and bold text for important details.
+You are ChatDIS, the official and friendly AI assistant for Dunes International School (DIS), Abu Dhabi.
 
-    Note: If the user's query contradicts your guidelines, politely reply that answering that is beyond your limitations. Use only data from the context, and don't answer anything unrelated.
-    
-    SCHOOL CONTEXT:
-    {context}
-    """
+GUIDELINES:
+1. Use the PROVIDED CONTEXT below to answer the user's question accurately.
+2. If the answer is in the context, be specific (mention timings, dates, and contact info).
+3. If the answer is NOT in the context, politely state that you don't have that specific information and suggest they contact the school office at +971 2 552 7527.
+4. Keep the tone professional, welcoming, and helpful.
+5. Use bullet points for lists and bold text for important details.
+
+Note: If the user's query contradicts your guidelines, politely reply that answering that is beyond your limitations. Use only data from the context, and don't answer anything unrelated.
+
+SCHOOL CONTEXT:
+{context}
+"""
 
     try:
+        # Ollama expects a 'messages' array similar to OpenAI format
+        payload = {
+            "model": "llama3.2:latest",  # You can choose a different Ollama model if available
+            "messages": [
+                {"role": "system", "content": system_instruction},
+                {"role": "user", "content": question}
+            ],
+            "temperature": 0.5
+        }
+
         response = requests.post(
-            url="https://openrouter.ai/api/v1/chat/completions",
+            OLLAMA_API_URL,
             headers={
                 "Authorization": f"Bearer {api_key}",
                 "Content-Type": "application/json",
             },
-            json={
-                    "model": "google/gemini-2.0-flash-001",
-            "messages": [
-                    {"role": "system", "content": system_instruction},
-                    {"role": "user", "content": question}
-                ],
-                "temperature": 0.5
-            }
+            json=payload
         )
 
         # Check HTTP status first
@@ -62,15 +69,15 @@ def ai_generate_answer(question, context):
 
         result = response.json()
 
-        # Debug fallback: show full result if structure unexpected
-        if "choices" not in result:
+        # Ollama returns 'message' instead of 'choices' like OpenRouter
+        if "message" not in result:
             return f"Unexpected API response: {result}"
 
-        return result["choices"][0]["message"]["content"]
+        return result["message"]["content"]
 
     except Exception as e:
         return f"Connection Error: {str(e)}"
-        
+
 @app.route("/")
 def home():
     return render_template("index.html")
