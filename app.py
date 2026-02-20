@@ -184,6 +184,12 @@ SCHOOL CONTEXT:
     except Exception as e:
         return f"Connection Error: {str(e)}"
 
+def log_prompt(user_question, client_ip):
+    try:
+        with open("prompt_logs.txt", "a", encoding="utf-8") as f:
+            f.write(f"{client_ip} | {user_question}\n")
+    except Exception as e:
+        print(f"Error logging prompt: {e}")
 
 @app.route("/")
 def home():
@@ -193,6 +199,11 @@ def home():
 @app.route("/ask", methods=["POST"])
 def ask():
     user_question = request.json.get("question", "").strip()
+    client_ip = request.remote_addr  # IP of the requester
+
+    # Log the prompt for monitoring
+    log_prompt(user_question, client_ip)
+
     answer = ai_generate_answer(user_question, KNOWLEDGE_BASE)
     return jsonify({"answer": answer})
 
