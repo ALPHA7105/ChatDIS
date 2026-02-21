@@ -1,332 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatDIS | Dunes International School</title>
-    <link rel="icon" type="image/png" href="dunes logo.png">
-    <link rel="stylesheet" href="/static/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <title>ChatDIS &mdash; Dunes International School</title>
+    <meta name="description" content="ChatDIS is the official AI assistant for Dunes International School, Abu Dhabi.">
+    <link rel="icon" type="image/png" href="/static/dunes logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600&family=Cormorant:ital,wght@0,700;1,400&display=swap"
+        rel="stylesheet">
     <style>
-        body {
+        :root {
+            --night: #160E07;
+            --gold: #C9953A;
+            --sand: #E8D5B7;
+            --ink-3: #8C6648;
+        }
+
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
-            overflow: hidden;
-            /* Hide scrollbars for full background image */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            /* Pushes content to top/bottom */
-            align-items: center;
-            min-height: 100vh;
-            /* Full viewport height */
-            font-family: sans-serif;
-            color: #fff;
-            /* Default text color */
-            /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* For better readability */
-        }
-
-        .background-svg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            /* Puts the background behind other content */
-            background-image: url('bg.jpg');
-            /* Replace with your SVG path */
-            background-size: cover;
-            /* Covers the entire background */
-            background-position: center;
-            /* Centers the image */
-            filter: brightness(0.6);
-            /* Slightly darkens the background for text contrast */
-        }
-
-        .content-container {
-            flex-grow: 1;
-            /* Allows this container to take available space */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
             box-sizing: border-box;
         }
 
-        .company-name {
-            font-size: 4em;
-            font-weight: bold;
-            margin-bottom: 10px;
-            opacity: 0;
-            /* Initial state for animation */
-            transform: translateY(-20px);
-            /* Initial state for animation */
-            animation: fadeInSlideDown 1.5s forwards;
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--night);
+            color: var(--sand);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 48px 24px;
+        }
+
+        .logo {
+            font-family: 'Cormorant', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .logo em {
+            font-style: italic;
+            color: var(--gold);
+            font-weight: 400;
         }
 
         .tagline {
-            font-size: 1.5em;
-            opacity: 0;
-            /* Initial state for animation */
-            transform: translateY(20px);
-            /* Initial state for animation */
-            animation: fadeInSlideUp 1.5s forwards 0.5s;
-            /* Delay for tagline animation */
+            font-size: 0.62rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            margin-bottom: 40px;
         }
 
-        @keyframes fadeInSlideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .card {
+            width: 100%;
+            max-width: 620px;
+            border: 1px solid rgba(201, 149, 58, 0.15);
+            background: rgba(201, 149, 58, 0.03);
         }
 
-        @keyframes fadeInSlideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .card+.card {
+            margin-top: 16px;
         }
 
-        @keyframes slideUpAssistant {
-            from {
-                transform: translateY(100%);
-            }
-
-            to {
-                transform: translateY(0);
-            }
+        .card-head {
+            padding: 12px 18px;
+            border-bottom: 1px solid rgba(201, 149, 58, 0.1);
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .company-name {
-                font-size: 3em;
-            }
-
-            .tagline {
-                font-size: 1.2em;
-            }
-
-            .chat-assistant-container {
-                padding: 15px;
-            }
+        .card-body {
+            padding: 18px;
+            font-size: 0.78rem;
+            line-height: 1.8;
+            color: var(--sand);
         }
 
-        @media (max-width: 480px) {
-            .company-name {
-                font-size: 2.5em;
-            }
-
-            .tagline {
-                font-size: 1em;
-            }
-
-            .chat-assistant-container {
-                padding: 10px;
-            }
+        .card-body p+p {
+            margin-top: 10px;
         }
 
-
-        :root {
-            --chat--color-primary: #e74266;
-            --chat--color-primary-shade-50: #db4061;
-            --chat--color-primary-shade-100: #cf3c5c;
-            --chat--color-secondary: #20b69e;
-            --chat--color-secondary-shade-50: #1ca08a;
-            --chat--color-white: #ffffff;
-            --chat--color-light: #f2f4f8;
-            --chat--color-light-shade-50: #e6e9f1;
-            --chat--color-light-shade-100: #c2c5cc;
-            --chat--color-medium: #d2d4d9;
-            --chat--color-dark: #101330;
-            --chat--color-disabled: #777980;
-            --chat--color-typing: #404040;
-
-            --chat--spacing: 1rem;
-            --chat--border-radius: 0.25rem;
-            --chat--transition-duration: 0.15s;
-
-            --chat--window--width: 500px;
-            --chat--window--height: 800px;
-
-            --chat--header-height: auto;
-            --chat--header--padding: var(--chat--spacing);
-            --chat--header--background: var(--chat--color-dark);
-            --chat--header--color: var(--chat--color-light);
-            --chat--header--border-top: none;
-            --chat--header--border-bottom: none;
-            --chat--header--border-bottom: none;
-            --chat--header--border-bottom: none;
-            --chat--heading--font-size: 2em;
-            --chat--header--color: var(--chat--color-light);
-            --chat--subtitle--font-size: inherit;
-            --chat--subtitle--line-height: 1.2;
-
-            --chat--textarea--height: 50px;
-
-            --chat--message--font-size: 1rem;
-            --chat--message--padding: var(--chat--spacing);
-            --chat--message--border-radius: var(--chat--border-radius);
-            --chat--message-line-height: 1.8;
-            --chat--message--bot--background: var(--chat--color-white);
-            --chat--message--bot--color: var(--chat--color-dark);
-            --chat--message--bot--border: none;
-            --chat--message--user--background: var(--chat--color-secondary);
-            --chat--message--user--color: var(--chat--color-white);
-            --chat--message--user--border: none;
-            --chat--message--pre--background: rgba(0, 0, 0, 0.05);
-
-            --chat--toggle--background: var(--chat--color-primary);
-            --chat--toggle--hover--background: var(--chat--color-primary-shade-50);
-            --chat--toggle--active--background: var(--chat--color-primary-shade-100);
-            --chat--toggle--color: var(--chat--color-white);
-            --chat--toggle--size: 64px;
+        code,
+        pre {
+            font-family: 'Courier New', monospace;
+            font-size: 0.73rem;
         }
 
-        /* N8N Chat Widget Header Override - Reduce gap between title and subtitle */
-        .chat-layout .chat-header {
-            gap: 0 !important;
-            padding: 0.8rem 1rem !important;
+        pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 16px 18px;
+            overflow-x: auto;
+            line-height: 1.9;
         }
 
-        .chat-layout .chat-header h1 {
-            margin: 0 !important;
-            margin-bottom: 0.1rem !important;
-            line-height: 1.2 !important;
+        .t {
+            color: #C8703F;
         }
 
-        .chat-layout .chat-header p {
-            margin: 0 !important;
-            line-height: 1.3 !important;
+        .a {
+            color: #95B8A4;
         }
 
-        /* Chat Window Size Override */
-        .chat-window {
-            width: 500px !important;
-            height: 90vh !important;
-            max-height: 90vh !important;
+        .v {
+            color: var(--gold);
         }
 
-        /* Chat Message Font Size Override */
-        .chat-message,
-        .chat-message-text,
-        .chat-message-markdown {
-            font-size: 0.75rem !important;
+        .c {
+            color: #4A6A58;
         }
 
-        /* Chat Input Font Size Override */
-        .chat-input textarea,
-        .chat-input input,
-        .chat-input-field,
-        .chat-layout textarea,
-        .chat-layout input[type="text"] {
-            font-size: 0.75rem !important;
+        .copy-btn {
+            background: transparent;
+            border: 1px solid rgba(201, 149, 58, 0.25);
+            color: var(--gold);
+            padding: 3px 12px;
+            cursor: pointer;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.58rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: background 0.2s;
         }
 
-        /* Responsive chat window adjustments */
-        @media (max-width: 768px) {
-            .chat-window {
-                width: 100% !important;
-                height: 100% !important;
-                max-height: 100vh !important;
-            }
+        .copy-btn:hover {
+            background: rgba(201, 149, 58, 0.08);
+        }
+
+        .env-row {
+            display: flex;
+            gap: 10px;
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(201, 149, 58, 0.07);
+            align-items: flex-start;
+        }
+
+        .env-row:last-child {
+            border-bottom: none;
+        }
+
+        .env-key {
+            color: var(--gold);
+            min-width: 200px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.73rem;
+        }
+
+        .env-val {
+            color: var(--ink-3);
+            font-size: 0.73rem;
+        }
+
+        .foot {
+            margin-top: 36px;
+            font-size: 0.58rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--ink-3);
         }
     </style>
 </head>
+
 <body>
-    <div class="chat-container">
-        <!--
-        <header>
-            <img src="/static/dunes logo.png" alt="DIS Logo" style="height: 60px; width: auto; margin-right: 20px; background: white; padding: 5px; border-radius: 50%;">
-    
-            <div>
-                <h2>ChatDIS</h2>
-                <p>INNOVATE AND EXCEL</p>
-                <p>Dunes International School Digital Assistant (Prototype)</p>
-            </div>
-        </header>
+    <div class="logo">Chat<em>DIS</em></div>
+    <div class="tagline">Dunes International School &mdash; Implementation Reference</div>
 
-        <img src="dunes logo.png" alt="DIS Logo" style="height: 40px; margin-right: 10px;">
-        -->
-        
-        <header>
-            <h2>ChatDIS</h2>
-            <p>Dunes International School Digital Assistant (Prototype)</p>
-        </header>
-        
-        <div id="chat">
-            <div class="message bot-message">Hello! How can I help you today?</div>
+    <div class="card">
+        <div class="card-head">
+            <span>Server Setup</span>
         </div>
-        
-        <!--
-        <div class="quick-actions">
-            <button class="action-btn" onclick="quickAsk('What are the school timings?')">🕒 Timings</button>
-            <button class="action-btn" onclick="quickAsk('What are the school bus fees and routes?')">🚌 Transport</button>
-            <button class="action-btn" onclick="quickAsk('Where can I buy the school uniform?')">👕 Uniform Store</button>
-    
-            <button class="action-btn" onclick="quickAsk('What subjects are offered in Grade 11 and 12?')">📚 Subject Streams</button>
-            <button class="action-btn" onclick="quickAsk('What extracurricular activities are available?')">⚽ Clubs & Sports</button>
-    
-            <button class="action-btn" onclick="quickAsk('Show me the fee structure for all grades')">💰 Fee Structure</button>
-            <button class="action-btn" onclick="quickAsk('What documents are needed for admission?')">📄 Admission Docs</button>
-            <button class="action-btn" onclick="quickAsk('How can I contact the accounts department?')">📞 Contact</button>
-        </div>
-        -->
+        <div class="card-body">
+            <p>Install dependencies and set environment variables, then run with gunicorn.</p>
+            <pre><span class="c"># Install</span>
+pip install -r requirements.txt
 
-        <div class="input-area">
-            <input type="text" id="question" placeholder="Ask about timings, uniform, fees, or policies...">
-            <button onclick="askQuestion()">Ask</button>
+<span class="c"># Run (production)</span>
+gunicorn app:app
+
+<span class="c"># Run (development)</span>
+python app.py</pre>
         </div>
-        
-        <p class="disclaimer">Official information provided by Dunes International School</p>
     </div>
 
-    <script src="/static/script.js"></script>
-    
-</body>
-</html>
+    <div class="card">
+        <div class="card-head">
+            <span>Environment Variables (.env)</span>
+        </div>
+        <div class="card-body">
+            <div class="env-row">
+                <span class="env-key">OLLAMA_API_KEY</span>
+                <span class="env-val">Your Ollama Cloud API key</span>
+            </div>
+            <div class="env-row">
+                <span class="env-key">ALLOWED_ORIGINS</span>
+                <span class="env-val">Comma-separated list of domains allowed to access /ask. Add your school website
+                    domain here. Localhost entries are for development only.</span>
+            </div>
+        </div>
+    </div>
 
-<script type="module">
-    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
-    createChat({
-        webhookUrl: 'https://n8n.srv1136039.hstgr.cloud/webhook/6aca38a6-49aa-435e-99e5-851a4446fa2c/chat',
-        webhookConfig: {
-            method: 'POST',
-            headers: {}
-        },
-        target: '#n8n-chat',
-        mode: 'window',
-        chatInputKey: 'chatInput',
-        chatSessionKey: 'sessionId',
-        metadata: {},
-        showWelcomeScreen: false,
-        defaultLanguage: 'en',
-        initialMessages: [
-            /* 'Hi there! 👋', */
-            'Hello, how can I help you today?'
-        ],
-        i18n: {
-            en: {
-                title: 'HELLO! 👋',
-                subtitle: "I'm ChatDIS. I'm here to help you 24/7.",
-                // footer: 'powered by IT',
-                getStarted: 'New Conversation',
-                inputPlaceholder: 'Type your question..',
-            },
-        },
-    });
-</script>
+    <div class="card">
+        <div class="card-head">
+            <span>Embed on Your School Website</span>
+            <button class="copy-btn" id="copy-btn" onclick="copyCode()">Copy</button>
+        </div>
+        <div class="card-body">
+            <p>Paste before the closing <code>&lt;/body&gt;</code> tag. Your domain must be in
+                <code>ALLOWED_ORIGINS</code> on the server.</p>
+            <pre><span class="c">&lt;!-- ChatDIS Widget --&gt;</span>
+<span class="t">&lt;script&gt;</span>
+  window.ChatDISConfig = {
+    <span class="a">serverUrl</span>: <span class="v">'https://your-chatdis-server.com'</span>,
+    <span class="a">position</span>: <span class="v">'bottom-right'</span>
+  };
+<span class="t">&lt;/script&gt;</span>
+<span class="t">&lt;script</span> <span class="a">src</span>=<span class="v">"https://your-chatdis-server.com/static/chatdis-loader.js"</span><span class="t">&gt;&lt;/script&gt;</span></pre>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-head"><span>Routes</span></div>
+        <div class="card-body">
+            <div class="env-row">
+                <span class="env-key">GET &nbsp;/</span>
+                <span class="env-val">This page</span>
+            </div>
+            <div class="env-row">
+                <span class="env-key">GET &nbsp;/widget</span>
+                <span class="env-val">Standalone widget iframe (used by the loader)</span>
+            </div>
+            <div class="env-row">
+                <span class="env-key">POST /ask</span>
+                <span class="env-val">AI endpoint. Body: <code>{"question": "..."}</code> — Rate limited to 5 req/min.
+                    CORS-restricted to ALLOWED_ORIGINS.</span>
+            </div>
+        </div>
+    </div>
+
+    <p class="foot">Dunes International School &middot; Abu Dhabi &middot; Innovate &amp; Excel</p>
+
+    <script>
+        window.ChatDISConfig = { serverUrl: '', position: 'bottom-right' };
+    </script>
+    <script src="/static/chatdis-loader.js"></script>
+
+    <script>
+        function copyCode() {
+            const t = `<script>\nwindow.ChatDISConfig = {\n  serverUrl: 'https://your-chatdis-server.com',\n  position: 'bottom-right'\n};\n<\/script>\n<script src="https://your-chatdis-server.com/static/chatdis-loader.js"><\/script>`;
+            navigator.clipboard.writeText(t).then(() => {
+                const b = document.getElementById('copy-btn');
+                b.textContent = 'Copied!';
+                setTimeout(() => b.textContent = 'Copy', 2000);
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,20 +1,17 @@
-# 1. Python stuff (Crucial)
 __pycache__/
 *.py[cod]
 *$py.class
 
-# 2. Virtual Environments
 .venv/
 venv/
 env/
 
-# 3. Sensitive Data (EXTREMELY IMPORTANT)
 .env
 
-# 4. OS & IDE junk
 .DS_Store
 .vscode/
 .idea/
 
-# 5. Vercel local metadata
 .vercel/
+
+.gitignore
