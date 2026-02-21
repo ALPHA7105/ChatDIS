@@ -3,3 +3,4 @@ python-dotenv
 requests
 gunicorn
 flask-limiter
+flask-cors

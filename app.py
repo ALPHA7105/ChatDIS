@@ -1,24 +1,22 @@
 import os
 import requests
-from flask import Flask, request, jsonify, render_template, abort, send_from_directory
+from flask import Flask, request, jsonify, render_template
 from dotenv import load_dotenv
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-
+from flask_cors import CORS
 from datetime import datetime
-from functools import wraps
 
 load_dotenv()
 
 app = Flask(__name__)
 
-
+ALLOWED_ORIGINS = [o.strip() for o in os.getenv("ALLOWED_ORIGINS", "").split(",") if o.strip()]
+CORS(app, origins=ALLOWED_ORIGINS, resources={r"/ask": {}})
 
 limiter = Limiter(get_remote_address, app=app, default_limits=["10 per minute"])
 
 OLLAMA_API_KEY = os.getenv("OLLAMA_API_KEY")
-CHATDIS_SECRET_KEY = os.getenv("CHATDIS_SECRET_KEY")
-
 OLLAMA_API_URL = "https://ollama.com/v1/chat/completions"
 
 HEADERS = {
@@ -32,16 +30,6 @@ try:
         KNOWLEDGE_BASE = f.read()
 except Exception:
     KNOWLEDGE_BASE = "Dunes International School info: Timings 7:30 AM - 2:50 PM."
-
-
-def require_api_key(f):
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        client_key = request.headers.get("x-api-key")
-        if not CHATDIS_SECRET_KEY or client_key != CHATDIS_SECRET_KEY:
-            abort(401)
-        return f(*args, **kwargs)
-    return decorated
 
 
 def ai_generate_answer(question, context):
@@ -97,12 +85,11 @@ def home():
 
 @app.route("/widget")
 def widget():
-    return send_from_directory("static", "widget.html")
+    return render_template("widget.html")
 
 
 @app.route("/ask", methods=["POST"])
 @limiter.limit("5 per minute")
-@require_api_key
 def ask():
     data = request.get_json(silent=True)
     if not data:
