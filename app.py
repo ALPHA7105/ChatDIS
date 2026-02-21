@@ -12,7 +12,7 @@ load_dotenv()
 app = Flask(__name__)
 
 ALLOWED_ORIGINS = [o.strip() for o in os.getenv("ALLOWED_ORIGINS", "").split(",") if o.strip()]
-CORS(app, origins=ALLOWED_ORIGINS, resources={r"/ask": {}})
+CORS(app, resources={r"/ask": {"origins": ALLOWED_ORIGINS}})
 
 limiter = Limiter(get_remote_address, app=app, default_limits=["10 per minute"])
 

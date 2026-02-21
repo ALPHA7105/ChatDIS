@@ -8,26 +8,30 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Libre+Franklin:wght@300;400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Syne:wght@400;500;600&display=swap"
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         :root {
-            --terracotta: #A0522D;
-            --terracotta-deep: #7A3B1E;
-            --terracotta-glow: #C6683A;
+            --tc: #A0522D;
+            --tc-d: #6B3318;
+            --tc-l: #C8703F;
+            --gold: #C9953A;
+            --gold-soft: rgba(201, 149, 58, 0.12);
             --sand: #E8D5B7;
-            --sand-light: #F5EDDF;
-            --sand-pale: #FAF6F0;
-            --dune-shadow: #3D2B1F;
-            --ink: #2C1810;
-            --ink-soft: #5C4033;
-            --bone: #FEFCF9;
-            --accent-teal: #2A7B6F;
-            --accent-teal-soft: rgba(42, 123, 111, 0.08);
+            --sand-l: #F5EDE0;
+            --night: #160E07;
+            --night-2: #221508;
+            --night-3: #2E1C0E;
+            --cream: #FBF7F1;
+            --ink: #2A1608;
+            --ink-2: #5A3C26;
+            --ink-3: #8C6648;
         }
 
-        * {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -37,143 +41,130 @@
         body {
             height: 100%;
             overflow: hidden;
-            font-family: 'Libre Franklin', sans-serif;
-            font-weight: 400;
-            color: var(--ink);
             background: transparent;
+            font-family: 'Syne', sans-serif;
+            color: var(--ink);
         }
 
-        #chatdis-widget {
+        #w {
             width: 100%;
             height: 100%;
             display: flex;
             flex-direction: column;
-            background: var(--bone);
+            background: var(--cream);
             position: relative;
             overflow: hidden;
         }
 
-        #chatdis-widget::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                radial-gradient(ellipse at 20% 80%, rgba(160, 82, 45, 0.03) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(42, 123, 111, 0.02) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .chatdis-header {
-            background: linear-gradient(135deg, var(--terracotta-deep) 0%, var(--terracotta) 60%, var(--terracotta-glow) 100%);
-            padding: 20px 24px 28px;
+        /* ── HEADER ── */
+        .hd {
+            background: var(--night);
+            padding: 22px 24px 20px;
             position: relative;
-            z-index: 2;
+            z-index: 10;
+            flex-shrink: 0;
             overflow: hidden;
         }
 
-        .chatdis-header::after {
-            content: '';
+        .hd-geo {
+            position: absolute;
+            inset: 0;
+            opacity: 0.06;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23C9953A' fill-rule='evenodd'%3E%3Cpolygon points='40 0 47 13 61 13 51 22 55 36 40 28 25 36 29 22 19 13 33 13'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 80px 80px;
+        }
+
+        .hd-rule {
             position: absolute;
             bottom: 0;
-            left: 0;
-            right: 0;
-            height: 24px;
-            background: var(--bone);
-            clip-path: ellipse(55% 100% at 50% 100%);
+            left: 24px;
+            right: 24px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
         }
 
-        .chatdis-header-pattern {
-            position: absolute;
-            top: 0;
-            right: -20px;
-            width: 180px;
-            height: 100%;
-            opacity: 0.08;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 120'%3E%3Cpath d='M0 80 Q50 30 100 70 Q150 110 200 60' fill='none' stroke='white' stroke-width='3'/%3E%3Cpath d='M0 60 Q50 10 100 50 Q150 90 200 40' fill='none' stroke='white' stroke-width='2'/%3E%3Cpath d='M0 100 Q50 50 100 90 Q150 130 200 80' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position: center;
+        .hd-logo {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: baseline;
+            gap: 2px;
+            margin-bottom: 6px;
+            animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
-        .chatdis-title {
-            font-family: 'Playfair Display', serif;
+        .hd-chat {
+            font-family: 'Cormorant', serif;
             font-weight: 700;
-            font-size: 1.55rem;
-            color: #fff;
-            letter-spacing: 0.5px;
+            font-size: 2rem;
+            color: var(--sand-l);
+            letter-spacing: -0.5px;
             line-height: 1;
-            margin-bottom: 4px;
-            position: relative;
-            z-index: 1;
-            animation: headerSlideIn 0.6s ease-out both;
         }
 
-        .chatdis-title span {
-            font-weight: 500;
+        .hd-dis {
+            font-family: 'Cormorant', serif;
             font-style: italic;
-            font-size: 0.7em;
-            opacity: 0.85;
+            font-weight: 400;
+            font-size: 2rem;
+            color: var(--gold);
+            line-height: 1;
         }
 
-        .chatdis-subtitle {
-            font-family: 'Libre Franklin', sans-serif;
-            font-weight: 300;
-            font-size: 0.72rem;
-            color: rgba(255, 255, 255, 0.75);
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
+        .hd-sub {
             position: relative;
             z-index: 1;
-            animation: headerSlideIn 0.6s ease-out 0.1s both;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.07s both;
         }
 
-        .chatdis-status {
+        .hd-status {
+            position: relative;
+            z-index: 1;
             display: flex;
             align-items: center;
-            gap: 6px;
-            margin-top: 8px;
-            position: relative;
-            z-index: 1;
-            animation: headerSlideIn 0.6s ease-out 0.2s both;
+            gap: 7px;
+            margin-top: 10px;
+            animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.14s both;
         }
 
-        .chatdis-status-dot {
-            width: 7px;
-            height: 7px;
-            background: #4ADE80;
+        .hd-dot {
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
+            background: #52D98A;
+            box-shadow: 0 0 6px #52D98A;
+            animation: dot-pulse 2.4s ease-in-out infinite;
         }
 
-        .chatdis-status-text {
-            font-size: 0.65rem;
-            color: rgba(255, 255, 255, 0.6);
+        .hd-dot-label {
+            font-size: 0.62rem;
             font-weight: 400;
-            letter-spacing: 0.3px;
+            color: var(--ink-3);
+            letter-spacing: 0.5px;
         }
 
-        @keyframes pulse {
+        @keyframes dot-pulse {
 
             0%,
             100% {
                 opacity: 1;
-                transform: scale(1);
             }
 
             50% {
-                opacity: 0.5;
-                transform: scale(0.85);
+                opacity: 0.3;
             }
         }
 
-        @keyframes headerSlideIn {
+        @keyframes rise {
             from {
                 opacity: 0;
-                transform: translateY(-8px);
+                transform: translateY(10px);
             }
 
             to {
@@ -182,44 +173,41 @@
             }
         }
 
-        .chatdis-messages {
+        /* ── MESSAGES ── */
+        .msgs {
             flex: 1;
             overflow-y: auto;
-            padding: 12px 20px 20px;
+            padding: 20px 18px 10px;
             display: flex;
             flex-direction: column;
-            gap: 14px;
-            position: relative;
-            z-index: 1;
+            gap: 12px;
             scroll-behavior: smooth;
         }
 
-        .chatdis-messages::-webkit-scrollbar {
-            width: 4px;
+        .msgs::-webkit-scrollbar {
+            width: 3px;
         }
 
-        .chatdis-messages::-webkit-scrollbar-track {
+        .msgs::-webkit-scrollbar-track {
             background: transparent;
         }
 
-        .chatdis-messages::-webkit-scrollbar-thumb {
+        .msgs::-webkit-scrollbar-thumb {
             background: var(--sand);
-            border-radius: 4px;
+            border-radius: 3px;
         }
 
-        .chatdis-msg {
-            max-width: 85%;
-            padding: 12px 16px;
-            font-size: 0.84rem;
-            line-height: 1.6;
-            animation: msgAppear 0.35s ease-out both;
-            position: relative;
+        .msg {
+            max-width: 86%;
+            font-size: 0.82rem;
+            line-height: 1.65;
+            animation: msg-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
-        @keyframes msgAppear {
+        @keyframes msg-in {
             from {
                 opacity: 0;
-                transform: translateY(10px) scale(0.97);
+                transform: translateY(12px) scale(0.97);
             }
 
             to {
@@ -228,373 +216,417 @@
             }
         }
 
-        .chatdis-msg-bot {
+        .msg-bot {
             align-self: flex-start;
-            background: var(--sand-pale);
+            background: #fff;
             color: var(--ink);
-            border-radius: 2px 16px 16px 16px;
-            border-left: 3px solid var(--terracotta);
+            padding: 13px 16px 13px 18px;
+            border-radius: 0 14px 14px 14px;
+            border-left: 2px solid var(--gold);
+            box-shadow: 0 2px 12px rgba(22, 14, 7, 0.06);
+            position: relative;
         }
 
-        .chatdis-msg-user {
+        .msg-bot::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, var(--gold-soft), transparent);
+        }
+
+        .msg-user {
             align-self: flex-end;
-            background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-deep) 100%);
-            color: #fff;
-            border-radius: 16px 2px 16px 16px;
+            background: var(--night);
+            color: var(--sand-l);
+            padding: 12px 16px;
+            border-radius: 14px 0 14px 14px;
+            border-right: 2px solid var(--gold);
             font-weight: 400;
         }
 
-        .chatdis-msg-bot h1,
-        .chatdis-msg-bot h2,
-        .chatdis-msg-bot h3,
-        .chatdis-msg-bot h4,
-        .chatdis-msg-bot h5,
-        .chatdis-msg-bot h6 {
-            font-family: 'Playfair Display', serif;
-            color: var(--terracotta-deep);
-            margin: 0.6em 0 0.3em;
+        .msg-bot h1,
+        .msg-bot h2,
+        .msg-bot h3,
+        .msg-bot h4,
+        .msg-bot h5,
+        .msg-bot h6 {
+            font-family: 'Cormorant', serif;
+            font-weight: 700;
+            color: var(--tc-d);
+            margin: 0.7em 0 0.25em;
+            line-height: 1.2;
         }
 
-        .chatdis-msg-bot h1 {
-            font-size: 1.15rem;
+        .msg-bot h1 {
+            font-size: 1.2rem;
         }
 
-        .chatdis-msg-bot h2 {
-            font-size: 1.05rem;
+        .msg-bot h2 {
+            font-size: 1.08rem;
         }
 
-        .chatdis-msg-bot h3 {
-            font-size: 0.95rem;
+        .msg-bot h3 {
+            font-size: 0.98rem;
         }
 
-        .chatdis-msg-bot p {
-            margin: 0.4em 0;
+        .msg-bot>*:first-child {
+            margin-top: 0;
         }
 
-        .chatdis-msg-bot ul,
-        .chatdis-msg-bot ol {
+        .msg-bot>*:last-child {
+            margin-bottom: 0;
+        }
+
+        .msg-bot p {
+            margin: 0.35em 0;
+        }
+
+        .msg-bot strong {
+            color: var(--tc-d);
+            font-weight: 600;
+        }
+
+        .msg-bot em {
+            font-style: italic;
+        }
+
+        .msg-bot ul,
+        .msg-bot ol {
             margin: 0.4em 0;
             padding-left: 1.3em;
         }
 
-        .chatdis-msg-bot li {
-            margin-bottom: 0.25em;
+        .msg-bot li {
+            margin-bottom: 0.2em;
         }
 
-        .chatdis-msg-bot strong {
-            color: var(--terracotta-deep);
-            font-weight: 600;
+        .msg-bot a {
+            color: var(--gold);
+            text-decoration-color: rgba(201, 149, 58, 0.4);
         }
 
-        .chatdis-msg-bot table {
+        .msg-bot blockquote {
+            border-left: 2px solid var(--gold);
+            padding: 4px 12px;
+            margin: 0.5em 0;
+            color: var(--ink-2);
+            font-style: italic;
+        }
+
+        .msg-bot table {
             width: 100%;
             border-collapse: collapse;
             margin: 0.6em 0;
-            font-size: 0.78rem;
+            font-size: 0.76rem;
         }
 
-        .chatdis-msg-bot th {
-            background: var(--terracotta);
-            color: #fff;
+        .msg-bot th {
+            background: var(--night-3);
+            color: var(--sand);
             padding: 6px 10px;
             text-align: left;
-            font-weight: 500;
-            font-size: 0.74rem;
-            letter-spacing: 0.3px;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        .chatdis-msg-bot td {
+        .msg-bot td {
             padding: 6px 10px;
             border-bottom: 1px solid var(--sand);
+            color: var(--ink-2);
         }
 
-        .chatdis-msg-bot tr:nth-child(even) td {
-            background: rgba(232, 213, 183, 0.2);
+        .msg-bot tr:last-child td {
+            border-bottom: none;
         }
 
-        .chatdis-msg-bot code {
-            background: rgba(160, 82, 45, 0.08);
+        .msg-bot code {
+            background: var(--gold-soft);
+            border: 1px solid rgba(201, 149, 58, 0.2);
             padding: 1px 5px;
             border-radius: 3px;
-            font-size: 0.82em;
+            font-size: 0.8em;
         }
 
-        .chatdis-msg-bot pre {
-            background: var(--ink);
-            color: var(--sand-light);
-            padding: 12px;
+        .msg-bot pre {
+            background: var(--night);
+            color: var(--sand-l);
+            padding: 12px 14px;
             border-radius: 8px;
             overflow-x: auto;
-            margin: 0.5em 0;
-            font-size: 0.78rem;
+            margin: 0.6em 0;
+            font-size: 0.76rem;
         }
 
-        .chatdis-msg-bot pre code {
+        .msg-bot pre code {
             background: none;
+            border: none;
             padding: 0;
-            color: inherit;
         }
 
-        .chatdis-msg-bot a {
-            color: var(--accent-teal);
-            text-decoration: underline;
-            text-underline-offset: 2px;
+        /* thinking */
+        .msg-thinking {
+            color: var(--ink-3);
         }
 
-        .chatdis-msg-bot blockquote {
-            border-left: 3px solid var(--terracotta-glow);
-            padding-left: 12px;
-            margin: 0.5em 0;
-            color: var(--ink-soft);
-            font-style: italic;
-        }
-
-        .chatdis-thinking {
-            font-style: italic;
-            color: var(--ink-soft);
-            animation: thinkPulse 1.8s ease-in-out infinite;
-        }
-
-        .chatdis-thinking::after {
-            content: '';
+        .msg-thinking .dots span {
             display: inline-block;
-            width: 16px;
-            text-align: left;
-            animation: dots 1.4s steps(4, end) infinite;
+            width: 5px;
+            height: 5px;
+            background: var(--gold);
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: dot-bounce 1.2s ease-in-out infinite;
         }
 
-        @keyframes dots {
-            0% {
-                content: '';
-            }
-
-            25% {
-                content: '.';
-            }
-
-            50% {
-                content: '..';
-            }
-
-            75% {
-                content: '...';
-            }
+        .msg-thinking .dots span:nth-child(2) {
+            animation-delay: 0.2s;
         }
 
-        @keyframes thinkPulse {
+        .msg-thinking .dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes dot-bounce {
 
             0%,
+            80%,
             100% {
-                opacity: 0.6;
+                transform: translateY(0);
+                opacity: 0.4;
             }
 
-            50% {
+            40% {
+                transform: translateY(-5px);
                 opacity: 1;
             }
         }
 
-        .chatdis-quick-actions {
-            padding: 0 20px 8px;
+        /* divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.58rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            font-weight: 500;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--sand), transparent);
+        }
+
+        /* ── QUICK ACTIONS ── */
+        .quick {
+            padding: 8px 18px 6px;
             display: flex;
             gap: 6px;
             flex-wrap: wrap;
+            flex-shrink: 0;
+            animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+        }
+
+        .quick-btn {
+            background: transparent;
+            border: 1px solid var(--sand);
+            color: var(--ink-2);
+            padding: 5px 13px;
+            border-radius: 2px;
+            cursor: pointer;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.63rem;
+            font-weight: 500;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quick-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--night);
+            transform: translateY(100%);
+            transition: transform 0.2s ease;
+            z-index: 0;
+        }
+
+        .quick-btn span {
             position: relative;
             z-index: 1;
-            animation: msgAppear 0.35s ease-out 0.4s both;
         }
 
-        .chatdis-quick-btn {
-            background: var(--sand-pale);
-            border: 1px solid var(--sand);
-            color: var(--ink-soft);
-            padding: 6px 14px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-family: 'Libre Franklin', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 500;
-            transition: all 0.25s ease;
-            letter-spacing: 0.2px;
+        .quick-btn:hover {
+            color: var(--sand-l);
+            border-color: var(--night);
         }
 
-        .chatdis-quick-btn:hover {
-            background: var(--terracotta);
-            color: #fff;
-            border-color: var(--terracotta);
-            transform: translateY(-1px);
+        .quick-btn:hover::after {
+            transform: translateY(0);
         }
 
-        .chatdis-input-area {
-            padding: 14px 20px 18px;
-            background: var(--bone);
+        /* ── INPUT ── */
+        .input-wrap {
+            padding: 10px 18px 14px;
+            background: var(--cream);
             border-top: 1px solid var(--sand);
             display: flex;
             gap: 10px;
             align-items: flex-end;
+            flex-shrink: 0;
             position: relative;
-            z-index: 2;
         }
 
-        .chatdis-input-area::before {
+        .input-wrap::before {
             content: '';
             position: absolute;
-            top: -20px;
+            top: -24px;
             left: 0;
             right: 0;
-            height: 20px;
-            background: linear-gradient(to top, var(--bone), transparent);
+            height: 24px;
+            background: linear-gradient(to top, var(--cream), transparent);
             pointer-events: none;
         }
 
-        .chatdis-input-wrapper {
+        .input-field {
             flex: 1;
-            position: relative;
-        }
-
-        .chatdis-input {
-            width: 100%;
-            padding: 11px 16px;
-            border: 1.5px solid var(--sand);
-            border-radius: 12px;
+            padding: 10px 14px;
+            border: 1px solid var(--sand);
+            border-radius: 2px;
             outline: none;
-            font-family: 'Libre Franklin', sans-serif;
-            font-size: 0.82rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 400;
             color: var(--ink);
-            background: var(--sand-pale);
-            transition: all 0.25s ease;
-            resize: none;
-            min-height: 42px;
-            max-height: 100px;
-            line-height: 1.4;
-        }
-
-        .chatdis-input::placeholder {
-            color: #B8A08A;
-            font-weight: 300;
-        }
-
-        .chatdis-input:focus {
-            border-color: var(--terracotta);
             background: #fff;
-            box-shadow: 0 0 0 3px rgba(160, 82, 45, 0.08);
+            resize: none;
+            min-height: 40px;
+            max-height: 96px;
+            line-height: 1.5;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
 
-        .chatdis-send-btn {
-            width: 42px;
-            height: 42px;
-            border: none;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-deep) 100%);
-            color: #fff;
+        .input-field::placeholder {
+            color: var(--ink-3);
+            font-weight: 400;
+        }
+
+        .input-field:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px var(--gold-soft);
+        }
+
+        .send-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--tc);
+            border-radius: 2px;
+            background: var(--tc);
+            color: var(--sand-l);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.25s ease;
             flex-shrink: 0;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .chatdis-send-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(160, 82, 45, 0.3);
+        .send-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--night);
+            transform: translateY(100%);
+            transition: transform 0.2s ease;
         }
 
-        .chatdis-send-btn:active {
+        .send-btn:hover::after {
             transform: translateY(0);
         }
 
-        .chatdis-send-btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
+        .send-btn:hover {
+            border-color: var(--night);
         }
 
-        .chatdis-send-btn svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        .chatdis-footer {
-            text-align: center;
-            padding: 6px;
-            font-size: 0.58rem;
-            color: #C4AD96;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            font-weight: 500;
+        .send-btn svg {
+            width: 16px;
+            height: 16px;
             position: relative;
             z-index: 1;
         }
 
-        .chatdis-date-divider {
+        .send-btn:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+        .send-btn:disabled::after {
+            display: none;
+        }
+
+        /* ── FOOTER ── */
+        .ft {
             text-align: center;
-            font-size: 0.62rem;
-            color: #B8A08A;
-            letter-spacing: 1px;
+            padding: 5px 0 7px;
+            font-size: 0.56rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
+            color: var(--ink-3);
             font-weight: 500;
-            padding: 4px 0;
-            position: relative;
-        }
-
-        .chatdis-date-divider::before,
-        .chatdis-date-divider::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 25%;
-            height: 1px;
-            background: var(--sand);
-        }
-
-        .chatdis-date-divider::before {
-            left: 5%;
-        }
-
-        .chatdis-date-divider::after {
-            right: 5%;
+            flex-shrink: 0;
         }
     </style>
 </head>
 
 <body>
-    <div id="chatdis-widget">
-        <div class="chatdis-header">
-            <div class="chatdis-header-pattern"></div>
-            <div class="chatdis-title">Chat<span>DIS</span></div>
-            <div class="chatdis-subtitle">Dunes International School</div>
-            <div class="chatdis-status">
-                <div class="chatdis-status-dot"></div>
-                <div class="chatdis-status-text">online &middot; ready to help</div>
+    <div id="w">
+
+        <div class="hd">
+            <div class="hd-geo"></div>
+            <div class="hd-logo">
+                <span class="hd-chat">Chat</span><span class="hd-dis">DIS</span>
+            </div>
+            <div class="hd-sub">Dunes International School &middot; Abu Dhabi</div>
+            <div class="hd-status">
+                <div class="hd-dot"></div>
+                <div class="hd-dot-label">Online &mdash; ready to assist</div>
+            </div>
+            <div class="hd-rule"></div>
+        </div>
+
+        <div class="msgs" id="msgs">
+            <div class="divider">Today</div>
+            <div class="msg msg-bot">
+                Welcome to <strong>Dunes International School</strong>. I'm ChatDIS &mdash; ask me about timings, fees,
+                admissions, uniforms, or any school policy.
             </div>
         </div>
 
-        <div class="chatdis-messages" id="chatdis-messages">
-            <div class="chatdis-date-divider">Today</div>
-            <div class="chatdis-msg chatdis-msg-bot">
-                Welcome to <strong>Dunes International School</strong>. I'm ChatDIS, your digital assistant. Ask me
-                about timings, fees, admissions, uniforms, or anything else about DIS.
-            </div>
+        <div class="quick" id="quick">
+            <button class="quick-btn" onclick="quickAsk('What are the school timings?')"><span>Timings</span></button>
+            <button class="quick-btn" onclick="quickAsk('Show me the fee structure')"><span>Fees</span></button>
+            <button class="quick-btn"
+                onclick="quickAsk('What documents are needed for admission?')"><span>Admission</span></button>
+            <button class="quick-btn" onclick="quickAsk('How can I contact the school?')"><span>Contact</span></button>
         </div>
 
-        <div class="chatdis-quick-actions" id="chatdis-quick-actions">
-            <button class="chatdis-quick-btn" onclick="chatdisQuickAsk('What are the school timings?')">School
-                Timings</button>
-            <button class="chatdis-quick-btn" onclick="chatdisQuickAsk('Show me the fee structure')">Fee
-                Structure</button>
-            <button class="chatdis-quick-btn"
-                onclick="chatdisQuickAsk('What documents are needed for admission?')">Admission Docs</button>
-            <button class="chatdis-quick-btn" onclick="chatdisQuickAsk('How can I contact the school?')">Contact
-                Info</button>
-        </div>
-
-        <div class="chatdis-input-area">
-            <div class="chatdis-input-wrapper">
-                <textarea id="chatdis-input" class="chatdis-input" placeholder="Ask about timings, fees, policies..."
-                    rows="1"></textarea>
-            </div>
-            <button class="chatdis-send-btn" id="chatdis-send-btn" onclick="chatdisSend()">
+        <div class="input-wrap">
+            <textarea id="inp" class="input-field" placeholder="Ask anything about DIS…" rows="1"></textarea>
+            <button class="send-btn" id="send-btn" onclick="send()">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round">
                     <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -603,102 +635,78 @@
             </button>
         </div>
 
-        <div class="chatdis-footer">Dunes International School &middot; Abu Dhabi</div>
+        <div class="ft">made by aarush diwakar &middot; rusetiq</div>
     </div>
 
     <script>
-        const CHATDIS_CONFIG = {
-            apiUrl: window.CHATDIS_API_URL || '/ask'
-        };
+        const API_URL = window.CHATDIS_API_URL || '/ask';
+        const msgs = document.getElementById('msgs');
+        const inp = document.getElementById('inp');
+        const sendBtn = document.getElementById('send-btn');
+        const quickEl = document.getElementById('quick');
+        let loading = false;
 
-        const chatdisMessages = document.getElementById('chatdis-messages');
-        const chatdisInput = document.getElementById('chatdis-input');
-        const chatdisSendBtn = document.getElementById('chatdis-send-btn');
-        const chatdisQuickActions = document.getElementById('chatdis-quick-actions');
-        let chatdisIsLoading = false;
-
-        chatdisInput.addEventListener('input', function () {
+        inp.addEventListener('input', function () {
             this.style.height = 'auto';
-            this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+            this.style.height = Math.min(this.scrollHeight, 96) + 'px';
         });
 
-        chatdisInput.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                chatdisSend();
-            }
+        inp.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
         });
 
-        function chatdisAddMessage(content, isUser, isThinking) {
-            const msg = document.createElement('div');
-            msg.className = `chatdis-msg ${isUser ? 'chatdis-msg-user' : 'chatdis-msg-bot'}`;
+        function addMsg(content, isUser, isThinking) {
+            const el = document.createElement('div');
+            el.className = 'msg ' + (isUser ? 'msg-user' : 'msg-bot');
 
             if (isThinking) {
-                msg.classList.add('chatdis-thinking');
-                msg.textContent = 'thinking';
-                msg.id = 'chatdis-thinking-' + Date.now();
+                el.classList.add('msg-thinking');
+                el.innerHTML = '<div class="dots"><span></span><span></span><span></span></div>';
             } else if (isUser) {
-                msg.textContent = content;
+                el.textContent = content;
             } else {
-                msg.innerHTML = marked.parse(content);
+                el.innerHTML = marked.parse(content);
             }
 
-            chatdisMessages.appendChild(msg);
-            chatdisMessages.scrollTop = chatdisMessages.scrollHeight;
-            return msg;
+            msgs.appendChild(el);
+            msgs.scrollTop = msgs.scrollHeight;
+            return el;
         }
 
-        async function chatdisSend() {
-            if (chatdisIsLoading) return;
+        async function send() {
+            if (loading) return;
+            const q = inp.value.trim();
+            if (!q) return;
 
-            const question = chatdisInput.value.trim();
-            if (!question) return;
+            inp.value = '';
+            inp.style.height = 'auto';
+            if (quickEl) quickEl.style.display = 'none';
 
-            chatdisInput.value = '';
-            chatdisInput.style.height = 'auto';
-
-            if (chatdisQuickActions) {
-                chatdisQuickActions.style.display = 'none';
-            }
-
-            chatdisAddMessage(question, true);
-
-            chatdisIsLoading = true;
-            chatdisSendBtn.disabled = true;
-
-            const thinkingMsg = chatdisAddMessage('', false, true);
+            addMsg(q, true);
+            loading = true;
+            sendBtn.disabled = true;
+            const thinking = addMsg('', false, true);
 
             try {
-                const headers = { 'Content-Type': 'application/json' };
-                if (CHATDIS_CONFIG.apiKey) {
-                    headers['x-api-key'] = CHATDIS_CONFIG.apiKey;
-                }
-
-                const response = await fetch(CHATDIS_CONFIG.apiUrl, {
+                const res = await fetch(API_URL, {
                     method: 'POST',
-                    headers: headers,
-                    body: JSON.stringify({ question })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question: q })
                 });
-
-                const data = await response.json();
-
-                thinkingMsg.classList.remove('chatdis-thinking');
-                thinkingMsg.innerHTML = marked.parse(data.answer || data.error || 'No response received.');
-
-            } catch (error) {
-                thinkingMsg.classList.remove('chatdis-thinking');
-                thinkingMsg.innerHTML = 'Sorry, I\'m having trouble connecting. Please try again in a moment.';
+                const data = await res.json();
+                thinking.classList.remove('msg-thinking');
+                thinking.innerHTML = marked.parse(data.answer || data.error || 'No response received.');
+            } catch {
+                thinking.classList.remove('msg-thinking');
+                thinking.innerHTML = 'Connection issue &mdash; please try again shortly.';
             }
 
-            chatdisIsLoading = false;
-            chatdisSendBtn.disabled = false;
-            chatdisMessages.scrollTop = chatdisMessages.scrollHeight;
+            loading = false;
+            sendBtn.disabled = false;
+            msgs.scrollTop = msgs.scrollHeight;
         }
 
-        function chatdisQuickAsk(text) {
-            chatdisInput.value = text;
-            chatdisSend();
-        }
+        function quickAsk(text) { inp.value = text; send(); }
     </script>
 </body>
 

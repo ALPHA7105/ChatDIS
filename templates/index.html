@@ -4,314 +4,269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatDIS | Dunes International School Digital Assistant</title>
-    <meta name="description"
-        content="ChatDIS is the official AI assistant for Dunes International School, Abu Dhabi. Get instant answers about timings, fees, admissions, and more.">
+    <title>ChatDIS &mdash; Dunes International School</title>
+    <meta name="description" content="ChatDIS is the official AI assistant for Dunes International School, Abu Dhabi.">
     <link rel="icon" type="image/png" href="/static/dunes logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Libre+Franklin:wght@300;400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600&family=Cormorant:ital,wght@0,700;1,400&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --terracotta: #A0522D;
-            --terracotta-deep: #7A3B1E;
-            --terracotta-glow: #C6683A;
+            --night: #160E07;
+            --gold: #C9953A;
             --sand: #E8D5B7;
-            --sand-light: #F5EDDF;
-            --sand-pale: #FAF6F0;
-            --dune-shadow: #3D2B1F;
-            --ink: #2C1810;
-            --ink-soft: #5C4033;
-            --bone: #FEFCF9;
-            --accent-teal: #2A7B6F;
+            --ink-3: #8C6648;
         }
 
-        * {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html,
         body {
-            height: 100%;
-            font-family: 'Libre Franklin', sans-serif;
-            color: var(--ink);
-            overflow-x: hidden;
-        }
-
-        body {
-            background: var(--bone);
-            background-image:
-                radial-gradient(ellipse at 30% 0%, rgba(160, 82, 45, 0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 100%, rgba(42, 123, 111, 0.04) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(232, 213, 183, 0.15) 0%, transparent 70%);
+            font-family: 'Syne', sans-serif;
+            background: var(--night);
+            color: var(--sand);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            position: relative;
+            padding: 48px 24px;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Cpath d='M0 150 Q100 80 200 130 Q300 180 400 110' fill='none' stroke='%23A0522D' stroke-width='0.5' opacity='0.06'/%3E%3Cpath d='M0 170 Q100 100 200 150 Q300 200 400 130' fill='none' stroke='%23A0522D' stroke-width='0.5' opacity='0.04'/%3E%3Cpath d='M0 130 Q100 60 200 110 Q300 160 400 90' fill='none' stroke='%23A0522D' stroke-width='0.3' opacity='0.05'/%3E%3C/svg%3E");
-            background-repeat: repeat;
-            background-size: 400px 200px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 60px 24px;
-            position: relative;
-            z-index: 1;
-            max-width: 680px;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(160, 82, 45, 0.08);
-            border: 1px solid rgba(160, 82, 45, 0.15);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.68rem;
-            color: var(--terracotta);
-            font-weight: 500;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            margin-bottom: 32px;
-            animation: fadeInDown 0.6s ease-out both;
-        }
-
-        .hero-badge::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: var(--terracotta);
-            border-radius: 50%;
-        }
-
-        .hero-title {
-            font-family: 'Playfair Display', serif;
+        .logo {
+            font-family: 'Cormorant', serif;
+            font-size: 2.2rem;
             font-weight: 700;
-            font-size: clamp(2.8rem, 6vw, 4.2rem);
-            line-height: 1.05;
-            color: var(--ink);
-            margin-bottom: 8px;
-            animation: fadeInDown 0.6s ease-out 0.1s both;
-        }
-
-        .hero-title span {
-            color: var(--terracotta);
-            font-style: italic;
-            font-weight: 500;
-        }
-
-        .hero-subtitle {
-            font-family: 'Libre Franklin', sans-serif;
-            font-weight: 300;
-            font-size: 1.05rem;
-            color: var(--ink-soft);
-            line-height: 1.6;
-            margin-bottom: 40px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: fadeInDown 0.6s ease-out 0.2s both;
-        }
-
-        .hero-divider {
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(to right, transparent, var(--terracotta), transparent);
-            margin: 0 auto 40px;
-            animation: fadeInDown 0.6s ease-out 0.25s both;
-        }
-
-        .embed-section {
-            background: var(--sand-pale);
-            border: 1px solid var(--sand);
-            border-radius: 16px;
-            padding: 28px 24px;
-            text-align: left;
-            animation: fadeInDown 0.6s ease-out 0.35s both;
-            width: 100%;
-        }
-
-        .embed-section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--ink);
             margin-bottom: 6px;
         }
 
-        .embed-section-desc {
+        .logo em {
+            font-style: italic;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        .tagline {
+            font-size: 0.62rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            margin-bottom: 40px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 620px;
+            border: 1px solid rgba(201, 149, 58, 0.15);
+            background: rgba(201, 149, 58, 0.03);
+        }
+
+        .card+.card {
+            margin-top: 16px;
+        }
+
+        .card-head {
+            padding: 12px 18px;
+            border-bottom: 1px solid rgba(201, 149, 58, 0.1);
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-body {
+            padding: 18px;
             font-size: 0.78rem;
-            color: var(--ink-soft);
-            margin-bottom: 16px;
-            line-height: 1.5;
-            font-weight: 300;
+            line-height: 1.8;
+            color: var(--sand);
         }
 
-        .code-block {
-            background: var(--dune-shadow);
-            color: var(--sand-light);
-            padding: 16px 18px;
-            border-radius: 10px;
+        .card-body p+p {
+            margin-top: 10px;
+        }
+
+        code,
+        pre {
             font-family: 'Courier New', monospace;
-            font-size: 0.72rem;
-            line-height: 1.7;
+            font-size: 0.73rem;
+        }
+
+        pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 16px 18px;
             overflow-x: auto;
-            position: relative;
+            line-height: 1.9;
         }
 
-        .code-block .tag {
-            color: #E8A87C;
+        .t {
+            color: #C8703F;
         }
 
-        .code-block .attr {
-            color: #95C9B4;
+        .a {
+            color: #95B8A4;
         }
 
-        .code-block .val {
-            color: #D4A574;
+        .v {
+            color: var(--gold);
         }
 
-        .code-block .comment {
-            color: #7A6F65;
+        .c {
+            color: #4A6A58;
         }
 
         .copy-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            color: var(--sand);
-            padding: 4px 10px;
-            border-radius: 6px;
+            background: transparent;
+            border: 1px solid rgba(201, 149, 58, 0.25);
+            color: var(--gold);
+            padding: 3px 12px;
             cursor: pointer;
-            font-size: 0.62rem;
-            font-family: 'Libre Franklin', sans-serif;
-            letter-spacing: 0.5px;
-            transition: all 0.2s ease;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.58rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: background 0.2s;
         }
 
         .copy-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(201, 149, 58, 0.08);
         }
 
-        .footer-note {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 0.65rem;
-            color: #B8A08A;
-            letter-spacing: 0.5px;
-            animation: fadeInDown 0.6s ease-out 0.45s both;
+        .env-row {
+            display: flex;
+            gap: 10px;
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(201, 149, 58, 0.07);
+            align-items: flex-start;
         }
 
-        .footer-note a {
-            color: var(--terracotta);
-            text-decoration: none;
+        .env-row:last-child {
+            border-bottom: none;
         }
 
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-15px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .env-key {
+            color: var(--gold);
+            min-width: 200px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.73rem;
         }
 
-        @media (max-width: 600px) {
-            .hero {
-                padding: 40px 20px;
-            }
+        .env-val {
+            color: var(--ink-3);
+            font-size: 0.73rem;
+        }
 
-            .embed-section {
-                padding: 20px 16px;
-            }
-
-            .code-block {
-                font-size: 0.64rem;
-            }
+        .foot {
+            margin-top: 36px;
+            font-size: 0.58rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--ink-3);
         }
     </style>
 </head>
 
 <body>
-    <div class="hero">
-        <div class="hero-badge">Digital Assistant</div>
-        <h1 class="hero-title">Chat<span>DIS</span></h1>
-        <p class="hero-subtitle">
-            The intelligent assistant for Dunes International School.
-            Instant answers about timings, fees, admissions,
-            policies, and more.
-        </p>
-        <div class="hero-divider"></div>
+    <div class="logo">Chat<em>DIS</em></div>
+    <div class="tagline">Dunes International School &mdash; Implementation Reference</div>
 
-        <div class="embed-section" id="embed-section">
-            <div class="embed-section-title">Embed on Your Website</div>
-            <div class="embed-section-desc">
-                Add ChatDIS to any page with a single script tag. The widget appears as a floating chat button in the
-                corner.
-            </div>
-            <div class="code-block" id="embed-code">
-                <button class="copy-btn" onclick="copyEmbed()">copy</button>
-                <span class="comment">&lt;!-- ChatDIS Widget --&gt;</span><br>
-                <span class="tag">&lt;script&gt;</span><br>
-                &nbsp;&nbsp;window.ChatDISConfig = {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="attr">serverUrl</span>: <span
-                    class="val">'https://your-chatdis-server.com'</span>,<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="attr">apiKey</span>: <span
-                    class="val">'your-secret-key'</span>,<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="attr">position</span>: <span class="val">'bottom-right'</span><br>
-                &nbsp;&nbsp;};<br>
-                <span class="tag">&lt;/script&gt;</span><br>
-                <span class="tag">&lt;script</span> <span class="attr">src</span>=<span
-                    class="val">"https://your-chatdis-server.com/static/chatdis-loader.js"</span><span
-                    class="tag">&gt;&lt;/script&gt;</span>
-            </div>
+    <div class="card">
+        <div class="card-head">
+            <span>Server Setup</span>
         </div>
+        <div class="card-body">
+            <p>Install dependencies and set environment variables, then run with gunicorn.</p>
+            <pre><span class="c"># Install</span>
+pip install -r requirements.txt
 
-        <p class="footer-note">
-            Dunes International School &middot; Abu Dhabi &middot;
-            <a href="https://www.dunesinternationalschool.com">dunesinternationalschool.com</a>
-        </p>
+<span class="c"># Run (production)</span>
+gunicorn app:app
+
+<span class="c"># Run (development)</span>
+python app.py</pre>
+        </div>
     </div>
 
+    <div class="card">
+        <div class="card-head">
+            <span>Environment Variables (.env)</span>
+        </div>
+        <div class="card-body">
+            <div class="env-row">
+                <span class="env-key">OLLAMA_API_KEY</span>
+                <span class="env-val">Your Ollama Cloud API key</span>
+            </div>
+            <div class="env-row">
+                <span class="env-key">ALLOWED_ORIGINS</span>
+                <span class="env-val">Comma-separated list of domains allowed to access /ask. Add your school website
+                    domain here. Localhost entries are for development only.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-head">
+            <span>Embed on Your School Website</span>
+            <button class="copy-btn" id="copy-btn" onclick="copyCode()">Copy</button>
+        </div>
+        <div class="card-body">
+            <p>Paste before the closing <code>&lt;/body&gt;</code> tag. Your domain must be in
+                <code>ALLOWED_ORIGINS</code> on the server.</p>
+            <pre><span class="c">&lt;!-- ChatDIS Widget --&gt;</span>
+<span class="t">&lt;script&gt;</span>
+  window.ChatDISConfig = {
+    <span class="a">serverUrl</span>: <span class="v">'https://your-chatdis-server.com'</span>,
+    <span class="a">position</span>: <span class="v">'bottom-right'</span>
+  };
+<span class="t">&lt;/script&gt;</span>
+<span class="t">&lt;script</span> <span class="a">src</span>=<span class="v">"https://your-chatdis-server.com/static/chatdis-loader.js"</span><span class="t">&gt;&lt;/script&gt;</span></pre>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-head"><span>Routes</span></div>
+        <div class="card-body">
+            <div class="env-row">
+                <span class="env-key">GET &nbsp;/</span>
+                <span class="env-val">This page</span>
+            </div>
+            <div class="env-row">
+                <span class="env-key">GET &nbsp;/widget</span>
+                <span class="env-val">Standalone widget iframe (used by the loader)</span>
+            </div>
+            <div class="env-row">
+                <span class="env-key">POST /ask</span>
+                <span class="env-val">AI endpoint. Body: <code>{"question": "..."}</code> — Rate limited to 5 req/min.
+                    CORS-restricted to ALLOWED_ORIGINS.</span>
+            </div>
+        </div>
+    </div>
+
+    <p class="foot">Dunes International School &middot; Abu Dhabi &middot; Innovate &amp; Excel</p>
+
     <script>
-        window.ChatDISConfig = {
-            serverUrl: '',
-            position: 'bottom-right'
-        };
+        window.ChatDISConfig = { serverUrl: '', position: 'bottom-right' };
     </script>
     <script src="/static/chatdis-loader.js"></script>
 
     <script>
-        function copyEmbed() {
-            var code = '<script>\nwindow.ChatDISConfig = {\n  serverUrl: "https://your-chatdis-server.com",\n  apiKey: "your-secret-key",\n  position: "bottom-right"\n};\n<\/script>\n<script src="https://your-chatdis-server.com/static/chatdis-loader.js"><\/script>';
-            navigator.clipboard.writeText(code).then(function () {
-                var btn = document.querySelector('.copy-btn');
-                btn.textContent = 'copied!';
-                setTimeout(function () { btn.textContent = 'copy'; }, 2000);
+        function copyCode() {
+            const t = `<script>\nwindow.ChatDISConfig = {\n  serverUrl: 'https://your-chatdis-server.com',\n  position: 'bottom-right'\n};\n<\/script>\n<script src="https://your-chatdis-server.com/static/chatdis-loader.js"><\/script>`;
+            navigator.clipboard.writeText(t).then(() => {
+                const b = document.getElementById('copy-btn');
+                b.textContent = 'Copied!';
+                setTimeout(() => b.textContent = 'Copy', 2000);
             });
         }
     </script>
