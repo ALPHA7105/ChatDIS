@@ -16,9 +16,14 @@ async function askQuestion() {
     const thinkingId = "think-" + Date.now();
     
     chat.innerHTML += `
-        <div id="${thinkingId}" class="message bot-message thinking">
-            ChatDIS is thinking...
-        </div>
+    <div id="${thinkingId}" class="message bot-message thinking">
+        Thinking
+        <span class="dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+    </div>
     `;
 
     chat.scrollTop = chat.scrollHeight;
