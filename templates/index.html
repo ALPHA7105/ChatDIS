@@ -14,10 +14,13 @@
         rel="stylesheet">
     <style>
         :root {
-            --night: #160E07;
-            --gold: #C9953A;
-            --sand: #E8D5B7;
-            --ink-3: #8C6648;
+            /* Dunes official palette */
+            --dis-primary: #94030f;
+            --dis-secondary: #690b13;
+            --dis-accent: #eab830;
+            --dis-dark: #414b4f;
+            --dis-light: #ffffff;
+            --dis-text: #000000;
         }
 
         *,
@@ -29,9 +32,9 @@
         }
 
         body {
-            font-family: 'Syne', sans-serif;
-            background: var(--night);
-            color: var(--sand);
+            font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+            background: var(--dis-light);
+            color: var(--dis-text);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -42,30 +45,31 @@
 
         .logo {
             font-family: 'Cormorant', serif;
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 700;
+            color: var(--dis-primary);
             margin-bottom: 6px;
         }
 
         .logo em {
-            font-style: italic;
-            color: var(--gold);
+            color: var(--dis-secondary);
+            font-style: normal;
             font-weight: 400;
         }
 
         .tagline {
-            font-size: 0.62rem;
+            font-size: 0.7rem;
             letter-spacing: 2.5px;
             text-transform: uppercase;
-            color: var(--ink-3);
+            color: var(--dis-dark);
             margin-bottom: 40px;
         }
 
         .card {
             width: 100%;
             max-width: 620px;
-            border: 1px solid rgba(201, 149, 58, 0.15);
-            background: rgba(201, 149, 58, 0.03);
+            border: 1px solid rgba(148,3,15,0.2);
+            background: #ffffff;
         }
 
         .card+.card {
@@ -74,11 +78,11 @@
 
         .card-head {
             padding: 12px 18px;
-            border-bottom: 1px solid rgba(201, 149, 58, 0.1);
-            font-size: 0.6rem;
-            letter-spacing: 2px;
+            border-bottom: 2px solid var(--dis-primary);
+            font-size: 0.7rem;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            color: var(--gold);
+            color: var(--dis-primary);
             font-weight: 600;
             display: flex;
             align-items: center;
@@ -87,9 +91,9 @@
 
         .card-body {
             padding: 18px;
-            font-size: 0.78rem;
-            line-height: 1.8;
-            color: var(--sand);
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: var(--dis-text);
         }
 
         .card-body p+p {
