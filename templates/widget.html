@@ -189,24 +189,23 @@
 
 
         .msg-bot, .msg-user {
-            padding: 14px 18px; /* a bit more space */
-            word-wrap: break-word;      /* force long words to break */
-            overflow-wrap: break-word;   /* standard property */
-            white-space: pre-wrap;       /* keep line breaks, but wrap */
-            max-width: 85%;              /* avoid spilling out */
+            padding: 14px 18px; /* nice spacing from edges */
+            word-wrap: break-word; /* wrap long words */
+            white-space: normal; /* wrap text naturally, ignore manual line breaks */
+            line-height: 1.5; /* slightly tighter spacing */
         }
-
+/*
         .msg-bot p, .msg-user p {
-            margin: 6px 0; /* smaller, uniform spacing */
-        }
+            margin: 6px 0; / smaller, uniform spacing 
+        }*/
 
         .msg-bot ul, .msg-user ul {
-            padding-left: 20px; /* moves bullets a little from edge */
-            margin: 6px 0; /* consistent spacing between list items */
+            padding-left: 20px; /* space from edge */
+            margin: 6px 0; /* space above/below list */
         }
         
         .msg-bot li, .msg-user li {
-            margin-bottom: 4px; /* nice vertical spacing between bullets */
+            margin-bottom: 4px; /* spacing between items */
         }
 
         .msg-bot p:first-child, .msg-user p:first-child {
