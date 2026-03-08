@@ -56,7 +56,7 @@
         'z-index:' + zIndex,
         'width:' + width,
         'height:' + height,
-        'max-height:calc(100vh - 100px)',
+        'max-height:calc(100vh - 180px)',
         'max-width:calc(100vw - 32px)',
         'border-radius:16px',
         'overflow:hidden',
@@ -69,9 +69,9 @@
     ];
 
     if (position === 'bottom-left') {
-        containerStyles.push('bottom:140px', 'left:24px');
+        containerStyles.push('bottom:96px', 'left:24px');
     } else {
-        containerStyles.push('bottom:140px', 'right:24px');
+        containerStyles.push('bottom:96px', 'right:24px');
     }
 
     container.style.cssText = containerStyles.join(';');
