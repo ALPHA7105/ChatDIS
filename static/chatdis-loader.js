@@ -69,9 +69,9 @@
     ];
 
     if (position === 'bottom-left') {
-        containerStyles.push('bottom:96px', 'left:24px');
+        containerStyles.push('bottom:140px', 'left:24px');
     } else {
-        containerStyles.push('bottom:96px', 'right:24px');
+        containerStyles.push('bottom:140px', 'right:24px');
     }
 
     container.style.cssText = containerStyles.join(';');
