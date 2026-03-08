@@ -189,10 +189,28 @@
 
 
         .msg-bot, .msg-user {
+            padding: 14px 18px; /* a bit more space */
             word-wrap: break-word;      /* force long words to break */
             overflow-wrap: break-word;   /* standard property */
             white-space: pre-wrap;       /* keep line breaks, but wrap */
             max-width: 85%;              /* avoid spilling out */
+        }
+
+        .msg-bot p, .msg-user p {
+            margin: 6px 0; /* smaller, uniform spacing */
+        }
+
+        .msg-bot ul, .msg-user ul {
+            padding-left: 20px; /* moves bullets a little from edge */
+            margin: 6px 0; /* consistent spacing between list items */
+        }
+        
+        .msg-bot li, .msg-user li {
+            margin-bottom: 4px; /* nice vertical spacing between bullets */
+        }
+
+        .msg-bot p:first-child, .msg-user p:first-child {
+            margin-top: 0; /* removes extra top margin on first para */
         }
         
         /* divider */
