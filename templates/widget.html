@@ -151,6 +151,7 @@
         flex-direction:column;
         gap:12px;
         scroll-behavior:smooth;
+        box-sizing: border-box; /* ensure padding counts */
         }
         
         .msg{
@@ -169,8 +170,13 @@
         align-self:flex-start;
         background:var(--bot-bg);
         color:var(--bot-text);
-        padding:12px 15px;
+        padding: 14px 18px; /* slightly more breathing room */
         border-radius:8px;
+        }
+
+        .msg-bot p {
+        margin: 0 0 6px 0;  /* remove default <p> margin that can push against edges */
+        padding: 0;
         }
         
         .msg-user{
@@ -179,6 +185,14 @@
         color:var(--user-text);
         padding:12px 15px;
         border-radius:8px;
+        }
+
+
+        .msg-bot, .msg-user {
+            word-wrap: break-word;      /* force long words to break */
+            overflow-wrap: break-word;   /* standard property */
+            white-space: pre-wrap;       /* keep line breaks, but wrap */
+            max-width: 85%;              /* avoid spilling out */
         }
         
         /* divider */
