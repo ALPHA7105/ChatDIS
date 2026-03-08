@@ -33,7 +33,7 @@
         'display:flex',
         'align-items:center',
         'justify-content:center',
-        'background:linear-gradient(135deg, #A0522D 0%, #7A3B1E 100%)',
+        'background:linear-gradient(135deg, #94030f 0%, #690b13 100%)',
         'color:#fff',
         'box-shadow:0 4px 20px rgba(160,82,45,0.35), 0 0 0 0 rgba(160,82,45,0.3)',
         'transition:all 0.3s ease',
@@ -98,7 +98,7 @@
     container.appendChild(iframe);
 
     var style = document.createElement('style');
-    style.textContent = '@keyframes chatdis-btn-pulse{0%,100%{box-shadow:0 4px 20px rgba(160,82,45,0.35),0 0 0 0 rgba(160,82,45,0.3)}50%{box-shadow:0 4px 20px rgba(160,82,45,0.35),0 0 0 8px rgba(160,82,45,0)}}#chatdis-toggle:hover{transform:scale(1.08);box-shadow:0 6px 24px rgba(160,82,45,0.45)!important}@media(max-width:480px){#chatdis-container{width:100vw!important;height:100vh!important;max-height:100vh!important;max-width:100vw!important;bottom:0!important;right:0!important;left:0!important;border-radius:0!important}}';
+    style.textContent = '@keyframes chatdis-btn-pulse{0%,100%{box-shadow:0 4px 20px rgba(148,3,15,0.35),0 0 0 0 rgba(148,3,15,0.3)}50%{box-shadow:0 4px 20px rgba(148,3,15,0.35),0 0 0 8px rgba(148,3,15,0)}}#chatdis-toggle:hover{transform:scale(1.08);box-shadow:0 6px 24px rgba(148,3,15,0.45)!important}...';
     document.head.appendChild(style);
 
     document.body.appendChild(container);
