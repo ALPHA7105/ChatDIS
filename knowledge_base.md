@@ -13,13 +13,14 @@
 ### Student Hours
 | Grade Level | Mon - Thu | Friday |
 | :--- | :--- | :--- |
-| **Kindergarten (KG1 & KG2)** | 07:30 AM – 12:25 PM | 07:30 AM – 11:15 AM |
-| **Grades 1 to 12** | 07:30 AM – 02:50 PM | 07:30 AM – 11:15 AM |
+| **Kindergarten (KG1 & KG2)** | 07:40 AM – 12:25 PM | 07:40 AM – 11:10 AM |
+| **Grades 1 to 12** | 07:40 AM – 02:45 PM | 07:40 AM – 11:10 AM |
 
 ### Administrative Office Hours
 - **Mon - Thu:** 09:00 AM – 11:00 AM & 12:00 PM – 02:00 PM
 - **Friday:** 09:00 AM – 11:00 AM
-- **Sunday:** 09:00 AM – 12:00 PM (Weekend Support)
+- **Saturday:** School office remains closed
+- **Sunday:** 09:00 AM – 12:00 PM
 
 ## 3. Admission & Age Criteria
 Admissions usually open in December/January.
