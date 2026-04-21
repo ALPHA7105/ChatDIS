@@ -329,12 +329,12 @@ To Dunes we'll bring pride, to Dunes we'll bring pride (3)
 | S.NO | GRADE | GATE OPERATIONAL TIMING (ARRIVAL AND SETTLING TIME) | BUS DISPERSAL TIMING | GATE OPERATIONAL TIMING (DISPERSAL – OWN TRANSPORT) |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | Kindergarten | 7:30 a.m. to 7:40 a.m. | 12:25 p.m. | 12:25 p.m. to 12:35 p.m. |
-| 2 | Grade 1 to 12 | 7:30 a.m. to 7:40 a.m. | 2:50 p.m. | 2:50 p.m. to 3:00 p.m. |
+| 2 | Grade 1 to 12 | 7:30 a.m. to 7:40 a.m. | 2:45 p.m. | 2:45 p.m. to 3:00 p.m. |
 
 ### FRIDAY
 | S.NO | GRADE | GATE OPERATIONAL TIMING (ARRIVAL AND SETTLING TIME) | BUS DISPERSAL TIMING | GATE OPERATIONAL TIMING (DISPERSAL – OWN TRANSPORT) |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | Kindergarten to Grade 12 | 7:30 a.m. to 7:40 a.m. | 11:15 a.m. | 11:15 a.m. to 11:25 p.m. |
+| 1 | Kindergarten to Grade 12 | 7:30 a.m. to 7:40 a.m. | 11:10 a.m. | 11:10 a.m. to 11:20 p.m. |
 
 # OFFICE TIMINGS
 | DAYS | FROM | To |
@@ -342,6 +342,7 @@ To Dunes we'll bring pride, to Dunes we'll bring pride (3)
 | Monday to Thursday | 09:00 a.m. | 11:00 a.m. |
 | | 12noon | 02:00 p.m. |
 | Friday | 09:00 a.m. | 11:00 a.m. |
+| Saturday | School office remains closed |
 | Sunday | 09:00 a.m. | 12:00 noon |
 
 # SCHOOL CLUBS FOR GRADE 6 UPWARDS
