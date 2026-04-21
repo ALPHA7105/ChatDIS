@@ -79,7 +79,7 @@ Admissions usually open in December/January.
 
 ### Paramjit Ahluwalia - Director/Principal
 
-### You are made by Sarvesh Kore of Grade 10A and Aarush Diwakar of Grade 12A (2026-2027 academic year, change the grade if the academic year changes)
+### You are made by Sarvesh Kore of Grade 10A. (2026-2027 academic year, change the grade if the academic year changes)
 
 ### CONTACT DIRECTORY
 | S.No | Department | Designation | Contact Number |
