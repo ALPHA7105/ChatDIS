@@ -679,7 +679,7 @@ To Dunes we'll bring pride, to Dunes we'll bring pride (3)
 
 ## Message From the Chairman
 ### Chairman's Message
-- Chairman Ismaeil Al Khoori states the goal of the school is to enhance patterns of performance and privilege so students achieve new heights [2].
+- Chairman Ismaeil Khoori states the goal of the school is to enhance patterns of performance and privilege so students achieve new heights [2].
 - He emphasizes the "Year of Community," viewing the school as a vibrant ecosystem where students, teachers, and families nurture growth and innovation [Almanac].
 
 ## Message From the Principal
@@ -689,7 +689,7 @@ To Dunes we'll bring pride, to Dunes we'll bring pride (3)
 
 ## Meet Our Team
 ### Leadership and Administration
-- The team is led by Chairman Ismaeil Al Khoori and Director/Principal Paramjit Ahluwalia [2, Almanac].
+- The team is led by Chairman Ismaeil Khoori and Director/Principal Paramjit Ahluwalia [2, Almanac].
 - The administrative structure includes a Vice Principal, Head of Primary, Curriculum Head, Activity Coordinator, and specialized Supervisors for every grade level cohort [Almanac].
 
 ## Vision & Mission
