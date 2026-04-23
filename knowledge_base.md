@@ -75,7 +75,7 @@ Admissions usually open in December/January.
 
 # Dunes International School – Information Base
 
-### Ismaeil Al Khoori - Chairmain
+### Ismaeil Khoori - Chairmain
 
 ### Paramjit Ahluwalia - Director/Principal
 

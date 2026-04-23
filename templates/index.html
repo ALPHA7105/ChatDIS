@@ -204,8 +204,12 @@ python app.py</pre>
         </div>
         <div class="card-body">
             <div class="env-row">
-                <span class="env-key">OLLAMA_API_KEY</span>
-                <span class="env-val">Your Ollama Cloud API key</span>
+                <span class="env-key">GROQ_API_KEY</span>
+                <span class="env-val">Your Groq API key</span>
+            </div>
+            <div class="env-row">
+                <span class="env-key">GROQ_MODEL</span>
+                <span class="env-val">Model to use (default: <code>openai/gpt-oss-120b</code>)</span>
             </div>
             <div class="env-row">
                 <span class="env-key">ALLOWED_ORIGINS</span>
@@ -249,6 +253,10 @@ python app.py</pre>
                 <span class="env-key">POST /ask</span>
                 <span class="env-val">AI endpoint. Body: <code>{"question": "..."}</code> — Rate limited to 5 req/min.
                     CORS-restricted to ALLOWED_ORIGINS.</span>
+            </div>
+            <div class="env-row">
+                <span class="env-key">POST /ask/stream</span>
+                <span class="env-val">Streaming AI endpoint (SSE). Same body as /ask. Returns tokens as <code>data: {"token":"..."}</code> events, ending with <code>data: [DONE]</code>.</span>
             </div>
         </div>
     </div>

@@ -1,6 +1,7 @@
 import os
-import requests
-from flask import Flask, request, jsonify, render_template
+import json
+from groq import Groq
+from flask import Flask, request, jsonify, render_template, Response, stream_with_context
 from dotenv import load_dotenv
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
@@ -11,18 +12,12 @@ load_dotenv()
 
 app = Flask(__name__)
 
-ALLOWED_ORIGINS = [o.strip() for o in os.getenv("ALLOWED_ORIGINS", "").split(",") if o.strip()]
-CORS(app, resources={r"/ask": {"origins": ALLOWED_ORIGINS}})
+CORS(app)
 
 limiter = Limiter(get_remote_address, app=app, default_limits=["10 per minute"])
 
-OLLAMA_API_KEY = os.getenv("OLLAMA_API_KEY")
-OLLAMA_API_URL = "https://ollama.com/v1/chat/completions"
-
-HEADERS = {
-    "Authorization": f"Bearer {OLLAMA_API_KEY}",
-    "Content-Type": "application/json"
-}
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
 
 KB_PATH = "knowledge_base.md"
 try:
@@ -32,11 +27,8 @@ except Exception:
     KNOWLEDGE_BASE = "Dunes International School info: Timings 7:30 AM - 2:50 PM."
 
 
-def ai_generate_answer(question, context):
-    if not OLLAMA_API_KEY:
-        return "System Error: Ollama API Key is missing."
-
-    system_instruction = f"""You are ChatDIS, the official and friendly AI assistant for Dunes International School (DIS), Abu Dhabi.
+def build_system_instruction(context):
+    return f"""You are ChatDIS, the official and friendly AI assistant for Dunes International School (DIS), Abu Dhabi.
 
 GUIDELINES:
 1. Use the PROVIDED CONTEXT below to answer the user's question accurately.
@@ -48,29 +40,49 @@ GUIDELINES:
 SCHOOL CONTEXT:
 {context}"""
 
-    payload = {
-        "model": "gemini-3-flash-preview",
-        "messages": [
-            {"role": "system", "content": system_instruction},
-            {"role": "user", "content": question}
-        ],
-        "temperature": 0.5
-    }
 
+def build_messages(question, context):
+    return [
+        {"role": "system", "content": build_system_instruction(context)},
+        {"role": "user", "content": question}
+    ]
+
+
+def ai_generate_answer(question, context):
     try:
-        response = requests.post(OLLAMA_API_URL, headers=HEADERS, json=payload)
-        if response.status_code != 200:
-            return f"API Error {response.status_code}: {response.text}"
-
-        result = response.json()
-
-        if "choices" in result and len(result["choices"]) > 0:
-            return result["choices"][0]["message"]["content"]
-
-        return "Unexpected API response."
-
+        completion = client.chat.completions.create(
+            model=MODEL,
+            messages=build_messages(question, context),
+            temperature=0.5,
+            max_completion_tokens=8192,
+            top_p=1,
+            stream=False
+        )
+        return completion.choices[0].message.content
     except Exception as e:
         return f"Connection Error: {str(e)}"
+
+
+def ai_generate_stream(question, context):
+    try:
+        stream = client.chat.completions.create(
+            model=MODEL,
+            messages=build_messages(question, context),
+            temperature=0.5,
+            max_completion_tokens=8192,
+            top_p=1,
+            stream=True
+        )
+
+        for chunk in stream:
+            content = chunk.choices[0].delta.content
+            if content:
+                yield "data: " + json.dumps({"token": content}) + "\n\n"
+
+        yield "data: [DONE]\n\n"
+
+    except Exception as e:
+        yield "data: " + json.dumps({"error": f"Connection Error: {str(e)}"}) + "\n\n"
 
 
 def log_prompt(user_question, client_ip):
@@ -105,6 +117,32 @@ def ask():
 
     answer = ai_generate_answer(user_question, KNOWLEDGE_BASE)
     return jsonify({"answer": answer})
+
+
+@app.route("/ask/stream", methods=["POST"])
+@limiter.limit("5 per minute")
+def ask_stream():
+    data = request.get_json(silent=True)
+    if not data:
+        return jsonify({"error": "Invalid request body"}), 400
+
+    user_question = data.get("question", "").strip()
+    client_ip = request.remote_addr
+
+    if not user_question or len(user_question) > 1000:
+        return jsonify({"error": "Invalid question"}), 400
+
+    log_prompt(user_question, client_ip)
+
+    return Response(
+        stream_with_context(ai_generate_stream(user_question, KNOWLEDGE_BASE)),
+        mimetype="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "X-Accel-Buffering": "no",
+            "Connection": "keep-alive"
+        }
+    )
 
 
 if __name__ == "__main__":

@@ -1,3 +1,6 @@
+const STREAM_URL = '/ask/stream';
+const FALLBACK_URL = '/ask';
+
 async function askQuestion() {
     const input = document.getElementById("question");
     const chat = document.getElementById("chat");
@@ -7,14 +10,13 @@ async function askQuestion() {
 
     input.value = "";
 
-    chat.innerHTML += `
-        <div class="message user-message">
-            ${question}
-        </div>
-    `;
+    const userMsg = document.createElement("div");
+    userMsg.className = "message user-message";
+    userMsg.textContent = question;
+    chat.appendChild(userMsg);
 
     const thinkingId = "think-" + Date.now();
-    
+
     chat.innerHTML += `
     <div id="${thinkingId}" class="message bot-message thinking">
         Thinking
@@ -28,26 +30,74 @@ async function askQuestion() {
 
     chat.scrollTop = chat.scrollHeight;
 
+    const bubble = document.getElementById(thinkingId);
+
     try {
-        const response = await fetch("/ask", {
+        const res = await fetch(STREAM_URL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ question })
         });
 
-        const data = await response.json();
+        if (!res.ok || !res.body) throw new Error("Stream unavailable");
 
-        const thinkingBubble = document.getElementById(thinkingId);
-        
-        thinkingBubble.classList.remove("thinking");
-        
-        thinkingBubble.innerHTML = marked.parse(data.answer);
+        bubble.classList.remove("thinking");
+        bubble.innerHTML = "";
 
-    } catch (error) {
-        const thinkingBubble = document.getElementById(thinkingId);
-        if (thinkingBubble) {
-            thinkingBubble.classList.remove("thinking");
-            thinkingBubble.innerHTML = "Sorry, I'm having trouble connecting right now.";
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let accumulated = "";
+        let buffer = "";
+
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split("\n");
+            buffer = lines.pop();
+
+            for (const line of lines) {
+                if (!line.startsWith("data: ")) continue;
+                const payload = line.slice(6);
+                if (payload.trim() === "[DONE]") {
+                    bubble.innerHTML = marked.parse(accumulated);
+                    chat.scrollTop = chat.scrollHeight;
+                    return;
+                }
+                try {
+                    const parsed = JSON.parse(payload);
+                    if (parsed.error) {
+                        bubble.textContent = parsed.error;
+                        return;
+                    }
+                    if (parsed.token) {
+                        accumulated += parsed.token;
+                        bubble.innerHTML = marked.parse(accumulated);
+                        chat.scrollTop = chat.scrollHeight;
+                    }
+                } catch {}
+            }
+        }
+
+        if (accumulated) {
+            bubble.innerHTML = marked.parse(accumulated);
+        } else {
+            bubble.textContent = "No response received.";
+        }
+    } catch {
+        try {
+            const res = await fetch(FALLBACK_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ question })
+            });
+            const data = await res.json();
+            bubble.classList.remove("thinking");
+            bubble.innerHTML = marked.parse(data.answer);
+        } catch {
+            bubble.classList.remove("thinking");
+            bubble.innerHTML = "Sorry, I'm having trouble connecting right now.";
         }
     }
 

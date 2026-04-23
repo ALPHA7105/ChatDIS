@@ -349,8 +349,6 @@
         color:#888;
         }
 
-        /* Thinking animation */
-
         .msg-thinking{
         display:flex;
         align-items:center;
@@ -388,6 +386,22 @@
         transform:translateY(-6px);
         opacity:1;
         }
+        }
+
+        .msg-streaming::after{
+        content:'';
+        display:inline-block;
+        width:2px;
+        height:1em;
+        background:var(--bot-text);
+        margin-left:2px;
+        vertical-align:text-bottom;
+        animation:cursorBlink .7s step-end infinite;
+        }
+
+        @keyframes cursorBlink{
+        0%,100%{opacity:1}
+        50%{opacity:0}
         }
         
     </style>
@@ -441,7 +455,8 @@
     </div>
 
     <script>
-        const API_URL = window.CHATDIS_API_URL || '/ask';
+        const BASE_URL = window.CHATDIS_API_URL || '/ask';
+        const STREAM_URL = BASE_URL.replace(/\/ask\/?$/, '/ask/stream');
         const msgs = document.getElementById('msgs');
         const inp = document.getElementById('inp');
         const sendBtn = document.getElementById('send-btn');
@@ -475,6 +490,79 @@
             return el;
         }
 
+        function renderMarkdown(el, raw) {
+            el.innerHTML = marked.parse(raw);
+            msgs.scrollTop = msgs.scrollHeight;
+        }
+
+        async function sendStreaming(q, bubble) {
+            const res = await fetch(STREAM_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ question: q })
+            });
+
+            if (!res.ok || !res.body) throw new Error('Stream unavailable');
+
+            bubble.classList.remove('msg-thinking');
+            bubble.classList.add('msg-streaming');
+            bubble.innerHTML = '';
+
+            const reader = res.body.getReader();
+            const decoder = new TextDecoder();
+            let accumulated = '';
+            let buffer = '';
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+
+                buffer += decoder.decode(value, { stream: true });
+                const lines = buffer.split('\n');
+                buffer = lines.pop();
+
+                for (const line of lines) {
+                    if (!line.startsWith('data: ')) continue;
+                    const payload = line.slice(6);
+                    if (payload.trim() === '[DONE]') {
+                        bubble.classList.remove('msg-streaming');
+                        renderMarkdown(bubble, accumulated);
+                        return;
+                    }
+                    try {
+                        const parsed = JSON.parse(payload);
+                        if (parsed.error) {
+                            bubble.classList.remove('msg-streaming');
+                            bubble.textContent = parsed.error;
+                            return;
+                        }
+                        if (parsed.token) {
+                            accumulated += parsed.token;
+                            renderMarkdown(bubble, accumulated);
+                        }
+                    } catch {}
+                }
+            }
+
+            bubble.classList.remove('msg-streaming');
+            if (accumulated) {
+                renderMarkdown(bubble, accumulated);
+            } else {
+                bubble.textContent = 'No response received.';
+            }
+        }
+
+        async function sendFallback(q, bubble) {
+            const res = await fetch(BASE_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ question: q })
+            });
+            const data = await res.json();
+            bubble.classList.remove('msg-thinking');
+            renderMarkdown(bubble, data.answer || data.error || 'No response received.');
+        }
+
         async function send() {
             if (loading) return;
             const q = inp.value.trim();
@@ -487,20 +575,18 @@
             addMsg(q, true);
             loading = true;
             sendBtn.disabled = true;
-            const thinking = addMsg('', false, true);
+            const bubble = addMsg('', false, true);
 
             try {
-                const res = await fetch(API_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ question: q })
-                });
-                const data = await res.json();
-                thinking.classList.remove('msg-thinking');
-                thinking.innerHTML = marked.parse(data.answer || data.error || 'No response received.');
+                await sendStreaming(q, bubble);
             } catch {
-                thinking.classList.remove('msg-thinking');
-                thinking.innerHTML = 'Connection issue &mdash; please try again shortly.';
+                try {
+                    await sendFallback(q, bubble);
+                } catch {
+                    bubble.classList.remove('msg-thinking');
+                    bubble.classList.remove('msg-streaming');
+                    bubble.innerHTML = 'Connection issue &mdash; please try again shortly.';
+                }
             }
 
             loading = false;
