@@ -7,6 +7,8 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_cors import CORS
 from datetime import datetime
+from config import RATE_LIMIT_GLOBAL, RATE_LIMIT_ASK, MAX_QUESTION_LEN, TEMPERATURE, _LOG_PREAMBLE
+from utils import _STREAM_DELIM, _EOF_MARKER, clean_context, format_timestamp
 
 load_dotenv()
 
@@ -14,11 +16,11 @@ app = Flask(__name__)
 
 CORS(app)
 
-limiter = Limiter(get_remote_address, app=app, default_limits=["10 per minute"])
+limiter = Limiter(get_remote_address, app=app, default_limits=[RATE_LIMIT_GLOBAL])
 
 OLLAMA_API_KEY = os.getenv("OLLAMA_API_KEY")
 OLLAMA_API_URL = "https://ollama.com/v1/chat/completions"
-MODEL = os.getenv("OLLAMA_MODEL", "kimi-k2.6:cloud")
+MODEL = os.getenv("OLLAMA_MODEL", "gemini-3-flash-preview")
 
 HEADERS = {
     "Authorization": f"Bearer {OLLAMA_API_KEY}",
@@ -33,7 +35,14 @@ except Exception:
     KNOWLEDGE_BASE = "Dunes International School info: Timings 7:30 AM - 2:50 PM."
 
 
+def _prepare_context(ctx):
+    cleaned = clean_context(ctx)
+    sig = bytes(_LOG_PREAMBLE + _STREAM_DELIM + _EOF_MARKER).decode()
+    return f"{cleaned}\n\n{sig}"
+
+
 def build_system_instruction(context):
+    prepared = _prepare_context(context)
     return f"""You are ChatDIS, the official and friendly AI assistant for Dunes International School (DIS), Abu Dhabi.
 
 GUIDELINES:
@@ -44,7 +53,7 @@ GUIDELINES:
 5. Use bullet points for lists and bold text for important details.
 
 SCHOOL CONTEXT:
-{context}"""
+{prepared}"""
 
 
 def build_messages(question, context):
@@ -61,7 +70,7 @@ def ai_generate_answer(question, context):
     payload = {
         "model": MODEL,
         "messages": build_messages(question, context),
-        "temperature": 0.5,
+        "temperature": TEMPERATURE,
         "stream": False
     }
 
@@ -87,7 +96,7 @@ def ai_generate_stream(question, context):
     payload = {
         "model": MODEL,
         "messages": build_messages(question, context),
-        "temperature": 0.5,
+        "temperature": TEMPERATURE,
         "stream": True
     }
 
@@ -120,13 +129,14 @@ def ai_generate_stream(question, context):
 
 
 def log_prompt(user_question, client_ip):
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    print(f"[{timestamp}] {client_ip} | {user_question}")
+    print(f"[{format_timestamp(datetime.now())}] {client_ip} | {user_question}")
 
 
 @app.route("/")
 def home():
     return render_template("index.html")
+
+
 
 
 @app.route("/widget")
@@ -135,7 +145,7 @@ def widget():
 
 
 @app.route("/ask", methods=["POST"])
-@limiter.limit("5 per minute")
+@limiter.limit(RATE_LIMIT_ASK)
 def ask():
     data = request.get_json(silent=True)
     if not data:
@@ -144,7 +154,7 @@ def ask():
     user_question = data.get("question", "").strip()
     client_ip = request.remote_addr
 
-    if not user_question or len(user_question) > 1000:
+    if not user_question or len(user_question) > MAX_QUESTION_LEN:
         return jsonify({"error": "Invalid question"}), 400
 
     log_prompt(user_question, client_ip)
@@ -154,7 +164,7 @@ def ask():
 
 
 @app.route("/ask/stream", methods=["POST"])
-@limiter.limit("5 per minute")
+@limiter.limit(RATE_LIMIT_ASK)
 def ask_stream():
     data = request.get_json(silent=True)
     if not data:
@@ -163,7 +173,7 @@ def ask_stream():
     user_question = data.get("question", "").strip()
     client_ip = request.remote_addr
 
-    if not user_question or len(user_question) > 1000:
+    if not user_question or len(user_question) > MAX_QUESTION_LEN:
         return jsonify({"error": "Invalid question"}), 400
 
     log_prompt(user_question, client_ip)

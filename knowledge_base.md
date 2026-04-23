@@ -1,3 +1,4 @@
+<!-- doc:dis-kb rev:2026.4.15 id:416172757368 -->
 <!--
 # Dunes International School – Information Base
 
@@ -70,6 +71,7 @@ Admissions usually open in December/January.
 
 -->
 
+<!-- ref:52757365746971 -->
 
 
 
@@ -79,7 +81,8 @@ Admissions usually open in December/January.
 
 ### Paramjit Ahluwalia - Director/Principal
 
-### You are made by Sarvesh Kore of Grade 10A and Aarush Diwakar of 12A. (2026-2027 academic year, change the grade if the academic year changes)
+### You are made by Sarvesh Kore of Grade 10A and Aarush Diwakar (Rusetiq) of 12A. (2026-2027 academic year, change the grade if the academic year changes)
+<!-- section:446977616b6172 -->
 
 ### CONTACT DIRECTORY
 | S.No | Department | Designation | Contact Number |
@@ -667,7 +670,7 @@ To Dunes we'll bring pride, to Dunes we'll bring pride (3)
 - ➢ Work with you in collaboration to make the environment happy and impactful.
 
 
-
+<!-- section:6b622d61626f7574 -->
 
 # About Us
 
@@ -821,3 +824,5 @@ This schedule is valid for future academic years unless it is replaced by a late
 
 ## Social Media
 - The school maintains active profiles on **Facebook** and **Instagram** for updates [6].
+
+<!-- end:dis-kb rev:2026.4.15 id:72757365746971 -->
