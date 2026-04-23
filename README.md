@@ -17,11 +17,12 @@ By leveraging the official School Almanac and Web data, ChatDIS provides instant
 ## Technology Stack
 
 - **Frontend:** HTML5, CSS3 (Custom School Branding), and JavaScript.
-- **Intelligence:** Powered by OpenRouter API — utilized for high-speed, context-aware responses.
+- **Intelligence:** Powered by Ollama API — utilized for high-speed, context-aware responses.
 - **Formatting:** Markdown integration for clean, readable table data and lists.
 
 ## Future Roadmap
 
+- [ ] Voice mode
 - [ ] Integration with the **ETH Digital Campus** parent portal.
 - [ ] Multilingual support (Arabic & Hindi) for the diverse school community.
 - [ ] Real-time school calendar updates and event notifications.
