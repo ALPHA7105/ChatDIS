@@ -44,6 +44,76 @@
     iframe.style.cssText = 'width:100%; height:100%; border:none;';
     container.appendChild(iframe);
 
+
+    // 5. Add Advanced CSS Animations & Fonts
+    var style = document.createElement('style');
+    style.textContent = `
+        /* Import the fonts into the parent page */
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Syne:wght@400;500;600&display=swap');
+    
+        #chatdis-tooltip {
+            white-space: nowrap !important;
+            width: auto !important;
+            min-width: fit-content !important;
+            box-sizing: border-box !important;
+            all: initial; /* Resets parent site styles */
+            position: fixed;
+            ${position === 'bottom-left' ? 'left:100px;' : 'right:100px;'}
+            bottom: 35px;
+            background: #860404;
+            color: #FBF7F1;
+            padding: 12px 18px;
+            border-radius: 12px;
+            
+            /* Matching the chat box font exactly */
+            font-family: 'Syne', sans-serif;
+            font-weight: 500; 
+            font-size: 14px;
+            line-height: 1.4;
+            
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: ${zIndex + 1};
+            animation: chatdis-fade-in 1s ease 1s both;
+            border-left: 4px solid #C9953A;
+            pointer-events: none;
+        }
+    
+        #chatdis-tooltip strong {
+            font-family: 'Cormorant', serif;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+        }
+    
+        #chatdis-tooltip::after {
+            content: '';
+            position: absolute;
+            ${position === 'bottom-left' ? 'left: -8px;' : 'right: -8px;'}
+            top: 50%;
+            transform: translateY(-50%);
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            ${position === 'bottom-left' ? 'border-right: 8px solid #860404;' : 'border-left: 8px solid #860404;'}
+        } 
+    
+        @keyframes chatdis-fade-in {
+            from { opacity: 0; transform: translateX(${position === 'bottom-left' ? '-10px' : '10px'}); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+    
+        #chatdis-toggle {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            aspect-ratio: 1 / 1 !important;
+            overflow: hidden !important;
+            padding: 0 !important;
+        }
+        #chatdis-toggle:hover { transform: scale(1.1) rotate(5deg); }
+        #chatdis-toggle:active { transform: scale(0.9); }
+    `;
+
+    /*
     // 5. Add Advanced CSS Animations
     var style = document.createElement('style');
     style.textContent = `
@@ -83,16 +153,18 @@
             to { opacity: 1; transform: translateX(0); }
         }
         #chatdis-toggle {
-            display: inline-flex !important; /* Stops the button from acting like a block */
+            display: inline-flex !important;
             align-items: center !important;
             justify-content: center !important;
-            aspect-ratio: 1 / 1 !important; /* Forces a perfect circle */
+            aspect-ratio: 1 / 1 !important;
             overflow: hidden !important;
-            padding: 0 !important; /* Prevents site-wide button padding from messing with the logo */
+            padding: 0 !important;
         }
         #chatdis-toggle:hover { transform: scale(1.1) rotate(5deg); }
         #chatdis-toggle:active { transform: scale(0.9); }
     `;
+
+    */
     
     document.head.appendChild(style);
     document.body.appendChild(container);
