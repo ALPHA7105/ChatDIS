@@ -17,17 +17,20 @@
 
     var isOpen = false;
 
+    // Define the circular logo HTML
+    var logoHtml = '<img src="' + serverUrl + '/static/duneslogo.png" alt="DIS Logo" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;">';
+
     var toggleBtn = document.createElement('button');
     toggleBtn.id = 'chatdis-toggle';
     toggleBtn.setAttribute('aria-label', 'Open ChatDIS');
-    var logoHtml = '<img src="' + serverUrl + '/static/duneslogo.png" alt="DIS Logo" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;">';';  //toggleBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:28px;height:28px"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>';
+    toggleBtn.innerHTML = logoHtml;
 
     var btnStyles = [
         'position:fixed',
         'z-index:' + (zIndex + 1),
         'width:' + DEFAULTS.buttonSize,
         'height:' + DEFAULTS.buttonSize,
-        'padding:4px'
+        'padding:4px',
         'border-radius:50%',
         'border:none',
         'cursor:pointer',
@@ -36,7 +39,7 @@
         'justify-content:center',
         'background:linear-gradient(135deg, #94030f 0%, #690b13 100%)',
         'color:#fff',
-        'box-shadow:0 4px 20px rgba(160,82,45,0.35), 0 0 0 0 rgba(160,82,45,0.3)',
+        'box-shadow:0 4px 20px rgba(160,82,45,0.35)',
         'transition:all 0.3s ease',
         'animation:chatdis-btn-pulse 3s ease-in-out infinite'
     ];
@@ -88,18 +91,14 @@
     iframe.setAttribute('title', 'ChatDIS - Dunes International School Assistant');
 
     iframe.onload = function () {
-        if (apiKey) {
-            iframe.contentWindow.CHATDIS_API_KEY = apiKey;
-        }
-        if (serverUrl) {
-            iframe.contentWindow.CHATDIS_API_URL = serverUrl + '/ask';
-        }
+        if (apiKey) { iframe.contentWindow.CHATDIS_API_KEY = apiKey; }
+        if (serverUrl) { iframe.contentWindow.CHATDIS_API_URL = serverUrl + '/ask'; }
     };
 
     container.appendChild(iframe);
 
     var style = document.createElement('style');
-    style.textContent = '@keyframes chatdis-btn-pulse{0%,100%{box-shadow:0 4px 20px rgba(148,3,15,0.35),0 0 0 0 rgba(148,3,15,0.3)}50%{box-shadow:0 4px 20px rgba(148,3,15,0.35),0 0 0 8px rgba(148,3,15,0)}}#chatdis-toggle:hover{transform:scale(1.08);box-shadow:0 6px 24px rgba(148,3,15,0.45)!important}...';
+    style.textContent = '@keyframes chatdis-btn-pulse{0%,100%{box-shadow:0 4px 20px rgba(148,3,15,0.35),0 0 0 0 rgba(148,3,15,0.3)}50%{box-shadow:0 4px 20px rgba(148,3,15,0.35),0 0 0 8px rgba(148,3,15,0)}} #chatdis-toggle:hover{transform:scale(1.08);box-shadow:0 6px 24px rgba(148,3,15,0.45)!important}';
     document.head.appendChild(style);
 
     document.body.appendChild(container);
@@ -111,13 +110,15 @@
             container.style.opacity = '1';
             container.style.transform = 'translateY(0) scale(1)';
             container.style.pointerEvents = 'auto';
+            // Close icon
             toggleBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
             toggleBtn.style.animation = 'none';
         } else {
             container.style.opacity = '0';
             container.style.transform = 'translateY(20px) scale(0.95)';
             container.style.pointerEvents = 'none';
-            var logoHtml = '<img src="' + serverUrl + '/static/duneslogo.png" alt="DIS Logo" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;">';  //toggleBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:28px;height:28px"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>';
+            // Restore Logo
+            toggleBtn.innerHTML = logoHtml;
             toggleBtn.style.animation = 'chatdis-btn-pulse 3s ease-in-out infinite';
         }
     });
