@@ -82,6 +82,14 @@
             from { opacity: 0; transform: translateX(${position === 'bottom-left' ? '-10px' : '10px'}); }
             to { opacity: 1; transform: translateX(0); }
         }
+        #chatdis-toggle {
+            display: inline-flex !important; /* Stops the button from acting like a block */
+            align-items: center !important;
+            justify-content: center !important;
+            aspect-ratio: 1 / 1 !important; /* Forces a perfect circle */
+            overflow: hidden !important;
+            padding: 0 !important; /* Prevents site-wide button padding from messing with the logo */
+        }
         #chatdis-toggle:hover { transform: scale(1.1) rotate(5deg); }
         #chatdis-toggle:active { transform: scale(0.9); }
     `;
