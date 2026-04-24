@@ -20,7 +20,7 @@
     var toggleBtn = document.createElement('button');
     toggleBtn.id = 'chatdis-toggle';
     toggleBtn.setAttribute('aria-label', 'Open ChatDIS');
-    toggleBtn.innerHTML = '<img src="' + serverUrl + '/static/duneslogo.png" alt="DIS Logo" style="width:40px; height:40px; object-fit:contain;">';  //toggleBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:28px;height:28px"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>';
+    toggleBtn.innerHTML = '<img src="' + serverUrl + '/static/duneslogo.png" alt="DIS Logo" style="width:40px; height:40px; border-radius:50%; object-fit:contain;">';  //toggleBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:28px;height:28px"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>';
 
     var btnStyles = [
         'position:fixed',
