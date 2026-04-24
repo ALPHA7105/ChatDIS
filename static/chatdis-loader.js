@@ -19,7 +19,7 @@
     // 1. Create the Welcome Tooltip
     var tooltip = document.createElement('div');
     tooltip.id = 'chatdis-tooltip';
-    tooltip.innerHTML = '<strong>ChatDIS</strong> is online! <br>How can I help?';
+    tooltip.innerHTML = 'Hi, I am <strong>ChatDIS</strong>! <br>How can I help?';
     
     // 2. Define Logo HTML
     var logoHtml = '<img src="' + serverUrl + '/static/duneslogo.png" alt="DIS Logo" style="width:100%; height:100%; aspect-ratio: 1 / 1; border-radius:50%; object-fit:cover; display:block; border: 2px solid #C9953A; flex-shrink: 0;">';   //var logoHtml = '<img src="' + serverUrl + '/static/duneslogo.png" alt="DIS Logo" style="width:100%; height:100%; aspect-ratio: 1/1; border-radius:50%; object-fit:cover; display:block; border: 2px solid #C9953A; min-width: 100%;">';
