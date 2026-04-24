@@ -22,7 +22,7 @@
     tooltip.innerHTML = '<strong>ChatDIS</strong> is online! <br>How can I help?';
     
     // 2. Define Logo HTML
-    var logoHtml = '<img src="' + serverUrl + '/static/duneslogo.png" alt="DIS Logo" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block; border: 2px solid #C9953A;">';
+    var logoHtml = '<img src="' + serverUrl + '/static/duneslogo.png" alt="DIS Logo" style="width:100%; height:100%; aspect-ratio: 1/1; border-radius:50%; object-fit:cover; display:block; border: 2px solid #C9953A; min-width: 100%;">';
 
     // 3. Create Toggle Button
     var toggleBtn = document.createElement('button');
@@ -48,6 +48,9 @@
     var style = document.createElement('style');
     style.textContent = `
         #chatdis-tooltip {
+            white-space: nowrap;
+            box-sizing: content-box;
+            all: initial;
             position: fixed;
             ${position === 'bottom-left' ? 'left:100px;' : 'right:100px;'}
             bottom: 35px;
