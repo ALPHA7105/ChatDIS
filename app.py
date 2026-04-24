@@ -180,7 +180,7 @@ def ask_stream():
 
     return Response(
         stream_with_context(ai_generate_stream(user_question, KNOWLEDGE_BASE)),
-        mimetype="text/event-stream",
+        mimetype="text/event-stream; charset=utf-8",
         headers={
             "Cache-Control": "no-cache",
             "X-Accel-Buffering": "no",
