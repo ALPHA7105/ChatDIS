@@ -62,7 +62,7 @@
             border-radius: 12px;
             font-family: 'Syne', sans-serif;
             font-size: 13px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(201,149,58);
             z-index: ${zIndex + 1};
             animation: chatdis-fade-in 1s ease 1s both;
             border-left: 4px solid #C9953A;
