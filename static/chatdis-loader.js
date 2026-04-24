@@ -56,7 +56,7 @@
             position: fixed;
             ${position === 'bottom-left' ? 'left:100px;' : 'right:100px;'}
             bottom: 35px;
-            background: #94030f;
+            background: #860404;
             color: #FBF7F1;
             padding: 10px 15px;
             border-radius: 12px;
