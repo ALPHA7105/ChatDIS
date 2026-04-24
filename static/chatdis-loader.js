@@ -56,8 +56,8 @@
             position: fixed;
             ${position === 'bottom-left' ? 'left:100px;' : 'right:100px;'}
             bottom: 35px;
-            background: #860404;
-            color: #E8D5B7;
+            background: #94030f;
+            color: #FBF7F1;
             padding: 10px 15px;
             border-radius: 12px;
             font-family: 'Syne', sans-serif;
