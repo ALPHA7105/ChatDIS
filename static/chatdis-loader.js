@@ -76,8 +76,8 @@
             transform: translateY(-50%);
             border-top: 8px solid transparent;
             border-bottom: 8px solid transparent;
-            ${position === 'bottom-left' ? 'border-right: 8px solid #160E07;' : 'border-left: 8px solid #160E07;'}
-        }
+            ${position === 'bottom-left' ? 'border-right: 8px solid #C9953A;' : 'border-left: 8px solid #C9953A;'}
+        } 
         @keyframes chatdis-fade-in {
             from { opacity: 0; transform: translateX(${position === 'bottom-left' ? '-10px' : '10px'}); }
             to { opacity: 1; transform: translateX(0); }
