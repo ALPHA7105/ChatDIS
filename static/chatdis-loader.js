@@ -3,6 +3,116 @@
         position: 'bottom-right',
         width: '380px',
         height: '600px',
+        buttonSize: '65px', // Slightly larger for better visibility
+        zIndex: 99999
+    };
+
+    var config = window.ChatDISConfig || {};
+    var serverUrl = config.serverUrl || '';
+    var position = config.position || DEFAULTS.position;
+    var width = config.width || DEFAULTS.width;
+    var height = config.height || DEFAULTS.height;
+    var zIndex = config.zIndex || DEFAULTS.zIndex;
+
+    var isOpen = false;
+
+    // 1. Create the Welcome Tooltip
+    var tooltip = document.createElement('div');
+    tooltip.id = 'chatdis-tooltip';
+    tooltip.innerHTML = '<strong>ChatDIS</strong> is online! <br>How can I help?';
+    
+    // 2. Define Logo HTML
+    var logoHtml = '<img src="' + serverUrl + '/static/duneslogo.png" alt="DIS Logo" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block; border: 2px solid #C9953A;">';
+
+    // 3. Create Toggle Button
+    var toggleBtn = document.createElement('button');
+    toggleBtn.id = 'chatdis-toggle';
+    toggleBtn.innerHTML = logoHtml;
+
+    // Apply Button Styles (Moving most to the <style> block for cleaner code)
+    var btnPosition = (position === 'bottom-left') ? 'bottom:24px; left:24px;' : 'bottom:24px; right:24px;';
+    toggleBtn.style.cssText = btnPosition + 'position:fixed; z-index:' + (zIndex + 1) + '; width:' + DEFAULTS.buttonSize + '; height:' + DEFAULTS.buttonSize + '; border-radius:50%; border:none; cursor:pointer; background:#fff; box-shadow:0 8px 24px rgba(0,0,0,0.2); display:flex; align-items:center; justify-content:center; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);';
+
+    // 4. Create the Container (The Chat Window)
+    var container = document.createElement('div');
+    container.id = 'chatdis-container';
+    var contPos = (position === 'bottom-left') ? 'bottom:100px; left:24px;' : 'bottom:100px; right:24px;';
+    container.style.cssText = contPos + 'position:fixed; z-index:' + zIndex + '; width:' + width + '; height:' + height + '; max-height:calc(100vh - 150px); max-width:calc(100vw - 40px); border-radius:20px; overflow:hidden; box-shadow:0 15px 50px rgba(0,0,0,0.2); opacity:0; visibility:hidden; transform: translateY(30px) scale(0.9); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border:1px solid #E8D5B7;';
+
+    var iframe = document.createElement('iframe');
+    iframe.src = serverUrl + '/widget';
+    iframe.style.cssText = 'width:100%; height:100%; border:none;';
+    container.appendChild(iframe);
+
+    // 5. Add Advanced CSS Animations
+    var style = document.createElement('style');
+    style.textContent = `
+        #chatdis-tooltip {
+            position: fixed;
+            ${position === 'bottom-left' ? 'left:100px;' : 'right:100px;'}
+            bottom: 35px;
+            background: #160E07;
+            color: #E8D5B7;
+            padding: 10px 15px;
+            border-radius: 12px;
+            font-family: 'Syne', sans-serif;
+            font-size: 13px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: ${zIndex + 1};
+            animation: chatdis-fade-in 1s ease 1s both;
+            border-left: 4px solid #C9953A;
+            pointer-events: none;
+        }
+        #chatdis-tooltip::after {
+            content: '';
+            position: absolute;
+            ${position === 'bottom-left' ? 'left: -8px;' : 'right: -8px;'}
+            top: 50%;
+            transform: translateY(-50%);
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            ${position === 'bottom-left' ? 'border-right: 8px solid #160E07;' : 'border-left: 8px solid #160E07;'}
+        }
+        @keyframes chatdis-fade-in {
+            from { opacity: 0; transform: translateX(${position === 'bottom-left' ? '-10px' : '10px'}); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        #chatdis-toggle:hover { transform: scale(1.1) rotate(5deg); }
+        #chatdis-toggle:active { transform: scale(0.9); }
+    `;
+    
+    document.head.appendChild(style);
+    document.body.appendChild(container);
+    document.body.appendChild(toggleBtn);
+    document.body.appendChild(tooltip);
+
+    // 6. Interaction Logic
+    toggleBtn.addEventListener('click', function () {
+        isOpen = !isOpen;
+        if (isOpen) {
+            container.style.opacity = '1';
+            container.style.visibility = 'visible';
+            container.style.transform = 'translateY(0) scale(1)';
+            tooltip.style.display = 'none'; // Hide tooltip when chat opens
+            toggleBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="#94030f" stroke-width="3" style="width:28px; height:28px"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+        } else {
+            container.style.opacity = '0';
+            container.style.visibility = 'hidden';
+            container.style.transform = 'translateY(30px) scale(0.9)';
+            toggleBtn.innerHTML = logoHtml;
+        }
+    });
+})();
+
+
+
+
+/*
+(function () {
+    var DEFAULTS = {
+        position: 'bottom-right',
+        width: '380px',
+        height: '600px',
         buttonSize: '60px',
         zIndex: 99999
     };
@@ -123,3 +233,4 @@
         }
     });
 })();
+*/
