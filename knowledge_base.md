@@ -1,6 +1,6 @@
 <!-- doc:dis-kb rev:2026.4.15 id:416172757368 -->
 <!--
-# Dunes International School – Information Base
+# Dunes International School - Information Base
 
 ## 1. General Information
 - **Full Name:** Dunes International School, Abu Dhabi
@@ -8,20 +8,20 @@
 - **Curriculum:** CBSE (Central Board of Secondary Education), New Delhi, India
 - **Affiliation Number:** 6630051
 - **Location:** Plot no. 19, Sector 9, Shabiya, Mussafah, Abu Dhabi, UAE
-- **Landmark:** Near Sunrise School and Bhavan’s School
+- **Landmark:** Near Sunrise School and Bhavan's School
 
 ## 2. School Timings
 ### Student Hours
 | Grade Level | Mon - Thu | Friday |
 | :--- | :--- | :--- |
-| **Kindergarten (KG1 & KG2)** | 07:40 AM – 12:25 PM | 07:40 AM – 11:10 AM |
-| **Grades 1 to 12** | 07:40 AM – 02:45 PM | 07:40 AM – 11:10 AM |
+| **Kindergarten (KG1 & KG2)** | 07:40 AM - 12:25 PM | 07:40 AM - 11:10 AM |
+| **Grades 1 to 12** | 07:40 AM - 02:45 PM | 07:40 AM - 11:10 AM |
 
 ### Administrative Office Hours
-- **Mon - Thu:** 09:00 AM – 11:00 AM & 12:00 PM – 02:00 PM
-- **Friday:** 09:00 AM – 11:00 AM
+- **Mon - Thu:** 09:00 AM - 11:00 AM & 12:00 PM - 02:00 PM
+- **Friday:** 09:00 AM - 11:00 AM
 - **Saturday:** School office remains closed
-- **Sunday:** 09:00 AM – 12:00 PM
+- **Sunday:** 09:00 AM - 12:00 PM
 
 ## 3. Admission & Age Criteria
 Admissions usually open in December/January.
@@ -75,7 +75,7 @@ Admissions usually open in December/January.
 
 
 
-# Dunes International School – Information Base
+# Dunes International School - Information Base
 
 ### Ismaeil Khoori - Chairmain
 
@@ -188,7 +188,7 @@ To Dunes we'll bring pride, to Dunes we'll bring pride (3)
 - **Maroon Lanyard:** For school transport users.
 - **Beige Lanyard:** For students using their own transport accompanied by parents.
 - **Florescent Green Lanyard:** For unaccompanied students from Grade 6 upwards/Special approval from academic supervisor.
-- **Note –** To acquire flourescent lanyard, parents to submit requisition letter, available with the class teacher.
+- **Note -** To acquire flourescent lanyard, parents to submit requisition letter, available with the class teacher.
 - If they is any change in the mode of transport then the lanyard to be purchased.
 
 # SWIMMING COSTUME
@@ -251,7 +251,7 @@ To Dunes we'll bring pride, to Dunes we'll bring pride (3)
 - ➢ Music
 
 # THE SECONDARY SCHOOL - GRADE 9 AND 10
-##### Student’s intellectual, aesthetic, physical and cultural growth is strengthened and extended to a foundation course that enables them to excel in the CBSE board examination. The All India Examination, conducted by the Central Board of Secondary Education, New Delhi, is held at the end of Grade 10.
+##### Student's intellectual, aesthetic, physical and cultural growth is strengthened and extended to a foundation course that enables them to excel in the CBSE board examination. The All India Examination, conducted by the Central Board of Secondary Education, New Delhi, is held at the end of Grade 10.
 - ➢ English
 - ➢ Mathematics
 - ➢ Science
@@ -263,7 +263,7 @@ To Dunes we'll bring pride, to Dunes we'll bring pride (3)
 - ➢ Art Education, Health and Physical Education and work experience classes as per CBSE requirements are also woven into the curriculum.
 - ➢ CWSN (Children With Special Needs )- After approval from competent authorities these students can be offered the approved subjects.
 
-# THE SENIOR SECONDARY SCHOOL – GRADES 11
+# THE SENIOR SECONDARY SCHOOL - GRADES 11
 ##### The Senior School Curriculum caters to the school leaving stage of education. It aims to provide a learner with opportunities to grow and explore various higher education career options available for their self fulfilment and training. The stage enables the transition of students to higher education, professional training and employment. We aim at providing opportunities to students for preparing them for a life after school by using an enquiry-based approach and a constructivist theory of learning.
 ### Subject combinations
 | STREAM | SUBJECTS (1, 2, 3, 4) | SELECT ANY ONE (5) |
@@ -280,7 +280,7 @@ To Dunes we'll bring pride, to Dunes we'll bring pride (3)
 - d) Islamic Education is mandatory for Muslim students and Moral Studies for non-Muslim students. A school based internal examination for the subject will be conducted in grade 11.
 - e) A school based internal examination for Arabic will be conducted in Grade 11 for the students who have opted Arabic language.
 
-# THE SENIOR SECONDARY SCHOOL – GRADES 12
+# THE SENIOR SECONDARY SCHOOL - GRADES 12
 ##### The Senior School Curriculum caters to the school leaving stage of education. It aims to provide a learner with opportunities to grow and explore various higher education career options available for their self fulfilment and training. The stage enables the transition of students to higher education, professional training and employment. The Senior School Curriculum aims at providing opportunities to students for preparing them for a life after school by using an enquiry-based approach and a constructivist theory of learning. It aims to prepare students for further studies in different areas of future employment across a multitude of professions and in new and emerging areas of knowledge.
 ### Subject combinations
 | STREAM | SUBJECTS (1, 2, 3, 4) | SELECT ANY ONE (5) |
@@ -329,13 +329,13 @@ To Dunes we'll bring pride, to Dunes we'll bring pride (3)
 
 # SCHOOL TIMINGS
 ### MONDAY TO THURSDAY
-| S.NO | GRADE | GATE OPERATIONAL TIMING (ARRIVAL AND SETTLING TIME) | BUS DISPERSAL TIMING | GATE OPERATIONAL TIMING (DISPERSAL – OWN TRANSPORT) |
+| S.NO | GRADE | GATE OPERATIONAL TIMING (ARRIVAL AND SETTLING TIME) | BUS DISPERSAL TIMING | GATE OPERATIONAL TIMING (DISPERSAL - OWN TRANSPORT) |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | Kindergarten | 7:30 a.m. to 7:40 a.m. | 12:25 p.m. | 12:25 p.m. to 12:35 p.m. |
 | 2 | Grade 1 to 12 | 7:30 a.m. to 7:40 a.m. | 2:45 p.m. | 2:45 p.m. to 3:00 p.m. |
 
 ### FRIDAY
-| S.NO | GRADE | GATE OPERATIONAL TIMING (ARRIVAL AND SETTLING TIME) | BUS DISPERSAL TIMING | GATE OPERATIONAL TIMING (DISPERSAL – OWN TRANSPORT) |
+| S.NO | GRADE | GATE OPERATIONAL TIMING (ARRIVAL AND SETTLING TIME) | BUS DISPERSAL TIMING | GATE OPERATIONAL TIMING (DISPERSAL - OWN TRANSPORT) |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | Kindergarten to Grade 12 | 7:30 a.m. to 7:40 a.m. | 11:10 a.m. | 11:10 a.m. to 11:20 p.m. |
 
@@ -366,7 +366,7 @@ To Dunes we'll bring pride, to Dunes we'll bring pride (3)
 - #### ➢ WEEKLY TEST: Will be continuous evaluation.
 - #### ➢ PERIODIC TEST: Formal test where schedule and portions will be shared a month in advance. Please note schedule and portion for all assessments are also shared in the beginning of the academic year.
 - #### ➢ NOTEBOOK EVALUATION: Will be reviewed throughout the term, however they will be evaluated at the end of each term based on the following parameters. ➢ Regularity in classwork ➢ Assignment completion ➢ Neatness and upkeep of notebook
-- #### ➢ SUBJECT ENRICHMENT: These are subject – specific activities aimed at enhancing the understanding and skills of the students. These activities will be carried out throughout the term, however they will be evaluated at the end of each term.
+- #### ➢ SUBJECT ENRICHMENT: These are subject - specific activities aimed at enhancing the understanding and skills of the students. These activities will be carried out throughout the term, however they will be evaluated at the end of each term.
 - #### ➢ SKILL ASSESSMENT: Skill assessment for each subject will be done continuously throughout the year.
 - #### ➢ HALF YEARLY EXAMINATION AND FINAL EXAMINATION: These are formal examinations where schedule and portions are shared at the beginning of the academic year. These assessments will be graded on 8 point grading scale.
 
@@ -404,7 +404,7 @@ To Dunes we'll bring pride, to Dunes we'll bring pride (3)
 | Grade 1 to 5 | 100 marks | 100 marks | 100 + 100 = 200/2 marks |
 | Grade 6 to 8 | 150 marks | 150 marks | 150 + 150 = 300/3 marks |
 
-#### Assessments at Pre KG level involves continuous observation of students while they are at task for example reading, writing, working with blocks, puzzles, behaviour in small groups while they are at play area, messy play, break time, etc. The students’ progress is tracked through developmental milestones.
+#### Assessments at Pre KG level involves continuous observation of students while they are at task for example reading, writing, working with blocks, puzzles, behaviour in small groups while they are at play area, messy play, break time, etc. The students' progress is tracked through developmental milestones.
 
 # 2. CO-SCHOLASTIC ASSESSMENT:
 - ❖ Co-Scholastic activities will be assessed on a 3 point grading scale term wise.
@@ -488,7 +488,7 @@ To Dunes we'll bring pride, to Dunes we'll bring pride (3)
 | :--- | :--- | :--- | :--- |
 | **Components** | WEEKLY TEST 1 (20) / PT1 (20) / Project/ASL/Activity/Practical (20/30) / Term 1 (80/70) | WEEKLY TEST 2 (20) / PT2 (20) / Project/ASL/Activity/Practical (20/30) / Term 2 (80/70) | Project/ASL/Activity/Practical (20/30) / Theory (80/70) |
 | **Total Marks** | 100 marks | 100 marks | 100 marks |
-#### Project /ASL/Activity/Practical – 20/30 marks Theory - 80/70 marks Total = 100 marks
+#### Project /ASL/Activity/Practical - 20/30 marks Theory - 80/70 marks Total = 100 marks
 ##### Internal Assessment(IA)= 10+10/20= 20/30 marks Term 1 Total-= IA + Term1 examination = 100 marks
 ##### Internal Assessment(IA)= 10+10/20= 20/30 marks Term 2 Total-= IA + Term2 examination = 100 marks
 #### Scholastic areas will be assessed on a 9 point grading scale.
@@ -537,9 +537,9 @@ To Dunes we'll bring pride, to Dunes we'll bring pride (3)
 # AWARDS AND RECOGNITION FOR GRADE 3 TO GRADE 9 AND GRADE 11
 | AWARD | CRITERIA |
 | :--- | :--- |
-| PRINCIPAL’S SPECIAL AWARD | Principal’s special award will be conferred to the student/s from each cohort: <br> • Grade 3 to 5 <br> • Grade 6 to 8 <br> • Grade 9 and 11 <br> ➢ Should attain at least 90% marks in core subjects and at least 80% in Ministry subjects. <br> ➢ Minimum 95% attendance for the year. <br> ➢ Should be present for all the internal assessments. <br> ➢ Should be the overall top scorer across the cohort. <br> ➢ Should have made any outstanding contribution which has brought laurels to the school in any field <br> ➢ Principal’s decision will be the final. |
-| PRINCE AND PRINCESS | One boy and one girl across the grade will be crowned as ‘DUNES PRINCE’ and ‘DUNES PRINCESS’. <br> ➢ Should attain at least 90% marks in core subjects and at least 80% in Ministry subjects. <br> ➢ Minimum 95% attendance for the year. <br> ➢ Should be present for all the internal assessments. <br> ➢ Should be the overall top scorer across the grade. <br> ➢ Should have impactful contribution in the intra/ inter school and community based co-curricular activities. <br> ➢ A panel interview will be conducted for all the eligible students. |
-| SCHOLAR OF THE YEAR | One student across the grade will be honored with ‘SCHOLAR OF THE YEAR’ award <br> ➢ Should attain at least 90% marks in core subjects and at least 80% in Ministry subjects. <br> ➢ Minimum 95% attendance for the year. <br> ➢ Should be present for all the internal assessments. <br> ➢ Should be the overall top scorer across the grade. |
+| PRINCIPAL'S SPECIAL AWARD | Principal's special award will be conferred to the student/s from each cohort: <br> • Grade 3 to 5 <br> • Grade 6 to 8 <br> • Grade 9 and 11 <br> ➢ Should attain at least 90% marks in core subjects and at least 80% in Ministry subjects. <br> ➢ Minimum 95% attendance for the year. <br> ➢ Should be present for all the internal assessments. <br> ➢ Should be the overall top scorer across the cohort. <br> ➢ Should have made any outstanding contribution which has brought laurels to the school in any field <br> ➢ Principal's decision will be the final. |
+| PRINCE AND PRINCESS | One boy and one girl across the grade will be crowned as ‘DUNES PRINCE' and ‘DUNES PRINCESS'. <br> ➢ Should attain at least 90% marks in core subjects and at least 80% in Ministry subjects. <br> ➢ Minimum 95% attendance for the year. <br> ➢ Should be present for all the internal assessments. <br> ➢ Should be the overall top scorer across the grade. <br> ➢ Should have impactful contribution in the intra/ inter school and community based co-curricular activities. <br> ➢ A panel interview will be conducted for all the eligible students. |
+| SCHOLAR OF THE YEAR | One student across the grade will be honored with ‘SCHOLAR OF THE YEAR' award <br> ➢ Should attain at least 90% marks in core subjects and at least 80% in Ministry subjects. <br> ➢ Minimum 95% attendance for the year. <br> ➢ Should be present for all the internal assessments. <br> ➢ Should be the overall top scorer across the grade. |
 | LANGUAGE PROFICIENCY (ARABIC, ENGLISH, HINDI, FRENCH) | One student across the grade <br> ➢ Should be the overall top scorer in that particular language. <br> ➢ Minimum score should be 90% in that language. <br> ➢ Minimum 95% attendance for the year. <br> ➢ Should be present for all the internal assessments of that particular subject. <br> ➢ Students attending arabic beginners class are not eligible. <br> ➢ A minimum of 6 students must have opted the language( Applicable for Hindi/French/CBSE Arabic from grade 6 upwards) |
 | ARYABHATTA AWARD (For Grades 3 to 9 and 11) (MATHEMATICS PROFICIENCY AWARD) | One student across the grade <br> ➢ Should be the overall top scorer in Mathematics. <br> ➢ Minimum score should be 90% <br> ➢ Minimum 95% attendance for the year. <br> ➢ Should be present for all the internal assessments of Mathematics <br> ➢ A minimum of 6 students must have opted the subject( For grade 11) |
 | EINSTEIN AWARD (For Grades 3 to 9) (SCIENCE PROFICIENCY AWARD) | One student across the grade <br> ➢ Should be the overall top scorer in Science <br> ➢ Minimum score should be 90%. <br> ➢ Minimum 95% attendance for the year. <br> ➢ Should be present for all the internal assessments of that subject |
@@ -552,7 +552,7 @@ To Dunes we'll bring pride, to Dunes we'll bring pride (3)
 | ENVIRONMENTALIST | One student across the grade <br> ➢ Should have shown sustained commitment and dedication towards environment and community affairs. This can be through volunteering, social enterprises, education or any other initiatives. <br> ➢ Recommendation or appreciation from authorised environmental agencies, school eco-club or third-party endorsements will be considered as an additional element. |
 
 ### Note:
-- Selection of the award winners is completely at Principal’s discretion.
+- Selection of the award winners is completely at Principal's discretion.
 - Subject proficiency will be as per the subjects offered in a particular grade.
 - All the students from KG till Grade 2 will be felicitated.
 
@@ -560,7 +560,7 @@ To Dunes we'll bring pride, to Dunes we'll bring pride (3)
 | AWARD | CRITERIA |
 | :--- | :--- |
 | SPECIAL AWARD BY CHAIRMAN | One student who scores highest total marks in board examination (not less than 95 %). |
-| PRINCIPAL’S SPECIAL AWARD | Principal’s special award will be conferred to the student for any outstanding contribution which has brought laurels to the school in any field. <br> ➢ Minimum 95% attendance for the year. <br> ➢ Should be present for all the internal assessments. <br> ➢ Should be the overall top scorer across the cohort. <br> ➢ Should attain at least 90% marks in core subjects and at least 80% in Ministry subjects. <br> ➢ Should have made any outstanding contribution which has brought laurels to the school in any field <br> ➢ Principal’s decision will be the final. |
+| PRINCIPAL'S SPECIAL AWARD | Principal's special award will be conferred to the student for any outstanding contribution which has brought laurels to the school in any field. <br> ➢ Minimum 95% attendance for the year. <br> ➢ Should be present for all the internal assessments. <br> ➢ Should be the overall top scorer across the cohort. <br> ➢ Should attain at least 90% marks in core subjects and at least 80% in Ministry subjects. <br> ➢ Should have made any outstanding contribution which has brought laurels to the school in any field <br> ➢ Principal's decision will be the final. |
 | SUBJECT PROFICIENCY | English, Mathematics, Physics, Chemistry ,Biology, Economics, Accountancy, Business Studies, Entrepreneurship, Computer Science and Physical education will be considered separately <br> One student across the grade <br> ➢ Should be the overall top scorer in a particular subject <br> ➢ Minimum score should be 90%. <br> ➢ Minimum 95% attendance for the year. <br> ➢ Should be present for all the internal assessments <br> ➢ A minimum of 6 students must have opted the Subject |
 | PROMISING ARTIST (DRAWING, PAINTING and CRAFT) | One student across the grade <br> ➢ Should have shown exceptional interest in visual art (DRAWING, PAINTING and CRAFT) <br> ➢ Should have impactful contribution in the intra/ inter school and community based co-curricular activities. |
 | SANGEET VISHARAD (MUSIC) | One student across the grade <br> ➢ Should have shown exceptional interest in Performing art (Music). <br> ➢ Should have impactful contribution in the intra/ inter school and community based co-curricular activities |
@@ -569,7 +569,7 @@ To Dunes we'll bring pride, to Dunes we'll bring pride (3)
 | ENVIRONMENTALIST | One student across the grade <br> ➢ Should have shown sustained commitment and dedication towards environment and community affairs. This can be through volunteering, social enterprises, education or any other initiatives. <br> ➢ Recommendation or appreciation from authorised environmental agencies, school eco-club or third-party endorsements will be considered as an additional element. |
 
 ### Note:
-- Selection of the award winners is completely at Principal’s discretion.
+- Selection of the award winners is completely at Principal's discretion.
 - Subject proficiency will be as per the subjects offered .
 
 # SCHOOL POLICIES
@@ -604,16 +604,16 @@ To Dunes we'll bring pride, to Dunes we'll bring pride (3)
 - ➢ Avoid racist remarks or behavior
 - ➢ All problems should be reported to the staff on duty, so that they can be sorted out immediately and amicably.
 
-# CHILD’S ROLE
+# CHILD'S ROLE
 - ➢ Abide by the school rules.
 - ➢ Respect fellow students and adults. Be tolerant and develop empathetic understanding of others.
 - ➢ Be kind, helpful, sharing and caring towards others, especially on the playground.
-- ➢ Respect others and school’s property.
+- ➢ Respect others and school's property.
 - ➢ Listen to teachers and follow the instructions.
 - ➢ Work to their best of ability and to do their assignments.
 - ➢ Accept responsibility for their own actions.
 
-# PARENT’S ROLE
+# PARENT'S ROLE
 #### As a parent, I will:
 - ✓ Always support my/our ward/s throughout their life.
 - ✓ Encourage our ward/wards to work hard in school and to guide him/her to do his/her assignments.
@@ -643,7 +643,7 @@ To Dunes we'll bring pride, to Dunes we'll bring pride (3)
 #### Students are given appropriate guidance and opportunities to identify the motivation and purposes behind their actions and to rectify any negative behaviors before any disciplinary action (e.g. Warnings, written notices) is taken.
 #### Student misconduct shall be dealt which as follows:
 - ➢ Firstly , the school provides counselling for the students, with a clear explanation , with reasons, of the changes in behavior that are required of the student by the school.
-- ➢ Next, the school has put in place a strategy, with the appropriate monitoring and support by the teacher and school counsellor to address and correct the student’s unacceptable behavior.
+- ➢ Next, the school has put in place a strategy, with the appropriate monitoring and support by the teacher and school counsellor to address and correct the student's unacceptable behavior.
 - ➢ If there is a need for further escalation of response, the school will inform parents/guardians by letter and hold a meeting or a series of meetings with there to agree to a reasonable joint home school strategy. Parents/guardians shall be required, at this stage, to sign an undertaking to support the agreed strategy.
 - ➢ Should the student continue to behave unacceptably, the school may suspend the student temporarily from school for up to five days and shall issue to the student and his or her parent /guardian a final warning.
 - ➢ In the final stage, if the student fails to modify his/her behavior in accordance with the requirements of the school. The school may apply to the council to transfer the student to another School or to permanently exclude the student concerned.
@@ -663,8 +663,8 @@ To Dunes we'll bring pride, to Dunes we'll bring pride (3)
 - ➢ Take care of your ward and promote his / her spiritual, moral, intellectual, cultural, emotional and social development.
 - ➢ Work with you to help your ward achieve his/her full potential.
 - ➢ Provide an interesting and stimulating curriculum within the framework of the National Curriculum requirements.
-- ➢ Be available for advice and guidance to enhance ward’s holistic development.
-- ➢ Arrange meetings periodically to discuss your ward’s progress and achievement.
+- ➢ Be available for advice and guidance to enhance ward's holistic development.
+- ➢ Arrange meetings periodically to discuss your ward's progress and achievement.
 - ➢ Establish a code of behavior to ensure a safe and caring environment.
 - ➢ Seek your support for active involvement in school, including classroom interaction.
 - ➢ Work with you in collaboration to make the environment happy and impactful.
