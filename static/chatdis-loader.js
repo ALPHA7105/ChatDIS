@@ -20,13 +20,14 @@
     var toggleBtn = document.createElement('button');
     toggleBtn.id = 'chatdis-toggle';
     toggleBtn.setAttribute('aria-label', 'Open ChatDIS');
-    toggleBtn.innerHTML = '<img src="' + serverUrl + '/static/duneslogo.png" alt="DIS Logo" style="width:40px; height:40px; border-radius:50%; object-fit:contain;">';  //toggleBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:28px;height:28px"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>';
+    var logoHtml = '<img src="' + serverUrl + '/static/duneslogo.png" alt="DIS Logo" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;">';';  //toggleBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:28px;height:28px"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>';
 
     var btnStyles = [
         'position:fixed',
         'z-index:' + (zIndex + 1),
         'width:' + DEFAULTS.buttonSize,
         'height:' + DEFAULTS.buttonSize,
+        'padding:4px'
         'border-radius:50%',
         'border:none',
         'cursor:pointer',
@@ -116,7 +117,7 @@
             container.style.opacity = '0';
             container.style.transform = 'translateY(20px) scale(0.95)';
             container.style.pointerEvents = 'none';
-            toggleBtn.innerHTML = '<img src="' + serverUrl + '/static/duneslogo.png" alt="DIS Logo" style="width:40px; height:40px; object-fit:contain;">';  //toggleBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:28px;height:28px"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>';
+            var logoHtml = '<img src="' + serverUrl + '/static/duneslogo.png" alt="DIS Logo" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;">';  //toggleBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:28px;height:28px"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>';
             toggleBtn.style.animation = 'chatdis-btn-pulse 3s ease-in-out infinite';
         }
     });
