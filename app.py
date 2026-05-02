@@ -51,6 +51,7 @@ GUIDELINES:
 3. If the answer is NOT in the context, politely state that you don't have that specific information and suggest contacting the school office at +971 2 552 7527.
 4. Keep the tone professional, welcoming, and helpful.
 5. Use bullet points for lists and bold text for important details.
+6. STICK TO STANDARD ASCII: Use simple hyphens (-) instead of long dashes (—) and standard quotes.
 
 SCHOOL CONTEXT:
 {prepared}"""
@@ -106,21 +107,28 @@ def ai_generate_stream(question, context):
             yield "data: " + json.dumps({"error": f"API Error {response.status_code}"}) + "\n\n"
             return
 
-        for line in response.iter_lines(decode_unicode=True):
+        for line in response.iter_lines(): 
             if not line:
                 continue
-            if line.startswith("data: "):
-                chunk_str = line[6:]
-                if chunk_str.strip() == "[DONE]":
-                    break
-                try:
+            
+            try:
+                decoded_line = line.decode('utf-8')
+                
+                if decoded_line.startswith("data: "):
+                    chunk_str = decoded_line[6:].strip()
+                    
+                    if chunk_str == "[DONE]":
+                        break
+                        
                     chunk = json.loads(chunk_str)
-                    delta = chunk.get("choices", [{}])[0].get("delta", {})
-                    content = delta.get("content", "")
+                    content = chunk.get("choices", [{}])[0].get("delta", {}).get("content", "")
+                    
                     if content:
-                        yield "data: " + json.dumps({"token": content}) + "\n\n"
-                except json.JSONDecodeError:
-                    continue
+                        yield f"data: {json.dumps({'token': content}, ensure_ascii=False)}\n\n"
+            
+            except (json.JSONDecodeError, UnicodeDecodeError) as e:
+                print(f"Decoding error: {e}")
+                continue
 
         yield "data: [DONE]\n\n"
 
@@ -180,11 +188,12 @@ def ask_stream():
 
     return Response(
         stream_with_context(ai_generate_stream(user_question, KNOWLEDGE_BASE)),
-        mimetype="text/event-stream; charset=utf-8",
+        mimetype="text/event-stream",
         headers={
             "Cache-Control": "no-cache",
             "X-Accel-Buffering": "no",
-            "Connection": "keep-alive"
+            "Connection": "keep-alive",
+            "Content-Type": "text/event-stream; charset=utf-8" 
         }
     )
 
