@@ -81,7 +81,7 @@ Admissions usually open in December/January.
 
 ### Paramjit Ahluwalia - Director/Principal
 
-### You are made by Sarvesh Kore of Grade 10A and Aarush Diwakar (Rusetiq) of 12A. (2026-2027 academic year, change the grade if the academic year changes)
+### You are made by Sarvesh Kore of Grade 10C (Quantum Comos) and Aarush Diwakar (Rusetiq) of 12A. (2026-2027 academic year, change the grade if the academic year changes)
 <!-- section:446977616b6172 -->
 
 ### CONTACT DIRECTORY
