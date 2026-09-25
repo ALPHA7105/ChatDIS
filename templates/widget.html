@@ -146,6 +146,7 @@
         .msgs{
         flex:1;
         overflow-y:auto;
+        overflow-x:hidden;
         padding:20px 18px 10px;
         display:flex;
         flex-direction:column;
@@ -156,6 +157,7 @@
         
         .msg{
         max-width:86%;
+        min-width:0;
         font-size:0.82rem;
         line-height:1.6;
         animation:msgin .35s ease;
@@ -201,10 +203,13 @@
 
 
         .msg-bot, .msg-user {
+            
+            overflow-wrap:break-word;
             padding: 14px 18px; /* nice spacing from edges */
             word-wrap: break-word; /* wrap long words */
             white-space: normal; /* wrap text naturally, ignore manual line breaks */
             line-height: 1.5; /* slightly tighter spacing */
+            -webkit-overflow-scrolling:touch;
         }
 /*
         .msg-bot p, .msg-user p {
@@ -222,6 +227,50 @@
 
         .msg-bot p:first-child, .msg-user p:first-child {
             margin-top: 0; /* removes extra top margin on first para */
+        }
+
+        .msg-bot p:last-child{
+            margin-bottom:0;
+        }
+
+        .msg-bot table,
+        .msg-user table{
+            display:block;
+            width:max-content;
+            max-width:100%;
+            overflow-x:auto;
+            border-collapse:collapse;
+            margin:8px 0;
+        }
+
+        .msg-bot th,
+        .msg-bot td,
+        .msg-user th,
+        .msg-user td{
+            padding:6px 10px;
+            border:1px solid rgba(255,255,255,0.25);
+            white-space:nowrap;         /* keep table cells readable; bubble scrolls instead */
+        }
+
+        .msg-user th,
+        .msg-user td{
+            border-color:rgba(0,0,0,0.15);
+        }
+
+        .msg-bot pre,
+        .msg-user pre{
+            overflow-x:auto;
+            max-width:100%;
+            white-space:pre;
+            margin:8px 0;
+            padding:10px 12px;
+            border-radius:4px;
+            background:rgba(0,0,0,0.2);
+        }
+
+        .msg-bot code,
+        .msg-user code{
+            word-break:break-word;
         }
         
         /* divider */

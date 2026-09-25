@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,12 +13,11 @@
         rel="stylesheet">
     <style>
         :root {
-            --night: #160E07;
-            --gold: #C9953A;
-            --sand: #E8D5B7;
-            --ink-3: #8C6648;
+            --night: #1A0F0F;
+            --gold: #C94A4A;
+            --sand: #F5EDE3;
+            --ink-3: #B08A7A;
         }
-
         *,
         *::before,
         *::after {
@@ -27,7 +25,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Syne', sans-serif;
             background: var(--night);
@@ -39,20 +36,17 @@
             justify-content: center;
             padding: 48px 24px;
         }
-
         .logo {
             font-family: 'Cormorant', serif;
             font-size: 2.2rem;
             font-weight: 700;
             margin-bottom: 6px;
         }
-
         .logo em {
             font-style: italic;
             color: var(--gold);
             font-weight: 400;
         }
-
         .tagline {
             font-size: 0.62rem;
             letter-spacing: 2.5px;
@@ -60,21 +54,18 @@
             color: var(--ink-3);
             margin-bottom: 40px;
         }
-
         .card {
             width: 100%;
             max-width: 620px;
-            border: 1px solid rgba(201, 149, 58, 0.15);
-            background: rgba(201, 149, 58, 0.03);
+            border: 1px solid rgba(201, 74, 74, 0.22);
+            background: rgba(201, 74, 74, 0.05);
         }
-
         .card+.card {
             margin-top: 16px;
         }
-
         .card-head {
             padding: 12px 18px;
-            border-bottom: 1px solid rgba(201, 149, 58, 0.1);
+            border-bottom: 1px solid rgba(201, 74, 74, 0.15);
             font-size: 0.6rem;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -84,50 +75,41 @@
             align-items: center;
             justify-content: space-between;
         }
-
         .card-body {
             padding: 18px;
             font-size: 0.78rem;
             line-height: 1.8;
             color: var(--sand);
         }
-
         .card-body p+p {
             margin-top: 10px;
         }
-
         code,
         pre {
             font-family: 'Courier New', monospace;
             font-size: 0.73rem;
         }
-
         pre {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.28);
             padding: 16px 18px;
             overflow-x: auto;
             line-height: 1.9;
         }
-
         .t {
-            color: #C8703F;
+            color: #E07A6A;
         }
-
         .a {
-            color: #95B8A4;
+            color: #8FBEA8;
         }
-
         .v {
             color: var(--gold);
         }
-
         .c {
-            color: #4A6A58;
+            color: #6A8F7A;
         }
-
         .copy-btn {
             background: transparent;
-            border: 1px solid rgba(201, 149, 58, 0.25);
+            border: 1px solid rgba(201, 74, 74, 0.35);
             color: var(--gold);
             padding: 3px 12px;
             cursor: pointer;
@@ -138,35 +120,29 @@
             text-transform: uppercase;
             transition: background 0.2s;
         }
-
         .copy-btn:hover {
-            background: rgba(201, 149, 58, 0.08);
+            background: rgba(201, 74, 74, 0.12);
         }
-
         .env-row {
             display: flex;
             gap: 10px;
             padding: 7px 0;
-            border-bottom: 1px solid rgba(201, 149, 58, 0.07);
+            border-bottom: 1px solid rgba(201, 74, 74, 0.1);
             align-items: flex-start;
         }
-
         .env-row:last-child {
             border-bottom: none;
         }
-
         .env-key {
             color: var(--gold);
             min-width: 200px;
             font-family: 'Courier New', monospace;
             font-size: 0.73rem;
         }
-
         .env-val {
             color: var(--ink-3);
             font-size: 0.73rem;
         }
-
         .foot {
             margin-top: 36px;
             font-size: 0.58rem;
@@ -176,11 +152,9 @@
         }
     </style>
 </head>
-
 <body>
     <div class="logo">Chat<em>DIS</em></div>
     <div class="tagline">Dunes International School &mdash; Implementation Reference</div>
-
     <div class="card">
         <div class="card-head">
             <span>Server Setup</span>
@@ -189,27 +163,24 @@
             <p>Install dependencies and set environment variables, then run with gunicorn.</p>
             <pre><span class="c"># Install</span>
 pip install -r requirements.txt
-
 <span class="c"># Run (production)</span>
 gunicorn app:app
-
 <span class="c"># Run (development)</span>
 python app.py</pre>
         </div>
     </div>
-
     <div class="card">
         <div class="card-head">
             <span>Environment Variables (.env)</span>
         </div>
         <div class="card-body">
             <div class="env-row">
-                <span class="env-key">GROQ_API_KEY</span>
-                <span class="env-val">Your Groq API key</span>
+                <span class="env-key">OLLAMA_API_KEY</span>
+                <span class="env-val">Your Ollama API key</span>
             </div>
             <div class="env-row">
-                <span class="env-key">GROQ_MODEL</span>
-                <span class="env-val">Model to use (default: <code>openai/gpt-oss-120b</code>)</span>
+                <span class="env-key">OLLAMA_MODEL</span>
+                <span class="env-val">Model to use (default: <code>gpt-oss:120b-cloud</code>)</span>
             </div>
             <div class="env-row">
                 <span class="env-key">ALLOWED_ORIGINS</span>
@@ -218,7 +189,6 @@ python app.py</pre>
             </div>
         </div>
     </div>
-
     <div class="card">
         <div class="card-head">
             <span>Embed on Your School Website</span>
@@ -237,7 +207,6 @@ python app.py</pre>
 <span class="t">&lt;script</span> <span class="a">src</span>=<span class="v">"https://chatdis-ai.vercel.app/static/chatdis-loader.js"</span><span class="t">&gt;&lt;/script&gt;</span></pre>
         </div>
     </div>
-
     <div class="card">
         <div class="card-head"><span>Routes</span></div>
         <div class="card-body">
@@ -260,14 +229,11 @@ python app.py</pre>
             </div>
         </div>
     </div>
-
     <p class="foot">Dunes International School &middot; Abu Dhabi &middot; Innovate &amp; Excel</p>
-
     <script>
         window.ChatDISConfig = { serverUrl: '', position: 'bottom-right' };
     </script>
     <script src="/static/chatdis-loader.js"></script>
-
     <script>
         function copyCode() {
             const t = `<script>\nwindow.ChatDISConfig = {\n  serverUrl: 'https://your-chatdis-server.com',\n  position: 'bottom-right'\n};\n<\/script>\n<script src="https://your-chatdis-server.com/static/chatdis-loader.js"><\/script>`;
@@ -279,5 +245,4 @@ python app.py</pre>
         }
     </script>
 </body>
-
 </html>
