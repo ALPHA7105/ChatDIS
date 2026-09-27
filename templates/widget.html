@@ -533,6 +533,36 @@
             if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
         });
 
+        function toAsciiSafe(text) {
+            if (!text) return text;
+            return text
+                .replace(/[\u2010\u2011\u2012\u2013\u2014\u2015\u2212\ufe63\uff0d]/g, '-')
+                .replace(/[\u2018\u2019\u201a\u201b]/g, "'")
+                .replace(/[\u201c\u201d\u201e\u201f]/g, '"')
+                .replace(/\u2026/g, '...')
+                .replace(/\u00a0/g, ' ')
+                .replace(/[\u2022\u00b7]/g, '-')
+                .replace(/[\u2044\u2215]/g, '/');
+        }
+
+        function fixLinks(el) {
+            el.querySelectorAll('a').forEach(a => {
+                const raw = a.getAttribute('href') || '';
+                const clean = toAsciiSafe(raw);
+                a.setAttribute('href', clean);
+                a.setAttribute('target', '_blank');
+                a.setAttribute('rel', 'noopener noreferrer');
+                a.onclick = function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (/^https?:\/\//i.test(clean)) {
+                        window.open(clean, '_blank', 'noopener,noreferrer');
+                    }
+                    return false;
+                };
+            });
+        }
+
         function addMsg(content, isUser, isThinking) {
             const el = document.createElement('div');
             el.className = 'msg ' + (isUser ? 'msg-user' : 'msg-bot');
@@ -543,16 +573,17 @@
             } else if (isUser) {
                 el.textContent = content;
             } else {
-                el.innerHTML = marked.parse(content);
+                el.innerHTML = marked.parse(toAsciiSafe(content));
+                fixLinks(el);
             }
-
             msgs.appendChild(el);
             msgs.scrollTop = msgs.scrollHeight;
             return el;
         }
 
         function renderMarkdown(el, raw) {
-            el.innerHTML = marked.parse(raw);
+            el.innerHTML = marked.parse(toAsciiSafe(raw));
+            fixLinks(el);
             msgs.scrollTop = msgs.scrollHeight;
         }
 
@@ -656,6 +687,17 @@
         }
 
         function quickAsk(text) { inp.value = text; send(); }
+
+        msgs.addEventListener('click', function (e) {
+            const a = e.target.closest('a');
+            if (!a) return;
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            const href = toAsciiSafe(a.getAttribute('href') || a.href || '');
+            if (/^https?:\/\//i.test(href)) {
+                window.open(href, '_blank', 'noopener,noreferrer');
+            }
+        }, true);
     </script>
 </body>
 

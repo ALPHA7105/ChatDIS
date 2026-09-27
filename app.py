@@ -9,6 +9,8 @@ from flask_cors import CORS
 from datetime import datetime
 from config import RATE_LIMIT_GLOBAL, RATE_LIMIT_ASK, MAX_QUESTION_LEN, TEMPERATURE, _LOG_PREAMBLE
 from utils import _STREAM_DELIM, _EOF_MARKER, clean_context, format_timestamp
+import re
+import unicodedata
 
 load_dotenv()
 
@@ -27,10 +29,52 @@ HEADERS = {
     "Content-Type": "application/json"
 }
 
+def to_ascii_safe(text: str) -> str:
+    """Replace Unicode punctuation that breaks links / markdown."""
+    if not text:
+        return text
+
+    text = unicodedata.normalize("NFKC", text)
+    replacements = {
+        # dashes / hyphens
+        "\u2014": "-",  # em dash —
+        "\u2013": "-",  # en dash –
+        "\u2012": "-",  # figure dash
+        "\u2015": "-",  # horizontal bar
+        "\u2212": "-",  # minus sign −
+        "\u2010": "-",  # hyphen ‐
+        "\u2011": "-",  # non-breaking hyphen ‑ 
+        "\u00ad": "",   # soft hyphen
+        "\ufe63": "-",  # small hyphen-minus
+        "\uff0d": "-",  # fullwidth hyphen-minus
+        # quotes
+        "\u2018": "'",
+        "\u2019": "'",
+        "\u201a": "'",
+        "\u201b": "'",
+        "\u201c": '"',
+        "\u201d": '"',
+        "\u201e": '"',
+        "\u201f": '"',
+        # other
+        "\u2026": "...",
+        "\u00a0": " ",
+        "\u2022": "-",
+        "\u00b7": "-",
+        "\u2044": "/",  # fraction slash
+        "\u2215": "/",  # division slash
+    }
+    for uni, ascii_char in replacements.items():
+        text = text.replace(uni, ascii_char)
+
+    text = re.sub(r"[\u2000-\u206F\u2E00-\u2E7F]", "-", text)
+    return text
+
+
 KB_PATH = "knowledge_base.md"
 try:
     with open(KB_PATH, "r", encoding="utf-8") as f:
-        KNOWLEDGE_BASE = f.read()
+        KNOWLEDGE_BASE = to_ascii_safe(f.read())
 except Exception:
     KNOWLEDGE_BASE = "Dunes International School info: Timings 7:30 AM - 2:50 PM."
 
@@ -51,7 +95,7 @@ GUIDELINES:
 3. If the answer is NOT in the context, politely state that you don't have that specific information and suggest contacting the school office at +971 2 552 7527.
 4. Keep the tone professional, welcoming, and helpful.
 5. Use bullet points for lists and bold text for important details.
-6. STICK TO STANDARD ASCII: Use simple hyphens (-) instead of long dashes (—) and standard quotes.
+6. STICK TO STANDARD ASCII: Use simple hyphens (-), DO NOT use long dashes (—) or em dashes (–) or Unicode characters, and stick to standard quotes ("), NOT Unicode quotes (“ ”).
 
 SCHOOL CONTEXT:
 {prepared}"""
@@ -82,7 +126,7 @@ def ai_generate_answer(question, context):
 
         result = response.json()
         if "choices" in result and len(result["choices"]) > 0:
-            return result["choices"][0]["message"]["content"]
+            return to_ascii_safe(result["choices"][0]["message"]["content"])
 
         return "Unexpected API response."
     except Exception as e:
@@ -124,6 +168,7 @@ def ai_generate_stream(question, context):
                     content = chunk.get("choices", [{}])[0].get("delta", {}).get("content", "")
                     
                     if content:
+                        content = to_ascii_safe(content)
                         yield f"data: {json.dumps({'token': content}, ensure_ascii=False)}\n\n"
             
             except (json.JSONDecodeError, UnicodeDecodeError) as e:
@@ -138,6 +183,8 @@ def ai_generate_stream(question, context):
 
 def log_prompt(user_question, client_ip):
     print(f"[{format_timestamp(datetime.now())}] {client_ip} | {user_question}")
+
+
 
 
 @app.route("/")
