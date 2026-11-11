@@ -140,29 +140,34 @@ def create_kb_chunks(text, max_chars=2400):
 KB_CHUNKS = create_kb_chunks(KNOWLEDGE_BASE)
 
 
+
 def retrieve_relevant_context(question, max_chunks=5, max_total_chars=9000):
-    """Find the most relevant KB chunks using keyword matching."""
 
     query_words = {
         word for word in re.findall(r'\w+', question.lower())
         if len(word) > 1 and word not in STOP_WORDS
     }
 
-    if not query_words:
-        return "No relevant information was found in the knowledge base."
+    # Special handling for school timings
+    timing_keywords = {
+        "timing", "timings", "time", "schedule",
+        "arrival", "dispersal", "school", "hours"
+    }
+
+    if query_words.intersection(timing_keywords):
+        for i, chunk in enumerate(KB_CHUNKS):
+            if "# SCHOOL TIMINGS" in chunk.upper():
+                # Include the following chunks too, if needed
+                selected = KB_CHUNKS[i:i + 3]
+                return "\n\n---\n\n".join(selected)
 
     scored_chunks = []
 
     for chunk in KB_CHUNKS:
-        chunk_words = set(
-            re.findall(r'\w+', chunk.lower())
-        )
-
+        chunk_words = set(re.findall(r'\w+', chunk.lower()))
         overlap = query_words.intersection(chunk_words)
-
         score = len(overlap)
 
-        # Give additional weight to exact phrase matches.
         if question.lower() in chunk.lower():
             score += 10
 
@@ -188,6 +193,7 @@ def retrieve_relevant_context(question, max_chunks=5, max_total_chars=9000):
         return "No relevant information was found in the knowledge base."
 
     return "\n\n---\n\n".join(selected)
+
 
 
 print(f"[ChatDIS] Knowledge base loaded: {len(KB_CHUNKS)} chunks")
@@ -330,6 +336,9 @@ def ask():
     log_prompt(user_question, client_ip)
 
     context = retrieve_relevant_context(user_question)
+    print("\n========== RETRIEVED CONTEXT ==========")
+    print(context)
+    print("=======================================\n")
     answer = ai_generate_answer(user_question, context)
     return jsonify({"answer": answer})
 
@@ -349,22 +358,26 @@ def ask_stream():
 
     log_prompt(user_question, client_ip)
 
+    # Retrieve relevant knowledge
+    context = retrieve_relevant_context(user_question)
+
+    # DEBUG
+    print("\n========== RETRIEVED CONTEXT ==========")
+    print(context)
+    print("=======================================\n")
+
     return Response(
         stream_with_context(
-            ai_generate_stream(
-                user_question,
-                retrieve_relevant_context(user_question)
-            )
+            ai_generate_stream(user_question, context)
         ),
         mimetype="text/event-stream",
         headers={
             "Cache-Control": "no-cache",
             "X-Accel-Buffering": "no",
             "Connection": "keep-alive",
-            "Content-Type": "text/event-stream; charset=utf-8" 
+            "Content-Type": "text/event-stream; charset=utf-8"
         }
     )
-
 
 if __name__ == "__main__":
     app.run(debug=False)
