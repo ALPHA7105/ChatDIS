@@ -78,6 +78,120 @@ try:
 except Exception:
     KNOWLEDGE_BASE = "Dunes International School info: Timings 7:30 AM - 2:50 PM."
 
+# ==========================================
+# CHATDIS LIGHTWEIGHT KNOWLEDGE RETRIEVAL
+# ==========================================
+
+STOP_WORDS = {
+    "the", "is", "are", "was", "were", "what", "when",
+    "where", "which", "who", "how", "why", "can", "could",
+    "would", "should", "do", "does", "did", "and", "or",
+    "in", "on", "at", "to", "of", "for", "with", "a",
+    "an", "me", "my", "i", "we", "you", "your", "please",
+    "tell", "about", "give", "explain", "school"
+}
+
+
+def create_kb_chunks(text, max_chars=2400):
+    """Split KB into manageable sections without losing headings."""
+
+    sections = re.split(r'(?m)(?=^#{1,6}\s)', text)
+    chunks = []
+
+    for section in sections:
+        section = section.strip()
+        if not section:
+            continue
+
+        heading_match = re.match(r'^#{1,6}\s+.*', section)
+        heading = heading_match.group(0) if heading_match else ""
+
+        paragraphs = re.split(r'\n\s*\n', section)
+
+        current = heading
+
+        for paragraph in paragraphs:
+            paragraph = paragraph.strip()
+            if not paragraph or paragraph == heading:
+                continue
+
+            candidate = (current + "\n\n" + paragraph).strip()
+
+            if len(candidate) <= max_chars:
+                current = candidate
+            else:
+                if current.strip():
+                    chunks.append(current.strip())
+
+                current = (heading + "\n\n" + paragraph).strip()
+
+                # Split exceptionally long individual paragraphs.
+                if len(current) > max_chars:
+                    for i in range(0, len(current), max_chars):
+                        chunks.append(current[i:i + max_chars])
+                    current = ""
+
+        if current.strip():
+            chunks.append(current.strip())
+
+    return chunks
+
+
+KB_CHUNKS = create_kb_chunks(KNOWLEDGE_BASE)
+
+
+def retrieve_relevant_context(question, max_chunks=5, max_total_chars=9000):
+    """Find the most relevant KB chunks using keyword matching."""
+
+    query_words = {
+        word for word in re.findall(r'\w+', question.lower())
+        if len(word) > 1 and word not in STOP_WORDS
+    }
+
+    if not query_words:
+        return "No relevant information was found in the knowledge base."
+
+    scored_chunks = []
+
+    for chunk in KB_CHUNKS:
+        chunk_words = set(
+            re.findall(r'\w+', chunk.lower())
+        )
+
+        overlap = query_words.intersection(chunk_words)
+
+        score = len(overlap)
+
+        # Give additional weight to exact phrase matches.
+        if question.lower() in chunk.lower():
+            score += 10
+
+        if score > 0:
+            scored_chunks.append((score, chunk))
+
+    scored_chunks.sort(key=lambda item: item[0], reverse=True)
+
+    selected = []
+    total_chars = 0
+
+    for score, chunk in scored_chunks:
+        if len(selected) >= max_chunks:
+            break
+
+        if total_chars + len(chunk) > max_total_chars:
+            continue
+
+        selected.append(chunk)
+        total_chars += len(chunk)
+
+    if not selected:
+        return "No relevant information was found in the knowledge base."
+
+    return "\n\n---\n\n".join(selected)
+
+
+print(f"[ChatDIS] Knowledge base loaded: {len(KB_CHUNKS)} chunks")
+
 
 def _prepare_context(ctx):
     cleaned = clean_context(ctx)
@@ -96,6 +210,7 @@ GUIDELINES:
 4. Keep the tone professional, welcoming, and helpful.
 5. Use bullet points for lists and bold text for important details.
 6. STICK TO STANDARD ASCII: Use simple hyphens (-), DO NOT use long dashes (—) or em dashes (–) or Unicode characters, and stick to standard quotes ("), NOT Unicode quotes (“ ”).
+7. The provided SCHOOL CONTEXT contains only selected relevant excerpts from the complete school knowledge base. Answer using those excerpts. Never assume that missing information does not exist elsewhere in the full database. If the provided excerpts do not contain the answer, suggest contacting the school office.
 
 SCHOOL CONTEXT:
 {prepared}"""
@@ -214,7 +329,8 @@ def ask():
 
     log_prompt(user_question, client_ip)
 
-    answer = ai_generate_answer(user_question, KNOWLEDGE_BASE)
+    context = retrieve_relevant_context(user_question)
+    answer = ai_generate_answer(user_question, context)
     return jsonify({"answer": answer})
 
 
@@ -234,7 +350,12 @@ def ask_stream():
     log_prompt(user_question, client_ip)
 
     return Response(
-        stream_with_context(ai_generate_stream(user_question, KNOWLEDGE_BASE)),
+        stream_with_context(
+            ai_generate_stream(
+                user_question,
+                retrieve_relevant_context(user_question)
+            )
+        ),
         mimetype="text/event-stream",
         headers={
             "Cache-Control": "no-cache",
