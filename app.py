@@ -21,8 +21,8 @@ CORS(app)
 limiter = Limiter(get_remote_address, app=app, default_limits=[RATE_LIMIT_GLOBAL])
 
 OLLAMA_API_KEY = os.getenv("OLLAMA_API_KEY")
-OLLAMA_API_URL = "https://ollama.com/v1/chat/completions"
-MODEL = os.getenv("OLLAMA_MODEL", "gpt-oss:120b-cloud")
+OLLAMA_API_URL = "https://api.groq.com/openai/v1/chat/completions"
+MODEL = os.getenv("OLLAMA_MODEL", "openai/gpt-oss-120b")
 
 HEADERS = {
     "Authorization": f"Bearer {OLLAMA_API_KEY}",
