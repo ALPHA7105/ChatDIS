@@ -22,12 +22,14 @@ limiter = Limiter(get_remote_address, app=app, default_limits=[RATE_LIMIT_GLOBAL
 
 OLLAMA_API_KEY = os.getenv("OLLAMA_API_KEY")
 OLLAMA_API_URL = "https://ollama.com/v1/chat/completions"
-MODEL = os.getenv("OLLAMA_MODEL", "gpt-oss:120b-cloud")
+MODEL = os.getenv("OLLAMA_MODEL", "gpt-oss:20b-cloud")
 
 HEADERS = {
     "Authorization": f"Bearer {OLLAMA_API_KEY}",
     "Content-Type": "application/json"
 }
+print("OLLAMA API KEY CONFIGURED:", bool(OLLAMA_API_KEY))
+print("OLLAMA KEY LABEL:", os.getenv("OLLAMA_KEY_LABEL", "not-set"))
 
 def to_ascii_safe(text: str) -> str:
     """Replace Unicode punctuation that breaks links / markdown."""
@@ -125,6 +127,9 @@ def ai_generate_answer(question, context):
             return f"API Error {response.status_code}: {response.text}"
 
         result = response.json()
+        print("OLLAMA CONFIGURED MODEL:", MODEL)
+        print("OLLAMA ACTUAL RESPONSE MODEL:", result.get("model"))
+        print("OLLAMA TOKEN USAGE:", result.get("usage"))
         if "choices" in result and len(result["choices"]) > 0:
             return to_ascii_safe(result["choices"][0]["message"]["content"])
 
