@@ -21,8 +21,8 @@ CORS(app)
 limiter = Limiter(get_remote_address, app=app, default_limits=[RATE_LIMIT_GLOBAL])
 
 OLLAMA_API_KEY = os.getenv("OLLAMA_API_KEY")
-OLLAMA_API_URL = "https://api.groq.com/openai/v1/chat/completions"
-MODEL = os.getenv("OLLAMA_MODEL", "openai/gpt-oss-120b")
+OLLAMA_API_URL = "https://ollama.com/v1/chat/completions"
+MODEL = os.getenv("OLLAMA_MODEL", "gpt-oss:120b-cloud")
 
 HEADERS = {
     "Authorization": f"Bearer {OLLAMA_API_KEY}",
@@ -78,126 +78,6 @@ try:
 except Exception:
     KNOWLEDGE_BASE = "Dunes International School info: Timings 7:30 AM - 2:50 PM."
 
-# ==========================================
-# CHATDIS LIGHTWEIGHT KNOWLEDGE RETRIEVAL
-# ==========================================
-
-STOP_WORDS = {
-    "the", "is", "are", "was", "were", "what", "when",
-    "where", "which", "who", "how", "why", "can", "could",
-    "would", "should", "do", "does", "did", "and", "or",
-    "in", "on", "at", "to", "of", "for", "with", "a",
-    "an", "me", "my", "i", "we", "you", "your", "please",
-    "tell", "about", "give", "explain", "school"
-}
-
-
-def create_kb_chunks(text, max_chars=2400):
-    """Split KB into manageable sections without losing headings."""
-
-    sections = re.split(r'(?m)(?=^#{1,6}\s)', text)
-    chunks = []
-
-    for section in sections:
-        section = section.strip()
-        if not section:
-            continue
-
-        heading_match = re.match(r'^#{1,6}\s+.*', section)
-        heading = heading_match.group(0) if heading_match else ""
-
-        paragraphs = re.split(r'\n\s*\n', section)
-
-        current = heading
-
-        for paragraph in paragraphs:
-            paragraph = paragraph.strip()
-            if not paragraph or paragraph == heading:
-                continue
-
-            candidate = (current + "\n\n" + paragraph).strip()
-
-            if len(candidate) <= max_chars:
-                current = candidate
-            else:
-                if current.strip():
-                    chunks.append(current.strip())
-
-                current = (heading + "\n\n" + paragraph).strip()
-
-                # Split exceptionally long individual paragraphs.
-                if len(current) > max_chars:
-                    for i in range(0, len(current), max_chars):
-                        chunks.append(current[i:i + max_chars])
-                    current = ""
-
-        if current.strip():
-            chunks.append(current.strip())
-
-    return chunks
-
-
-KB_CHUNKS = create_kb_chunks(KNOWLEDGE_BASE)
-
-
-
-def retrieve_relevant_context(question, max_chunks=5, max_total_chars=9000):
-
-    query_words = {
-        word for word in re.findall(r'\w+', question.lower())
-        if len(word) > 1 and word not in STOP_WORDS
-    }
-
-    # Special handling for school timings
-    timing_keywords = {
-        "timing", "timings", "time", "schedule",
-        "arrival", "dispersal", "school", "hours"
-    }
-
-    if query_words.intersection(timing_keywords):
-        for i, chunk in enumerate(KB_CHUNKS):
-            if "# SCHOOL TIMINGS" in chunk.upper():
-                # Include the following chunks too, if needed
-                selected = KB_CHUNKS[i:i + 3]
-                return "\n\n---\n\n".join(selected)
-
-    scored_chunks = []
-
-    for chunk in KB_CHUNKS:
-        chunk_words = set(re.findall(r'\w+', chunk.lower()))
-        overlap = query_words.intersection(chunk_words)
-        score = len(overlap)
-
-        if question.lower() in chunk.lower():
-            score += 10
-
-        if score > 0:
-            scored_chunks.append((score, chunk))
-
-    scored_chunks.sort(key=lambda item: item[0], reverse=True)
-
-    selected = []
-    total_chars = 0
-
-    for score, chunk in scored_chunks:
-        if len(selected) >= max_chunks:
-            break
-
-        if total_chars + len(chunk) > max_total_chars:
-            continue
-
-        selected.append(chunk)
-        total_chars += len(chunk)
-
-    if not selected:
-        return "No relevant information was found in the knowledge base."
-
-    return "\n\n---\n\n".join(selected)
-
-
-
-print(f"[ChatDIS] Knowledge base loaded: {len(KB_CHUNKS)} chunks")
-
 
 def _prepare_context(ctx):
     cleaned = clean_context(ctx)
@@ -216,7 +96,6 @@ GUIDELINES:
 4. Keep the tone professional, welcoming, and helpful.
 5. Use bullet points for lists and bold text for important details.
 6. STICK TO STANDARD ASCII: Use simple hyphens (-), DO NOT use long dashes (—) or em dashes (–) or Unicode characters, and stick to standard quotes ("), NOT Unicode quotes (“ ”).
-7. The provided SCHOOL CONTEXT contains only selected relevant excerpts from the complete school knowledge base. Answer using those excerpts. Never assume that missing information does not exist elsewhere in the full database. If the provided excerpts do not contain the answer, suggest contacting the school office.
 
 SCHOOL CONTEXT:
 {prepared}"""
@@ -335,11 +214,7 @@ def ask():
 
     log_prompt(user_question, client_ip)
 
-    context = retrieve_relevant_context(user_question)
-    print("\n========== RETRIEVED CONTEXT ==========")
-    print(context)
-    print("=======================================\n")
-    answer = ai_generate_answer(user_question, context)
+    answer = ai_generate_answer(user_question, KNOWLEDGE_BASE)
     return jsonify({"answer": answer})
 
 
@@ -358,26 +233,17 @@ def ask_stream():
 
     log_prompt(user_question, client_ip)
 
-    # Retrieve relevant knowledge
-    context = retrieve_relevant_context(user_question)
-
-    # DEBUG
-    print("\n========== RETRIEVED CONTEXT ==========")
-    print(context)
-    print("=======================================\n")
-
     return Response(
-        stream_with_context(
-            ai_generate_stream(user_question, context)
-        ),
+        stream_with_context(ai_generate_stream(user_question, KNOWLEDGE_BASE)),
         mimetype="text/event-stream",
         headers={
             "Cache-Control": "no-cache",
             "X-Accel-Buffering": "no",
             "Connection": "keep-alive",
-            "Content-Type": "text/event-stream; charset=utf-8"
+            "Content-Type": "text/event-stream; charset=utf-8" 
         }
     )
+
 
 if __name__ == "__main__":
     app.run(debug=False)
